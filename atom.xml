@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>your title</title>
-  <icon>https://www.gravatar.com/avatar/c240f1720ed8361caf329d7e173987fe</icon>
-  <subtitle>your subtitle</subtitle>
+  <title>Richard Blog</title>
+  <icon>https://www.gravatar.com/avatar/2f0de4ac6860dd2bcd46ca6e755ae138</icon>
+  <subtitle>Python Learning</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
@@ -10,8 +10,8 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>your name</name>
-    <email>your email</email>
+    <name>Richard</name>
+    <email>302619681@qq.com</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
