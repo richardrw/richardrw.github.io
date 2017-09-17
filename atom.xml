@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Richard Blog</title>
+  <title>Richard‘s Blog</title>
   <icon>https://www.gravatar.com/avatar/2f0de4ac6860dd2bcd46ca6e755ae138</icon>
-  <subtitle>Python Learning</subtitle>
+  <subtitle>Diary Python</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
