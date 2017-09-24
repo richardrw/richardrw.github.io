@@ -19,15 +19,15 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="sublime;python;utf-8">
+    <meta name="keywords" content="sublime,python,utf-8">
     <meta name="description" content="一、当同时安装了python2和python3时，如何让sublime text同时支持？ 在sublime text中选择Toos—&amp;gt;Build System—&amp;gt;New Build System，此时会创建一个新文件，内容如下： 123&amp;#123; &amp;quot;shell_cmd&amp;quot;: &amp;quot;make&amp;quot;&amp;#125;  将原有内容删除，把以下内容复制进去： 12">
-<meta name="keywords" content="sublime;python;utf-8">
+<meta name="keywords" content="sublime,python,utf-8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sublime如何添加python3版本以及中文乱码问题">
 <meta property="og:url" content="http://yoursite.com/2017/09/24/sublime如何添加python3版本以及中文乱码问题/index.html">
 <meta property="og:site_name" content="Richard‘s Blog">
 <meta property="og:description" content="一、当同时安装了python2和python3时，如何让sublime text同时支持？ 在sublime text中选择Toos—&amp;gt;Build System—&amp;gt;New Build System，此时会创建一个新文件，内容如下： 123&amp;#123; &amp;quot;shell_cmd&amp;quot;: &amp;quot;make&amp;quot;&amp;#125;  将原有内容删除，把以下内容复制进去： 12">
-<meta property="og:updated_time" content="2017-09-23T16:57:56.000Z">
+<meta property="og:updated_time" content="2017-09-24T01:22:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sublime如何添加python3版本以及中文乱码问题">
 <meta name="twitter:description" content="一、当同时安装了python2和python3时，如何让sublime text同时支持？ 在sublime text中选择Toos—&amp;gt;Build System—&amp;gt;New Build System，此时会创建一个新文件，内容如下： 123&amp;#123; &amp;quot;shell_cmd&amp;quot;: &amp;quot;make&amp;quot;&amp;#125;  将原有内容删除，把以下内容复制进去： 12">
@@ -192,10 +192,8 @@
 </li>
 <li><p>将原有内容删除，把以下内容复制进去：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;cmd&quot;: [&quot;/Library/Frameworks/Python.framework/Versions/3.6/bin/python3&quot;, &quot;-u&quot;, &quot;$file&quot;],</div><div class="line">    &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,</div><div class="line">    &quot;selector&quot;: &quot;source.python&quot;,</div><div class="line">    &quot;env&quot;: &#123;&quot;LANG&quot;: &quot;en_US.UTF-8&quot;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
 <p><strong>注意：</strong> <code>/Library/Frameworks/Python.framework/Versions/3.6/bin/python3</code>为你安装python3的路径</p>
-<ol>
+</li>
 <li>查看你python2或python3的路径方法。在终端／cmd下执行    <code>which python</code>获取python2路径，执行<code>which python3</code>获取python3路径，复制替换<code>&quot;cmd&quot;</code>中python的路径即可。</li>
 <li><code>&quot;env&quot;: {&quot;LANG&quot;: &quot;en_US.UTF-8&quot;</code>的作用是为了正常地显示中文</li>
 <li>将文件保存为<code>Python3.sublime-build</code>，路径为sublime安装目录下的<code>Packages</code>文件夹</li>
@@ -211,7 +209,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-23T16:57:56.000Z" itemprop="dateUpdated">2017-09-24 00:57:56</time>
+    Last updated: <time datetime="2017-09-24T01:22:06.000Z" itemprop="dateUpdated">2017-09-24 09:22:06</time>
 </span><br>
 
 
@@ -236,7 +234,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime-python-utf-8/">sublime;python;utf-8</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/">sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utf-8/">utf-8</a></li></ul>
 
 
             
