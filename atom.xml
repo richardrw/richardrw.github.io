@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Richard‘s Blog</title>
-  <icon>https://www.gravatar.com/avatar/2f0de4ac6860dd2bcd46ca6e755ae138</icon>
-  <subtitle>Diary Python</subtitle>
+  <icon>https://www.gravatar.com/avatar/a426ef5f9b38de213a4373837416fea8</icon>
+  <subtitle>记录敲码过程中遇到的细节和问题</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="https://richardrw.github.io/"/>
   <updated>2017-09-24T01:22:06.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>https://richardrw.github.io/</id>
   
   <author>
     <name>Richard</name>
-    <email>302619681@qq.com</email>
+    <email>weichang321@gmail.com</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
     <title>sublime如何添加python3版本以及中文乱码问题</title>
-    <link href="http://yoursite.com/2017/09/24/sublime%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0python3%E7%89%88%E6%9C%AC%E4%BB%A5%E5%8F%8A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2017/09/24/sublime如何添加python3版本以及中文乱码问题/</id>
+    <link href="https://richardrw.github.io/2017/09/24/sublime%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0python3%E7%89%88%E6%9C%AC%E4%BB%A5%E5%8F%8A%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>https://richardrw.github.io/2017/09/24/sublime如何添加python3版本以及中文乱码问题/</id>
     <published>2017-09-23T16:05:05.000Z</published>
     <updated>2017-09-24T01:22:06.000Z</updated>
     
@@ -35,18 +35,18 @@
     </summary>
     
     
-      <category term="sublime" scheme="http://yoursite.com/tags/sublime/"/>
+      <category term="sublime" scheme="https://richardrw.github.io/tags/sublime/"/>
     
-      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+      <category term="python" scheme="https://richardrw.github.io/tags/python/"/>
     
-      <category term="utf-8" scheme="http://yoursite.com/tags/utf-8/"/>
+      <category term="utf-8" scheme="https://richardrw.github.io/tags/utf-8/"/>
     
   </entry>
   
   <entry>
     <title>test_my_site</title>
-    <link href="http://yoursite.com/2017/09/16/test-my-site/"/>
-    <id>http://yoursite.com/2017/09/16/test-my-site/</id>
+    <link href="https://richardrw.github.io/2017/09/16/test-my-site/"/>
+    <id>https://richardrw.github.io/2017/09/16/test-my-site/</id>
     <published>2017-09-16T07:23:04.000Z</published>
     <updated>2017-09-16T07:23:04.000Z</updated>
     
@@ -59,8 +59,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2017/09/16/hello-world/"/>
-    <id>http://yoursite.com/2017/09/16/hello-world/</id>
+    <link href="https://richardrw.github.io/2017/09/16/hello-world/"/>
+    <id>https://richardrw.github.io/2017/09/16/hello-world/</id>
     <published>2017-09-16T07:08:10.000Z</published>
     <updated>2017-09-16T07:08:10.000Z</updated>
     
