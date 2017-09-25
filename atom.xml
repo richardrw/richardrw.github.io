@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://richardrw.github.io/"/>
-  <updated>2017-09-24T01:22:06.000Z</updated>
+  <updated>2017-09-25T14:43:18.000Z</updated>
   <id>https://richardrw.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>年轻人是否到北上广深发展的博弈论分析</title>
+    <link href="https://richardrw.github.io/2017/09/25/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E6%98%AF%E5%90%A6%E5%BA%94%E8%AF%A5%E5%88%B0%E5%8C%97%E4%B8%8A%E5%B9%BF%E6%B7%B1%E5%8F%91%E5%B1%95%E7%9A%84%E5%8D%9A%E5%BC%88%E8%AE%BA%E5%88%86%E6%9E%90/"/>
+    <id>https://richardrw.github.io/2017/09/25/年轻人是否应该到北上广深发展的博弈论分析/</id>
+    <published>2017-09-25T14:05:11.000Z</published>
+    <updated>2017-09-25T14:43:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一、思考背景"><a href="#一、思考背景" class="headerlink" title="一、思考背景"></a>一、思考背景</h1><p>有人说，当你在一个岗位上工作时间超过1年的时候，你就会不自觉地思考，思考诸如你当前工作的意义是什么、这个岗位是否真的适合你等这些“终极问题”（比作贤者模式吧）。博主现在已经毕业一年零三个月，实际工作时间已有一年零九个月，也许是进入“贤者模式”的时候了。引发博主思考这个问题的背景主要有三：</p><ol><li>曾为大学毕业生，也曾思考过到北上广深发展还是留守本地，驻地生根的问题。</li><li>身边有人说，到北上广深发展，只能当炮灰。在沉重的生活成本下，即使工资比二三线城市高，但是实际生活质量却不比二三线城市好，甚至更差。去了只能压榨自己，使自己成为一线城市的“蜡烛”，照亮了别人（成就了上层人士），燃烧了自己（折旧了自己）。</li><li>身边也有人说，到北上广深发展，机会更大。留在本地（二三线城市），固然稳定，生活压力也没那么大，但是一辈子都不会有什么变数，一生只能按现在的状态生活下去，极难遇到让自己人生变得更加美好的变数（机遇）。<br>到底谁说的对，谁说的错，是该往北上广深发展，还是驻地生根。不同的人在做这个决定的时候，他考量的是什么，决策依据是什么，决策背后的理论根据又是什么。此时慢慢地、慢慢地，博主想通过博弈论的角度，看能不能分析出什么，想知道，思考的结果又能不能为博主指明前往更美好生活的方向。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;一、思考背景&quot;&gt;&lt;a href=&quot;#一、思考背景&quot; class=&quot;headerlink&quot; title=&quot;一、思考背景&quot;&gt;&lt;/a&gt;一、思考背景&lt;/h1&gt;&lt;p&gt;有人说，当你在一个岗位上工作时间超过1年的时候，你就会不自觉地思考，思考诸如你当前工作的意义是什么、这个岗位
+      
+    
+    </summary>
+    
+    
+      <category term="博弈论" scheme="https://richardrw.github.io/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/"/>
+    
+      <category term="稳定性" scheme="https://richardrw.github.io/tags/%E7%A8%B3%E5%AE%9A%E6%80%A7/"/>
+    
+      <category term="风险" scheme="https://richardrw.github.io/tags/%E9%A3%8E%E9%99%A9/"/>
+    
+      <category term="均衡" scheme="https://richardrw.github.io/tags/%E5%9D%87%E8%A1%A1/"/>
+    
+      <category term="北上广深" scheme="https://richardrw.github.io/tags/%E5%8C%97%E4%B8%8A%E5%B9%BF%E6%B7%B1/"/>
+    
+  </entry>
   
   <entry>
     <title>sublime如何添加python3版本以及中文乱码问题</title>
