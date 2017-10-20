@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>从美食的角度看东莞（数据来源：大众点评） | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据分析 美食 东莞">
+    <meta name="description" content="从美食的角度看东莞（数据来源：大众点评）先从为什么要做这个项目说起，事情的缘由是这样的，小编当时跟领导到别的城市外出出差一个星期，作为一个平时很少外出的人，别说是别的城市了，就连东莞这个地方我都还没走遍过，尤其是那些重要商区、美食店，平时跟朋友出去玩，都很尴尬不知道要吃什么好。现在跟领导外出别的城市，感觉自己是个刚出大山的农村小伙子，对外面的世界所知甚少。作为领导的助手，自然就要安排好这一星期的就">
+<meta name="keywords" content="数据分析 美食 东莞">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从美食的角度看东莞（数据来源：大众点评）">
+<meta property="og:url" content="https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="从美食的角度看东莞（数据来源：大众点评）先从为什么要做这个项目说起，事情的缘由是这样的，小编当时跟领导到别的城市外出出差一个星期，作为一个平时很少外出的人，别说是别的城市了，就连东莞这个地方我都还没走遍过，尤其是那些重要商区、美食店，平时跟朋友出去玩，都很尴尬不知道要吃什么好。现在跟领导外出别的城市，感觉自己是个刚出大山的农村小伙子，对外面的世界所知甚少。作为领导的助手，自然就要安排好这一星期的就">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw1024/006XG4i7gy1fkp14l3cr7j30ey0fe0te.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/006XG4i7gy1fkp14l3pqrj311v0dnmxs.jpg">
+<meta property="og:image" content="http://wx2.sinaimg.cn/large/006XG4i7gy1fkp14l6t1ij309k0l3ab8.jpg">
+<meta property="og:image" content="http://wx3.sinaimg.cn/large/006XG4i7gy1fkp14l3hpyj30sn0bb0t4.jpg">
+<meta property="og:image" content="http://wx1.sinaimg.cn/large/006XG4i7gy1fkp14l2dofj311y0cvgm1.jpg">
+<meta property="og:updated_time" content="2017-10-20T13:56:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从美食的角度看东莞（数据来源：大众点评）">
+<meta name="twitter:description" content="从美食的角度看东莞（数据来源：大众点评）先从为什么要做这个项目说起，事情的缘由是这样的，小编当时跟领导到别的城市外出出差一个星期，作为一个平时很少外出的人，别说是别的城市了，就连东莞这个地方我都还没走遍过，尤其是那些重要商区、美食店，平时跟朋友出去玩，都很尴尬不知道要吃什么好。现在跟领导外出别的城市，感觉自己是个刚出大山的农村小伙子，对外面的世界所知甚少。作为领导的助手，自然就要安排好这一星期的就">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw1024/006XG4i7gy1fkp14l3cr7j30ey0fe0te.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/2271654760" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">从美食的角度看东莞（数据来源：大众点评）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">从美食的角度看东莞（数据来源：大众点评）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-20T13:35:45.000Z" itemprop="datePublished" class="page-time">
+  2017-10-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#从美食的角度看东莞（数据来源：大众点评）"><span class="post-toc-number">1.</span> <span class="post-toc-text">从美食的角度看东莞（数据来源：大众点评）</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-从美食的角度看东莞（数据来源：大众点评）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">从美食的角度看东莞（数据来源：大众点评）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-20 21:35:45" datetime="2017-10-20T13:35:45.000Z"  itemprop="datePublished">2017-10-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="从美食的角度看东莞（数据来源：大众点评）"><a href="#从美食的角度看东莞（数据来源：大众点评）" class="headerlink" title="从美食的角度看东莞（数据来源：大众点评）"></a>从美食的角度看东莞（数据来源：大众点评）</h1><p>先从为什么要做这个项目说起，事情的缘由是这样的，小编当时跟领导到别的城市外出出差一个星期，作为一个平时很少外出的人，别说是别的城市了，就连东莞这个地方我都还没走遍过，尤其是那些重要商区、美食店，平时跟朋友出去玩，都很尴尬不知道要吃什么好。现在跟领导外出别的城市，感觉自己是个刚出大山的农村小伙子，对外面的世界所知甚少。作为领导的助手，自然就要安排好这一星期的就餐地点。然而这就很难为我了，我连东莞有什么地方有好吃的都不知道，现在居然要我在别的城市安排一个星期的就餐作息表？这就很尴尬了。于是我每天都苦于到大众点评、美团等APP上搜索附近美食，但是还是不知道那些餐店的真实情况怎样，环境如何，味道如何。于是此时我就想，如果能一下子就知道某个城市或者某个区中最受欢迎的店有哪些，哪个镇或者哪个区最繁华，那该多好。<br>于是小编回来后就开始构思，接着就撸起袖子加油干，爬取了大众点评上1.5w多条数据，并做了个东莞美食商户数量分布热力图，从美食的角度看东莞。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://wx2.sinaimg.cn/mw1024/006XG4i7gy1fkp14l3cr7j30ey0fe0te.jpg" alt="东莞各镇街美食商户数量分布热力图" title="">
+                </div>
+                <div class="image-caption">东莞各镇街美食商户数量分布热力图</div>
+            </figure></p>
+<p><a href="https://code.hcharts.cn/temp/MYNjyG/share" target="_blank" rel="external">东莞各镇街美食商户数量分布热力图-动态</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://wx2.sinaimg.cn/large/006XG4i7gy1fkp14l3pqrj311v0dnmxs.jpg" alt="东莞各镇街美食商户数量柱状图" title="">
+                </div>
+                <div class="image-caption">东莞各镇街美食商户数量柱状图</div>
+            </figure>
+<p>可以看出，东城区商户数量最多，其次是南城区，从热力图来看，也可以看出东莞哪个镇街最繁华，也可以初步判断出哪些镇街经济情况比较好。因为一般经济越好的地区，其商业越繁华越发达。为了验证这个猜想，小编查了下东莞2016年各镇街经济实力排名情况<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://wx2.sinaimg.cn/large/006XG4i7gy1fkp14l6t1ij309k0l3ab8.jpg" alt="东莞各镇街2016年经济实力排名情况" title="">
+                </div>
+                <div class="image-caption">东莞各镇街2016年经济实力排名情况</div>
+            </figure><br>可以看出，经济实力与地区商户数量基本成正相关。这里说一个特例吧，那就是松山湖。本地人可能知道原因，那就是因为松山湖建立历史比较年轻，区域布局比较先进，目前仅有万科（好像是）这个大型商场，其他就以大学、高新技术产业区以及青山绿水为主，没有一脑子就开发许多商业区，所以就出现了这个经济实力与地区美食商户数量不匹配的情况。<br>接下来看看各星级商户占比情况如何<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://wx3.sinaimg.cn/large/006XG4i7gy1fkp14l3hpyj30sn0bb0t4.jpg" alt="东莞不同星级商户占比饼状图" title="">
+                </div>
+                <div class="image-caption">东莞不同星级商户占比饼状图</div>
+            </figure><br>准四星用户占73.98%，看来东莞的饮食服务业还是可以的（毕竟是广东啊哈哈）<br>再看看东莞各菜系商户数量情况如何<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://wx1.sinaimg.cn/large/006XG4i7gy1fkp14l2dofj311y0cvgm1.jpg" alt="东莞各菜系商户数量柱状图" title="">
+                </div>
+                <div class="image-caption">东莞各菜系商户数量柱状图</div>
+            </figure><br>小吃快餐最多，其次是面包甜点。小吃快餐最多的原因小编猜测可能有三：</p>
+<ol>
+<li>大多数公司中的员工中午都在公司叫外卖，外卖以小吃快餐为主，需求较大，由此催生出一批小吃快餐店，以满足市场需求。</li>
+<li>开小吃快餐店的成本比较低，像沙县小吃什么的快餐店，随便会做个番茄炒蛋饭青瓜肉片饭就能开个快餐店了（哈哈），比面包甜点、西餐的开店成本低。</li>
+<li>大多数小吃快餐店都选择加入大众点评平台，以提高销售量，增加利润。<br>至于面包甜点有3155家，这让小编感到意外，没想到东莞居然有这么多面包店。<br>好了，暂时就分析到这里，小编最爱吃的就是面包了，赶紧去看看里面有哪些面包店的，一定要去尝尝（^_^)</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最後更新時間：<time datetime="2017-10-20T13:56:15.000Z" itemprop="dateUpdated">2017-10-20 21:56:15</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/" target="_blank" rel="external">https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据分析-美食-东莞/">数据分析 美食 东莞</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/&title=《从美食的角度看东莞（数据来源：大众点评）》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/&title=《从美食的角度看东莞（数据来源：大众点评）》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《从美食的角度看东莞（数据来源：大众点评）》 — Richard‘s Blog&url=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/25/年轻人是否应该到北上广深发展的博弈论分析/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">年轻人是否到北上广深发展的博弈论分析</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/&title=《从美食的角度看东莞（数据来源：大众点评）》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/&title=《从美食的角度看东莞（数据来源：大众点评）》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《从美食的角度看东莞（数据来源：大众点评）》 — Richard‘s Blog&url=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNklEQVR42u3aQW7jQAwEwPz/01lgTwGytrtJeWGPy6fAkUaqCRCCzfn6ij/ffz8/f/79ze/f/vz+1pW37rr1lPtrXvzBxsbGfhN2/sjk8fmr31onf8/Z9mFjY2Ofyk6KVrsF96+5Xw6Trbm/BQ+M2NjY2B/JbhuSvFW4f02Cx8bGxsZul8uLx6yByZ+CjY2Njb0Jg5Kwftao5Hc9PUvDxsbGfnn2bND7mj8/fb6NjY2N/WLs79EnLyp58LRvM4r3x8bGxj6InYTvsyi/rR3X4qPCho2NjX0QexbWJ6+bF6qrvm8LMDY2NvYZ7Hy8OmtFkkD/2VnQg6kINjY29tuy8wMxSalIhrj5Om3xK94fGxsb+zh2Hi1tNmUWFeUHfeozStjY2NjHsTdtyWygO2tO8mc9iJOwsbGxj2BfddRmVszykrm5N+rDsLGxsY9jt4F+MojdRFd5GcvjLWxsbOyT2FfFOvsXaqOi9o+EjY2NfSr7/w9624FuXiCLQTI2Njb2EexNU5Fc2bY6+xIVlWRsbGzsg9gJrH2JPAzKG5K8sOVvgo2NjX0GuzjgUg5i2zX3A4N8W7GxsbFPYifRT7HQurDNam87fsDGxsY+ld1mL+29sxFC29JgY2NjfzJ7dvimvTJpYzZHfJKNxsbGxj6JPQv981Fr2+rUwVA53sDGxsY+lb0pTkmrkLcQ+WAgb2b+sQI2Njb2QexNDNQOWfdb2R42qiMwbGxs7CPY+bh33zC0I978WE9eFLGxsbFPYuf/+tvjNW1TUUw2ytK7qtXY2NjYL8xuA5pk1DprQtp7Z99jY2Njn8duR7NXRUj5aHlTqC6o4djY2Nhvy54dx8nbhs1qs8ND9ZwBGxsb+23Z+UbMwE9vKtrShY2Njf227KtGuckAYDbQbQcJUfiFjY2NfRB7Vgzase6sKCZ/gNk62NjY2Oex86J1P9bZtCj7EcLqjBI2Njb2EexNkJS0H23T0h4GGkZL2NjY2B/JzqP/Nq5qy9sqTsLGxsb+SHZeVGbHKze5V35MExsbG/tUdlsS8sM0+V15tJT/FhsbG/sT2JvykAwP8oHBbGSbB16XzbexsbGxX4X9BylwJjlmojsQAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

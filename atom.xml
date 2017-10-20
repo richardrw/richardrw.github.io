@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://richardrw.github.io/"/>
-  <updated>2017-10-07T08:57:23.000Z</updated>
+  <updated>2017-10-20T13:56:15.000Z</updated>
   <id>https://richardrw.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从美食的角度看东莞（数据来源：大众点评）</title>
+    <link href="https://richardrw.github.io/2017/10/20/%E4%BB%8E%E7%BE%8E%E9%A3%9F%E7%9A%84%E8%A7%92%E5%BA%A6%E7%9C%8B%E4%B8%9C%E8%8E%9E%EF%BC%88%E6%95%B0%E6%8D%AE%E6%9D%A5%E6%BA%90%EF%BC%9A%E5%A4%A7%E4%BC%97%E7%82%B9%E8%AF%84%EF%BC%89/"/>
+    <id>https://richardrw.github.io/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/</id>
+    <published>2017-10-20T13:35:45.000Z</published>
+    <updated>2017-10-20T13:56:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="从美食的角度看东莞（数据来源：大众点评）"><a href="#从美食的角度看东莞（数据来源：大众点评）" class="headerlink" title="从美食的角度看东莞（数据来源：大众点评）"></a>从美食的角度看东莞（数据来源：大众点评）</h1><p>先从为什么要做这个项目说起，事情的缘由是这样的，小编当时跟领导到别的城市外出出差一个星期，作为一个平时很少外出的人，别说是别的城市了，就连东莞这个地方我都还没走遍过，尤其是那些重要商区、美食店，平时跟朋友出去玩，都很尴尬不知道要吃什么好。现在跟领导外出别的城市，感觉自己是个刚出大山的农村小伙子，对外面的世界所知甚少。作为领导的助手，自然就要安排好这一星期的就餐地点。然而这就很难为我了，我连东莞有什么地方有好吃的都不知道，现在居然要我在别的城市安排一个星期的就餐作息表？这就很尴尬了。于是我每天都苦于到大众点评、美团等APP上搜索附近美食，但是还是不知道那些餐店的真实情况怎样，环境如何，味道如何。于是此时我就想，如果能一下子就知道某个城市或者某个区中最受欢迎的店有哪些，哪个镇或者哪个区最繁华，那该多好。<br>于是小编回来后就开始构思，接着就撸起袖子加油干，爬取了大众点评上1.5w多条数据，并做了个东莞美食商户数量分布热力图，从美食的角度看东莞。<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://wx2.sinaimg.cn/mw1024/006XG4i7gy1fkp14l3cr7j30ey0fe0te.jpg" alt="东莞各镇街美食商户数量分布热力图" title="">                </div>                <div class="image-caption">东莞各镇街美食商户数量分布热力图</div>            </figure></p><p><a href="https://code.hcharts.cn/temp/MYNjyG/share" target="_blank" rel="external">东莞各镇街美食商户数量分布热力图-动态</a></p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://wx2.sinaimg.cn/large/006XG4i7gy1fkp14l3pqrj311v0dnmxs.jpg" alt="东莞各镇街美食商户数量柱状图" title="">                </div>                <div class="image-caption">东莞各镇街美食商户数量柱状图</div>            </figure><p>可以看出，东城区商户数量最多，其次是南城区，从热力图来看，也可以看出东莞哪个镇街最繁华，也可以初步判断出哪些镇街经济情况比较好。因为一般经济越好的地区，其商业越繁华越发达。为了验证这个猜想，小编查了下东莞2016年各镇街经济实力排名情况<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://wx2.sinaimg.cn/large/006XG4i7gy1fkp14l6t1ij309k0l3ab8.jpg" alt="东莞各镇街2016年经济实力排名情况" title="">                </div>                <div class="image-caption">东莞各镇街2016年经济实力排名情况</div>            </figure><br>可以看出，经济实力与地区商户数量基本成正相关。这里说一个特例吧，那就是松山湖。本地人可能知道原因，那就是因为松山湖建立历史比较年轻，区域布局比较先进，目前仅有万科（好像是）这个大型商场，其他就以大学、高新技术产业区以及青山绿水为主，没有一脑子就开发许多商业区，所以就出现了这个经济实力与地区美食商户数量不匹配的情况。<br>接下来看看各星级商户占比情况如何<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://wx3.sinaimg.cn/large/006XG4i7gy1fkp14l3hpyj30sn0bb0t4.jpg" alt="东莞不同星级商户占比饼状图" title="">                </div>                <div class="image-caption">东莞不同星级商户占比饼状图</div>            </figure><br>准四星用户占73.98%，看来东莞的饮食服务业还是可以的（毕竟是广东啊哈哈）<br>再看看东莞各菜系商户数量情况如何<br><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://wx1.sinaimg.cn/large/006XG4i7gy1fkp14l2dofj311y0cvgm1.jpg" alt="东莞各菜系商户数量柱状图" title="">                </div>                <div class="image-caption">东莞各菜系商户数量柱状图</div>            </figure><br>小吃快餐最多，其次是面包甜点。小吃快餐最多的原因小编猜测可能有三：</p><ol><li>大多数公司中的员工中午都在公司叫外卖，外卖以小吃快餐为主，需求较大，由此催生出一批小吃快餐店，以满足市场需求。</li><li>开小吃快餐店的成本比较低，像沙县小吃什么的快餐店，随便会做个番茄炒蛋饭青瓜肉片饭就能开个快餐店了（哈哈），比面包甜点、西餐的开店成本低。</li><li>大多数小吃快餐店都选择加入大众点评平台，以提高销售量，增加利润。<br>至于面包甜点有3155家，这让小编感到意外，没想到东莞居然有这么多面包店。<br>好了，暂时就分析到这里，小编最爱吃的就是面包了，赶紧去看看里面有哪些面包店的，一定要去尝尝（^_^)</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;从美食的角度看东莞（数据来源：大众点评）&quot;&gt;&lt;a href=&quot;#从美食的角度看东莞（数据来源：大众点评）&quot; class=&quot;headerlink&quot; title=&quot;从美食的角度看东莞（数据来源：大众点评）&quot;&gt;&lt;/a&gt;从美食的角度看东莞（数据来源：大众点评）&lt;/h1&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="数据分析 美食 东莞" scheme="https://richardrw.github.io/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-%E7%BE%8E%E9%A3%9F-%E4%B8%9C%E8%8E%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>年轻人是否到北上广深发展的博弈论分析</title>
