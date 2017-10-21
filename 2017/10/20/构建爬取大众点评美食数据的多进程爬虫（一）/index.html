@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Richard‘s Blog">
 <meta property="og:description" content="构建爬取大众点评美食数据的多进程爬虫（一）一、要抓取哪些数据以东莞美食为例大众点评-美食-东莞，可以看到，在美食页面，我们想要爬取的信息有：  商户标题 星级 评论数 人均价格 各项评分 菜系 地址  二、分析页面（一）多观察页面通过点击小吃快餐，我们看到小吃快餐下一共有50个页面。再点击面包甜点，发现也只有50个页面。接下来我们看看面包甜点-东城区，发现最多也只有50个页面。如此类推，我们大概可">
 <meta property="og:image" content="http://wx1.sinaimg.cn/large/006XG4i7gy1fkpn3b1n9rj30fc0gpdgi.jpg">
-<meta property="og:updated_time" content="2017-10-21T02:37:57.000Z">
+<meta property="og:updated_time" content="2017-10-21T02:40:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构建爬取大众点评美食数据的多进程爬虫（一）">
 <meta name="twitter:description" content="构建爬取大众点评美食数据的多进程爬虫（一）一、要抓取哪些数据以东莞美食为例大众点评-美食-东莞，可以看到，在美食页面，我们想要爬取的信息有：  商户标题 星级 评论数 人均价格 各项评分 菜系 地址  二、分析页面（一）多观察页面通过点击小吃快餐，我们看到小吃快餐下一共有50个页面。再点击面包甜点，发现也只有50个页面。接下来我们看看面包甜点-东城区，发现最多也只有50个页面。如此类推，我们大概可">
@@ -224,7 +224,7 @@
 <li><code>get_all_msg_from</code>函数实现了多页码爬取，当遇到网页状态码为<code>404</code>时，代表此时没有相关商户，最后一页已经被爬取，自动跳出for循环。结束某个addr2_url的爬取。</li>
 </ol>
 <p><code>run.py</code>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"># coding=utf-8</div><div class="line"></div><div class="line">from parsing.cate_parsing import Get_Tag_Addr</div><div class="line">from parsing.shop_parsing import GetAllMsg</div><div class="line">from concurrent.futures import ProcessPoolExecutor</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    start_url = &apos;http://www.dianping.com/search/category/219/10/g0r0&apos;</div><div class="line">    tag_addr_task = Get_Tag_Addr()</div><div class="line">    get_msg_task = GetAllMsg()</div><div class="line"></div><div class="line">    # 爬取tag1_url</div><div class="line">    tag_addr_task.get_tag1_from(start_url)</div><div class="line">    print(&apos;tag1_url爬取完成&apos;)</div><div class="line"></div><div class="line">    # 爬取tag2_url</div><div class="line">    tag1_url_set = set(i[&apos;url&apos;] for i in tag_addr_task.tag1_url_db.find())</div><div class="line">    for tag1_url in tag1_url_set:</div><div class="line">        tag_addr_task.get_tag2_from(tag1_url)</div><div class="line">    print(&apos;tag2_url爬取完成&apos;)</div><div class="line"></div><div class="line">    # 爬取addr1_url</div><div class="line">    tag2_url_set = set(i[&apos;url&apos;] for i in tag_addr_task.tag2_url_db.find())</div><div class="line">    for tag2_url in tag2_url_set:</div><div class="line">        tag_addr_task.get_addr1_from(tag2_url)</div><div class="line">    print(&apos;addr1_url爬取完成&apos;)</div><div class="line"></div><div class="line">    # 爬取addr2_url</div><div class="line">    addr1_url_set = set(i[&apos;url&apos;] for i in tag_addr_task.addr1_url_db.find())</div><div class="line">    with ProcessPoolExecutor(max_workers=2) as executor:</div><div class="line">        executor.map(tag_addr_task.get_addr2_from, addr1_url_set, chunksize=10)</div><div class="line">    print(&apos;addr2_url爬取完成&apos;)</div><div class="line"></div><div class="line">    # 根据addr2_url爬取商户信息</div><div class="line">    addr2_url_set = set(i[&apos;url&apos;] for i in get_msg_task.addr2_url_db.find())</div><div class="line">    with ProcessPoolExecutor(max_workers=2) as executor:</div><div class="line">        executor.map(get_msg_task.get_all_msg_from, addr2_url_set, chunksize=50)</div><div class="line">    print(&apos;addr2_url_reslut_url爬取完成&apos;)</div></pre></td></tr></table></figure></p>
-<p>爬取<code>addr2_url</code>he <code>dpshop_msg</code>都采用多进程爬取，多进程通过<code>concurrent.futures.ProcessPoolExecutor</code>实现。</p>
+<p>爬取<code>addr2_url</code>和<code>dpshop_msg</code>都采用多进程爬取，多进程通过<code>concurrent.futures.ProcessPoolExecutor</code>实现。</p>
 
         </div>
 
@@ -232,7 +232,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T02:37:57.000Z" itemprop="dateUpdated">2017-10-21 10:37:57</time>
+    Last updated: <time datetime="2017-10-21T02:40:41.000Z" itemprop="dateUpdated">2017-10-21 10:40:41</time>
 </span><br>
 
 
