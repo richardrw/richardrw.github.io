@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>把《Flask Web开发》读薄系列之第四章 Web表单 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="4.1 跨站请求伪造保护跨站请求伪造(CSRF)：恶意网站吧请求发送到，被攻击者已登录的其他网站。flask-wtf需要程序设置一个密匙。然后利用这个密匙生成加密令牌，再用令牌验证请求中表单数据的真伪，从而实现CSRF保护。 设置flask-wtf：123# ...app = Flask(__name__)app.config[&amp;apos;SECRET_KEY&amp;apos;] = &amp;apos;har">
+<meta name="keywords" content="python, mongodb, jupyter-notebook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把《Flask Web开发》读薄系列之第四章 Web表单">
+<meta property="og:url" content="https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="4.1 跨站请求伪造保护跨站请求伪造(CSRF)：恶意网站吧请求发送到，被攻击者已登录的其他网站。flask-wtf需要程序设置一个密匙。然后利用这个密匙生成加密令牌，再用令牌验证请求中表单数据的真伪，从而实现CSRF保护。 设置flask-wtf：123# ...app = Flask(__name__)app.config[&amp;apos;SECRET_KEY&amp;apos;] = &amp;apos;har">
+<meta property="og:updated_time" content="2017-11-14T12:55:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把《Flask Web开发》读薄系列之第四章 Web表单">
+<meta name="twitter:description" content="4.1 跨站请求伪造保护跨站请求伪造(CSRF)：恶意网站吧请求发送到，被攻击者已登录的其他网站。flask-wtf需要程序设置一个密匙。然后利用这个密匙生成加密令牌，再用令牌验证请求中表单数据的真伪，从而实现CSRF保护。 设置flask-wtf：123# ...app = Flask(__name__)app.config[&amp;apos;SECRET_KEY&amp;apos;] = &amp;apos;har">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">把《Flask Web开发》读薄系列之第四章 Web表单</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">把《Flask Web开发》读薄系列之第四章 Web表单</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-14T12:54:15.000Z" itemprop="datePublished" class="page-time">
+  2017-11-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-1-跨站请求伪造保护"><span class="post-toc-number">1.</span> <span class="post-toc-text">4.1 跨站请求伪造保护</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-2-定义表单类"><span class="post-toc-number">2.</span> <span class="post-toc-text">4.2 定义表单类</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-3-把表单渲染成HTML"><span class="post-toc-number">3.</span> <span class="post-toc-text">4.3 把表单渲染成HTML</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-4-在视图函数中处理表单"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.4 在视图函数中处理表单</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-5-重定向和用户会话"><span class="post-toc-number">5.</span> <span class="post-toc-text">4.5 重定向和用户会话</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-6-Flash消息"><span class="post-toc-number">6.</span> <span class="post-toc-text">4.6 Flash消息</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-把《Flask Web开发》读薄系列之第四章 Web表单"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">把《Flask Web开发》读薄系列之第四章 Web表单</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-14 20:54:15" datetime="2017-11-14T12:54:15.000Z"  itemprop="datePublished">2017-11-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="4-1-跨站请求伪造保护"><a href="#4-1-跨站请求伪造保护" class="headerlink" title="4.1 跨站请求伪造保护"></a>4.1 跨站请求伪造保护</h1><p><strong>跨站请求伪造(CSRF)</strong>：恶意网站吧请求发送到，被攻击者已登录的其他网站。<br><code>flask-wtf</code>需要程序设置一个密匙。然后利用这个密匙生成加密令牌，再用令牌验证请求中表单数据的真伪，从而实现<strong>CSRF保护</strong>。</p>
+<p>设置<code>flask-wtf</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line">app = Flask(__name__)</div><div class="line">app.config[&apos;SECRET_KEY&apos;] = &apos;hard to guess string&apos;</div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：为了增强安全性，密匙不应该直接写入代码中，而要保存环境变量中（第七章介绍）。</p>
+<h1 id="4-2-定义表单类"><a href="#4-2-定义表单类" class="headerlink" title="4.2 定义表单类"></a>4.2 定义表单类</h1><p>使用<code>flask-wtf</code>时，每个Web表单都继承自<code>Form</code>类。这个类定义表单中的一组字段，每组字段都用对象（字段类的实例对象，如<code>StringField（‘hello’）</code>）表示。字段对象可以附有一个或多个<strong>验证函数</strong>。<br><strong>验证函数(validator)</strong>：用来验证用户提交的数据是否符合要求。</p>
+<p>定义名为NameForm的表单类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from flask-wtf import Form</div><div class="line">from wtforms import StringField, SubmitField</div><div class="line">from wtforms.validators import Required</div><div class="line"></div><div class="line">class NameForm(Form):</div><div class="line">    name = StringField(&apos;What is your name?&apos;, validators=[Required()])</div><div class="line">    submit = SubmitField(&apos;Submit&apos;)</div></pre></td></tr></table></figure></p>
+<p><code>NameForm</code>表单中的字段定义为类变量，<br>类变量的值为对应字段的对象。</p>
+<p><strong>字段构造函数（如SubmitField()）</strong>：的第一个参数是把表单渲染成HTML时使用的标号（或文本）。</p>
+<p><code>validators</code>参数：一个由验证函数组成的<strong>列表</strong>。</p>
+<p><strong>表4-1 WTFORMS支持的HTML标准字段</strong><br>|字段类型   | 说明    |<br>|———–|:——-:|<br>|StringField| 文本字段|<br>|TextAreaField| 多行文本字段|<br>|PasswordField| 密码文本字段|</p>
+<p><strong>表4-2 WTFORMS验证函数</strong><br>|验证函数   | 说明    |<br>|———–|:——-:|<br>|Email      | 验证电子邮件地址|<br>|Required   | 确保字段中有数据|<br>|AnyOf      | 确保输入值在可选值列表中|</p>
+<h1 id="4-3-把表单渲染成HTML"><a href="#4-3-把表单渲染成HTML" class="headerlink" title="4.3 把表单渲染成HTML"></a>4.3 把表单渲染成HTML</h1><p>假设视图函数把一个<code>NameForm</code>实例（通过参数<code>form</code>）传给模板，那么在模板中可以生成一个简单的表单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form method=&quot;POST&quot;&gt;</div><div class="line">    &#123;&#123; form.hidden_tag() &#125;&#125;</div><div class="line">    &#123;&#123; form.name.label&#125;&#125; &#123;&#123; form.name() &#125;&#125;</div><div class="line">    &#123;&#123; form.submit() &#125;&#125;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<p>为了改进外观，可以将HTML属性（如id、class等）传给渲染字段的函数，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form method=&quot;POST&quot;&gt;</div><div class="line">    &#123;&#123; form.hidden_tag() &#125;&#125;</div><div class="line">    &#123;&#123; form.name.label&#125;&#125; &#123;&#123; form.name(id=&apos;my-text-field&apos;) &#125;&#125;</div><div class="line">    &#123;&#123; form.submit() &#125;&#125;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
+<p><code>flask-bootstrap</code>提供了一个辅助函数涌来渲染<code>flask-wtf</code>表单。用法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123;% import &quot;bootstrap/wtf.html&quot; as wtf %&#125;</div><div class="line">&#123;&#123; wtf.quick_form(form) &#125;&#125;</div></pre></td></tr></table></figure></p>
+<p><code>bootstrap/wtf.html</code>文件中定义了一个用于渲染Flask-WTF<strong>表单对象</strong>的辅助函数。</p>
+<p><code>wtf.qucik_form()</code>函数的参数为<strong>Flask-WTF表单对象</strong>（表单类的实例）。</p>
+<h1 id="4-4-在视图函数中处理表单"><a href="#4-4-在视图函数中处理表单" class="headerlink" title="4.4 在视图函数中处理表单"></a>4.4 在视图函数中处理表单</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;]</div><div class="line">def index():</div><div class="line">    name = None</div><div class="line">    form = NameForm()  # 实例化表单类</div><div class="line">    if form.validate_on_submit():</div><div class="line">        name = form.name.data</div><div class="line">        form.name.data = &apos;&apos;      # 将form.name.data的值设置为空字符串</div><div class="line">    return render_template(&apos;index.html&apos;, form=form, name=name)</div></pre></td></tr></table></figure>
+<p><code>methods</code>参数告诉Flask在URL映射中把这个视图函数注册为<code>GET</code>和<code>POST</code>请求的处理程序。如果没有指定<code>methods</code>参数，就只把视图函数注册为GET请求的处理程序。</p>
+<p><code>validate_on_submit()</code>：提交表单后，如果数据能被全部验证函数接受，那么<code>validate_on_submit()</code>的返回值为<code>True</code>，否则返回<code>False</code>。</p>
+<h1 id="4-5-重定向和用户会话"><a href="#4-5-重定向和用户会话" class="headerlink" title="4.5 重定向和用户会话"></a>4.5 重定向和用户会话</h1><p>现在的hello.py存在一个问题：用户输入名字后提交表单，然后刷新页面，会出现一个警告（要求在再次提交表单前进行确认）。<br>出现这种情况的<strong>原因是</strong>：刷新页面时，浏览器会重新发送<strong>之前已经发送过的最后一个请求</strong>。如果这个请求是一个包含表单数据的POST请求，刷新页面会再次提交表单。</p>
+<p><strong>解决思路</strong>：使浏览器发送的最后一个请求不是POST请求。<br><strong>解决方法</strong>：使用重定向作为POST请求的响应，而不是使用常规响应。</p>
+<p><strong>重定向</strong>：是一个特殊响应，响应的内容是URL，而不是包含HTML代码的字符串。浏览器收到这种响应时，会向重定向的URL发起GET请求（第二个请求），显示页面内容。</p>
+<p><strong>存在问题</strong>：这种方法会带来另一个问题，程序处理POST请求时，使用<code>form.name.data</code>来获取用户输入值，可是一旦这个请求结束，数据也就丢失（因为这个POST请求使用重定向作为响应）。所以程序需要保存输入值，方便重定向后的请求可以获得并使用这个值。</p>
+<p><strong>解决方法2</strong> ：把数据存储在<strong>用户会话</strong>中。</p>
+<p>使用重定向和用户会话重写<code>hello.py</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">from flask import Flask, render_template, session, redirect, url_for</div><div class="line"># ...</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;])</div><div class="line">def index():</div><div class="line">    form = NameForm()</div><div class="line">    if form.validate_on_submit():</div><div class="line">        session[&apos;name&apos;] = form.name.data</div><div class="line">        return redirect(url_for(&apos;index&apos;))</div><div class="line">    return render_template(&apos;index.html&apos;, form=form, name=session.get(&apos;name&apos;))</div></pre></td></tr></table></figure></p>
+<p>使用<code>session.get()</code>方法获取字典中键对应的值，避免未找到键的异常情况。因为对于不存在的键， <code>get()</code>会返回默认值<code>None</code>。</p>
+<h1 id="4-6-Flash消息"><a href="#4-6-Flash消息" class="headerlink" title="4.6 Flash消息"></a>4.6 Flash消息</h1><p>请求完成后，有时需要让用户知道状态发生了变化（如使用确认消息、警告或错误提醒）。一个典型例子是，提交了一项有错误的登录表单后，服务器发回的响应重新渲染登录表单，并且在表单上面显示一个消息，提示用户名或密码错误。</p>
+<p>设置Flash消息的<code>hello.py</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">form flask import Flask, render_template, session, redirect, url_for, flash</div><div class="line"># ...</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;]</div><div class="line">def index():</div><div class="line">    form = NameForm()</div><div class="line">    if form.validate_on_submit():</div><div class="line">        old_name = session.get(&apos;name&apos;)</div><div class="line">        if old_name is not None and old_name != form.name.data:</div><div class="line">            flash(&apos;Looks like you have changed your name!&apos;)</div><div class="line">        session[&apos;name&apos;] = form.name.data</div><div class="line">        return redirect(url_for(&apos;index&apos;)</div><div class="line">    return render_template(&apos;index.html&apos;, form=form, name=session.get(&apos;name&apos;))</div></pre></td></tr></table></figure></p>
+<p>在这个示例中，将用户提交的数据和用户会话中的数据比较，如果两个数据不一样，就会调用<code>flash()</code>函数，<strong>在发给客户端的下一个响应中显示一个信息</strong>。</p>
+<p>在模板中渲染Flash消息：仅调用<code>flash()</code>函数并不能将消息显示出来，这个可以在模板中渲染Flash消息。如<code>base.html</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;% block content %&#125;</div><div class="line">&lt;div class=&quot;container&quot;&gt;</div><div class="line">    &#123;% for message in get_flashed_messages() %&#125;</div><div class="line">    &lt;div class=&quot;alert alert-warning&quot;&gt;</div><div class="line">        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;</div><div class="line">        &amp;times;</div><div class="line">        &lt;/button&gt;</div><div class="line">        &#123;&#123; message &#125;&#125;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &#123;% endfor %&#125;</div><div class="line">    &#123;% block page_content %&#125; &#123;% endblock %&#125;</div><div class="line">&lt;/div&gt;</div><div class="line">&#123;% endblock %&#125;</div></pre></td></tr></table></figure></p>
+<p><code>get_flashed_messages()</code>函数用来获取并渲染Flash消息。</p>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>在模板中使用<code>for</code>循环是因为，每次调用<code>falsh()</code>函数时，都会生产一个消息，所以可能有多个消息在排队等待显示，所需需要用<code>for</code>循环将消息都显示出来。</li>
+<li><code>get_flashed_messages()</code>函数获取的消息在下次调用时不会再次返回（如这次获取了消息队列1，那么在下次调用时就不会再返回消息队列1，有点类似于列表的<code>pop()</code>方法），因此Flash消息只显示一次，然后就消失了。</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最後更新時間：<time datetime="2017-11-14T12:55:14.000Z" itemprop="dateUpdated">2017-11-14 20:55:14</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/" target="_blank" rel="external">https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/&title=《把《Flask Web开发》读薄系列之第四章 Web表单》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/&title=《把《Flask Web开发》读薄系列之第四章 Web表单》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第四章 Web表单》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第五章 数据库</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第三章 模板</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/&title=《把《Flask Web开发》读薄系列之第四章 Web表单》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/&title=《把《Flask Web开发》读薄系列之第四章 Web表单》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第四章 Web表单》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADKklEQVR42u3azW6rQAwG0Lz/S+duK1WEzza9AufMqqIJcGYWjn9er3i9f6yjKz+vH135/d/Pnzz6bn7P0cLGxsZ+CPv9ceW3TsD5qyfvk1w/Oh5sbGzsfexeOPnMiB4fb2VyJIkFGxsbG7saqPI75IEq2XpsbGxs7GoxKFl/HZywsbGxv5mdF3EmoSspQl27fRfU0rCxsbFvz+4Vd+7595/0t7GxsbFvzH4PVhKEekWlXsgsvDk2Njb2InY1SOTN3V5o7DUM8vQJGxsbex+7WpSfb1A1dPWazeVUBBsbG/ux7M/pxFWF+ySoJGEswRdc2NjY2IvYk4HLvHjUgyWAJFHBxsbG/gZ2jswDQ3XgZj70WW4JY2NjY69gz+PepGHQC0V5sawwhYSNjY39WHY12FxVss+3eB7kCnEbGxsb+1HsXgoxD0vVsNcrbJ2cMDY2NvZqdvVVqo+vBsjeZw6fhY2Njb2OnbcEqmWdajjMt2ZyGNjY2Nhb2eUqVLE0n1+pbk2eXGFjY2PvY1dL/71Xz4tQvXJSb4uxsbGxN7GTl8tL8/NW7vye0Z2xsbGxF7GTMlD+4/6qROKqhsRJEoWNjY29gj1v01avJBvau3+hBIaNjY29gt1r7vbK9NWgWE11XvnCxsbGXsdOGP+niXtVqnNyN2xsbOyvYechZJKu9ApPSTv58P2xsbGxF7GrQzD5OE6ewFTL/flg0OjksbGxsR/CzgNYtRiUpBO9UJc85WQjsLGxsRexq0X5SdugGlHzon/vudjY2Ng72Pnjey3YfLizmqj0AuqruuvY2NjYt2dPQkieAFQZ8wJTdDzY2NjYK9jVlKDaNphv0GS06PC72NjY2IvYzeHFInsy4pMPd+aBFhsbG3sT+11cvfHH3vDlPByWzxkbGxv7gex85cEpCTa98lASorCxsbG/k31V27XXgq0O3OQlp5MjwcbGxl7H7hWATnrIg2Gdcm0sfi42Njb2N7MTZL591UbyaC4p3z9sbGzs1exqU7bXeJgcSbm/jY2Njb2IPS8qXbU1k5ZAvlnY2NjYm9i93+3zjeilFnk7+YKFjY2NfXf2P77PofUz6JqeAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

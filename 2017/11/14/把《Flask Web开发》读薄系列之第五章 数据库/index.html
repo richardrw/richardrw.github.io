@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>把《Flask Web开发》读薄系列之第五章 数据库 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="5.1 SQL数据库表中有个特殊的列，称为主键，其值是表中各行的唯一标识符，表中还可以有称为外键的列，引用同一个表或不同表中某行的主键，行之间的这种联系称为关系，这是SQL数据库的基础。 5.2 NoSQL数据库所有不遵循上节所述关系模型的数据库统称为NoSQL数据库。NoSQL数据库一般使用集合Collection代替表，使用文档Document代替记录（行）。 NoSQL数据库可以减少表的数量">
+<meta name="keywords" content="python, mongodb, jupyter-notebook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把《Flask Web开发》读薄系列之第五章 数据库">
+<meta property="og:url" content="https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="5.1 SQL数据库表中有个特殊的列，称为主键，其值是表中各行的唯一标识符，表中还可以有称为外键的列，引用同一个表或不同表中某行的主键，行之间的这种联系称为关系，这是SQL数据库的基础。 5.2 NoSQL数据库所有不遵循上节所述关系模型的数据库统称为NoSQL数据库。NoSQL数据库一般使用集合Collection代替表，使用文档Document代替记录（行）。 NoSQL数据库可以减少表的数量">
+<meta property="og:updated_time" content="2017-11-14T12:57:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把《Flask Web开发》读薄系列之第五章 数据库">
+<meta name="twitter:description" content="5.1 SQL数据库表中有个特殊的列，称为主键，其值是表中各行的唯一标识符，表中还可以有称为外键的列，引用同一个表或不同表中某行的主键，行之间的这种联系称为关系，这是SQL数据库的基础。 5.2 NoSQL数据库所有不遵循上节所述关系模型的数据库统称为NoSQL数据库。NoSQL数据库一般使用集合Collection代替表，使用文档Document代替记录（行）。 NoSQL数据库可以减少表的数量">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">把《Flask Web开发》读薄系列之第五章 数据库</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">把《Flask Web开发》读薄系列之第五章 数据库</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-14T12:56:25.000Z" itemprop="datePublished" class="page-time">
+  2017-11-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-1-SQL数据库"><span class="post-toc-number">1.</span> <span class="post-toc-text">5.1 SQL数据库</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-2-NoSQL数据库"><span class="post-toc-number">2.</span> <span class="post-toc-text">5.2 NoSQL数据库</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-3-使用SQL还是NoSQL"><span class="post-toc-number">3.</span> <span class="post-toc-text">5.3 使用SQL还是NoSQL</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-4-Python数据库框架"><span class="post-toc-number">4.</span> <span class="post-toc-text">5.4 Python数据库框架</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-5-使用Flask-SQLAlchemy管理数据库"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.5 使用Flask-SQLAlchemy管理数据库</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-6-定义模型"><span class="post-toc-number">6.</span> <span class="post-toc-text">5.6 定义模型</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-7-关系"><span class="post-toc-number">7.</span> <span class="post-toc-text">5.7 关系</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-8-数据库操作"><span class="post-toc-number">8.</span> <span class="post-toc-text">5.8 数据库操作</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-8-1-创建表"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">5.8.1 创建表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-8-2-插入行"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">5.8.2 插入行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-8-3-更新行"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">5.8.3 更新行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-8-4-删除行"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">5.8.4 删除行</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-8-5-查询行"><span class="post-toc-number">8.5.</span> <span class="post-toc-text">5.8.5 查询行</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-9-在视图函数中操作数据库"><span class="post-toc-number">9.</span> <span class="post-toc-text">5.9 在视图函数中操作数据库</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-10-集成Python-shell"><span class="post-toc-number">10.</span> <span class="post-toc-text">5.10 集成Python shell</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-11-使用Flask-Migrate实现数据库迁移"><span class="post-toc-number">11.</span> <span class="post-toc-text">5.11 使用Flask-Migrate实现数据库迁移</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-11-1-创建迁移仓库"><span class="post-toc-number">11.1.</span> <span class="post-toc-text">5.11.1 创建迁移仓库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-11-2-创建迁移脚本"><span class="post-toc-number">11.2.</span> <span class="post-toc-text">5.11.2 创建迁移脚本</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-11-3-更新数据库"><span class="post-toc-number">11.3.</span> <span class="post-toc-text">5.11.3 更新数据库</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-把《Flask Web开发》读薄系列之第五章 数据库"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">把《Flask Web开发》读薄系列之第五章 数据库</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-14 20:56:25" datetime="2017-11-14T12:56:25.000Z"  itemprop="datePublished">2017-11-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="5-1-SQL数据库"><a href="#5-1-SQL数据库" class="headerlink" title="5.1 SQL数据库"></a>5.1 SQL数据库</h1><p>表中有个特殊的列，称为<strong>主键</strong>，其值是表中各行的唯一标识符，表中还可以有称为<strong>外键</strong>的列，<strong>引用同一个表或不同表中某行的主键</strong>，行之间的这种联系称为<strong>关系</strong>，这是SQL数据库的基础。</p>
+<h1 id="5-2-NoSQL数据库"><a href="#5-2-NoSQL数据库" class="headerlink" title="5.2 NoSQL数据库"></a>5.2 NoSQL数据库</h1><p>所有不遵循上节所述关系模型的数据库统称为NoSQL数据库。NoSQL数据库一般使用<strong>集合Collection</strong>代替表，使用<strong>文档Document</strong>代替记录（行）。</p>
+<p>NoSQL数据库可以减少表的数量，但却增加了数据重复量，但数据重复又可以提高查询速度。</p>
+<h1 id="5-3-使用SQL还是NoSQL"><a href="#5-3-使用SQL还是NoSQL" class="headerlink" title="5.3 使用SQL还是NoSQL"></a>5.3 使用SQL还是NoSQL</h1><p>视实际情况所需。</p>
+<h1 id="5-4-Python数据库框架"><a href="#5-4-Python数据库框架" class="headerlink" title="5.4 Python数据库框架"></a>5.4 Python数据库框架</h1><p>数据库包：MySQL、Postgres、SQLite、Redis、MongoDB、CouchDB<br>数据库抽象层代码包（ORM或ODM）：SQLAlchemy、MongoEngine</p>
+<p>一般情况下，ORM和ODM对生产率的提升远远超过“把对象业务转换成数据库业务”而带来的性能降低。</p>
+<h1 id="5-5-使用Flask-SQLAlchemy管理数据库"><a href="#5-5-使用Flask-SQLAlchemy管理数据库" class="headerlink" title="5.5 使用Flask-SQLAlchemy管理数据库"></a>5.5 使用Flask-SQLAlchemy管理数据库</h1><p>在Flask-SQLAlchemy中，使用哪种数据库，要通过URL指定。常用的数据库引擎采用的数据库URL格式如下：</p>
+<p>表5-1 Flask-SQLAlchemy数据库URL<br>|数据库引擎   | URL      |<br>|————-|:——–:|<br>|MySQL        | mysql://username:password@hostname/database|<br>|Postgres     | postgres://username:password@hostname/database|<br>|SQLite(Unix) | sqlite:////absolute/path/to/database|<br>|SQLite(Windows)| sqlite:///c:/absolute/path/to/database|</p>
+<p><code>hostname</code>可以是本地主机（<code>localhost</code>)，也可以是原创服务器。<br><code>database</code>表示要使用的数据库名称。</p>
+<p>程序使用的数据库URL必须保存到Flask配置对象的<code>SQLALCHEMY_DATABASE_URI</code>键中。<br>配置对象中有个<code>SQLALCHEMY_COMMIT_ON_TEARDOWN</code>键，将其设为<code>True</code>时，每次请求结束后都会自动提交数据库中的变动（相当于自动<code>commit</code>）。</p>
+<p>初始化及配置SQLite如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">form flask_sqlalchemy import SQLAlchemy</div><div class="line">import os</div><div class="line"># ...</div><div class="line"></div><div class="line"># 获取文件当前文件父路径</div><div class="line">basedir = os.path.abspath(os.path.dirname(__file__))</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">app.config[&apos;SQLALCHEMY_DATABASE_URI`] = &apos;sqlite:///&apos; + os.path.join(basedir, &apos;data.sqlite&apos;)</div><div class="line">app.config[`SQLALCHEMY_COMMIT_ON_TEARDOWN`] = True</div><div class="line"></div><div class="line">db = SQLAlchemy(app)</div></pre></td></tr></table></figure></p>
+<p><code>db</code>对象是SQLAlchemy类的实例，表示程序所使用的数据库。</p>
+<h1 id="5-6-定义模型"><a href="#5-6-定义模型" class="headerlink" title="5.6 定义模型"></a>5.6 定义模型</h1><p>在ORM中，模型（相当于数据库表table）一般是个Python类，类中的属性对应数据库表中的列。</p>
+<p>在hello.py中定义Role模型和User模型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Role(db.Model):</div><div class="line">    __tablename__ &apos;roles&apos;</div><div class="line">    id = db.Column(db.Integer, primary_key=True)</div><div class="line">    role_name = db.Column(db.String(64), unique=True)</div><div class="line">    </div><div class="line">    def __repr__(self):</div><div class="line">        return &apos;&lt;Role &#123;&#125;&gt;&apos;.format(self.role_name)</div><div class="line">  </div><div class="line">def User(db.Model):</div><div class="line">    __tablename__ = &apos;users&apos;</div><div class="line">    id = db.Column(db.integer, primary_key=True)</div><div class="line">    user_name = db.Column(db.String(64), unique=True, index=True)</div><div class="line">    </div><div class="line">    def __repr__(self):</div><div class="line">        return &apos;&lt;User &#123;&#125;&gt;&apos;.format(self.user_name)</div></pre></td></tr></table></figure></p>
+<p>类变量<code>__tablename__</code>定义在数据库中使用的<strong>表名</strong>，如果没有定义，Flask-SQLAlchemy会使用一个默认名字，但该名字没有遵守使用复数形式进行命名的约定。</p>
+<p><code>db.Column</code>类构造函数的第一个参数是数据库列的类型（如Integer、String等），对应模型（即Python类）的对象类型（如int、str等）</p>
+<p>表5-2 最常用的SQLAlchemy列类型<br>|类型名称   | 对应Python类型   | 说明      |<br>|:———-|:—————-:|:———:|<br>|Integer    | int              | 普通整数，一般时32位|<br>|Float      | int              | 浮点数    |<br>|String     | str              | 变长字符串|<br>|Text       | str              | 变成字符串，对较长或不限长度的字符串做了优化|<br>|Unicode    | unicode          | 变长Unicode字符串|<br>|UnicodeText| unicode          | 变长Unicode字符串，对较长货不限长度的字符串做了优化|<br>|Date       | datetime.data    | 日期      |<br>|Time       | datetime.time    | 时间      |<br>|DateTime   | datetime.datetime| 日期和时间|</p>
+<p><code>db.Column</code>中其余的参数可对列中的数据做一些配置或设置</p>
+<p>表5-3 最常用的SQLAlchemy列选项<br>|选项名     | 说明      |<br>|———–|:———-|<br>|primary_key| 如果设为True，这列是主键|<br>|unique     | 如果设为True，这列不允许出现重复值|<br>|index      | 如果设为True，为这列创建索引，提高查询效率|<br>|nullable   | 如果设为True，这列允许使用空值；设为False，则不允许为空|<br>|default    | 为这列设置默认值|</p>
+<p><strong>注意</strong>：Flask-SQLAlchemy要求每个模型都要定义主键。</p>
+<h1 id="5-7-关系"><a href="#5-7-关系" class="headerlink" title="5.7 关系"></a>5.7 关系</h1><p>定义<strong>一对多关系</strong>（Role对User）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Role(db.Model):</div><div class="line">    # ...</div><div class="line">    users = db.relationship(&apos;User&apos;, backref=&apos;role&apos;)</div><div class="line">    </div><div class="line">class User(db.Model):</div><div class="line">    # ....</div><div class="line">    role_id = db.Column(db.Integer, db.ForeignKey(&apos;roles.id&apos;)    # 外键：roles表中的id</div></pre></td></tr></table></figure></p>
+<p>添加到Role模型中的类变量<code>users</code>代表这个关系（Role与User的关系）的面向对象视角，它将返回与具体Role实例相关联的用户（具体User实例）组成的列表。（如Role实例<code>role_admin</code>返回的users为<code>[richard, john]</code>，其中<code>richard</code>和<code>john</code>都是User实例，即<code>role_admin.users = [richard,john]</code>体现了面向对象视角的一对多关系）</p>
+<p><code>db.relationship()</code>的第一个参数是这个关系的另一端对应的模型。如果模型尚未定义，可使用字符串形式指定。<code>backref</code>参数为<code>&#39;role&#39;</code>表明：在User模型中添加一个属性（或称为类变量）<code>role</code>（可理解成在User表中添加一列名为<code>role</code>的列。但实际查看数据库表时是看不到的），从而定义反向关系。<br><strong>注意</strong>：一般情况下，<code>db.relationship()</code>都能自行找到关系中的外键，有在某些情况下无法决定把哪一列作为外键。如User模型中有两列或以上的列定义为Role模型的外键，那么SQLAlchemy就不知道该使用哪列了。此时，你就要为<code>db.relationship()</code>提供额外参数，从而确定使用哪列外键。常用配置如表5-4。</p>
+<p>表5-4 <code>db.relationship()</code>常用的SQLAlchemy关系选项<br>|选项名   | 说明          |<br>|———|:————–|<br>|backref  | 在关系的另一端模型中添加反向作用|<br>|primaryjoin| 明确指定两个模型之间使用的联结条件。只在模凌两可的关系中需要指定|<br>|lazy     | 指定如何加载相关记录。可选值有：select（首次访问时按需加载），immediate（源对象加载后加载），joined（加载记录，但使用联结），subquery（立即加载，但使用子查询），noload（永不加载），dynamic（不加载记录，单提供加载记录的查询）|<br>|userlist | 如果设为Fales，不适用列表，而使用标量值|<br>|order_by | 指定关系中记录的排序方式|<br>|secondary| 指定多对多关系中关系表的名字|<br>|secondaryjoin| SQLAlchemy无法自行决定时，指定多对多关系中的二级联结条件|</p>
+<p><strong>一对一关系</strong>：可以用前面介绍的一对多关系表示，但调用<code>db.relationship()</code>时要把<code>userlist</code>设为<code>False</code>。<br><strong>多对一关系</strong>：可以用一对多关系表示，只是两个表对调。或者把<code>外键</code>和<code>db.relationship()</code>都放在“多”这一侧。<br><strong>多对多关系</strong>：需要用到第三张表（关系表）。</p>
+<h1 id="5-8-数据库操作"><a href="#5-8-数据库操作" class="headerlink" title="5.8 数据库操作"></a>5.8 数据库操作</h1><p>需要在Python Shell中进行操作。</p>
+<h2 id="5-8-1-创建表"><a href="#5-8-1-创建表" class="headerlink" title="5.8.1 创建表"></a>5.8.1 创建表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(venv)$ python hello.py shell</div><div class="line">&gt;&gt;&gt; from hello.py import db</div><div class="line">&gt;&gt;&gt; db.create_all()</div></pre></td></tr></table></figure>
+<p>如果<strong>修改模型</strong>（如增加了一列）后要把修改的地方应用到现在的数据库中，那么更新现有数据库表的粗暴方式是先删除旧表，在重新创建表：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; db.drop_all()</div><div class="line">&gt;&gt;&gt; db.create_all()</div></pre></td></tr></table></figure></p>
+<p>但是这种方法会把数据库中原有的数据都删除掉。在5.11 使用Flask-Migrate实现数据库迁移中会介绍更新数据库更好的方式。</p>
+<h2 id="5-8-2-插入行"><a href="#5-8-2-插入行" class="headerlink" title="5.8.2 插入行"></a>5.8.2 插入行</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; from hello import Role, User</div><div class="line">&gt;&gt;&gt; role_admin = Role(role_name=&apos;admin&apos;)</div><div class="line">&gt;&gt;&gt; role_moderator = Role(role_name=&apos;moderator&apos;)</div><div class="line">&gt;&gt;&gt; role_visitor = Role(role_name=&apos;visitor&apos;)</div><div class="line">&gt;&gt;&gt; user_richard = User(user_name=&apos;richard&apos;)</div><div class="line">&gt;&gt;&gt; user_john = User(user_name=&apos;john&apos;)</div><div class="line">&gt;&gt;&gt; user_david = User(user_name=&apos;david&apos;)</div></pre></td></tr></table></figure>
+<p>现在这些对象只存在于Python中，还没有写入数据库。因此id尚未赋值，所以<code>print(role_admin.id)</code>的结果为<code>None</code>。</p>
+<p>要把对象写入数据库要分两步：</p>
+<ol>
+<li>要把对象添加到会话(<code>db.session</code>)中:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; db.session.add(role_admin)</div><div class="line">&gt;&gt;&gt; db.session.add(user_richard)</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>或者简写成：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; db.session.add_all([role_moderator, role_visitor, user_john, user_david])</div></pre></td></tr></table></figure></p>
+<ol>
+<li>调用<code>commit()</code>提交会话<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; db.session.commit()</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>此时对象已经写入数据库，再<code>print(role_admin.id)</code>时，它的结果时<code>1</code>。</p>
+<p>调用<code>db.session.rollback()</code>后，可实现事务回滚。<strong>添加到数据库会话中的所有对象</strong>都会还原为它们在数据库时的状态。</p>
+<p><strong>注意</strong>：如果在写入会话过程中发生了错误，那么整个会话都会实效。这样就保证了数据库的一致性。因为可以防止只更新正确部分，而发生错误的部分没有更新。</p>
+<h2 id="5-8-3-更新行"><a href="#5-8-3-更新行" class="headerlink" title="5.8.3 更新行"></a>5.8.3 更新行</h2><p>在数据库会话上调用<code>add()</code>方法可以更新数据。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; role_admin.role_name = &apos;administrator&apos;</div><div class="line">&gt;&gt;&gt; db.session.add(role_admin)</div><div class="line">&gt;&gt;&gt; db.session.commit()</div></pre></td></tr></table></figure></p>
+<h2 id="5-8-4-删除行"><a href="#5-8-4-删除行" class="headerlink" title="5.8.4 删除行"></a>5.8.4 删除行</h2><p>在数据库会话上调用<code>delete()</code>方法删除数据。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; db.session.delete(role_moderator)</div><div class="line">&gt;&gt;&gt; db.session.commit()</div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：插入、更新、删除，只有<code>commit()</code>后才会真正写入数据库。</p>
+<h2 id="5-8-5-查询行"><a href="#5-8-5-查询行" class="headerlink" title="5.8.5 查询行"></a>5.8.5 查询行</h2><p>Flask-SQLAlechemy为每个<strong>模型</strong>（注意不是具体的模型实例）都提供了<code>query</code>对象，在<code>query</code>对象上调用相应方法可进行查询。如查询所有记录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; Role.query.all()</div><div class="line">&gt;&gt;&gt;[&lt;Role &apos;admin&apos;&gt;, &lt;Role &apos;visitor&apos;&gt;]</div></pre></td></tr></table></figure></p>
+<p>在<code>query</code>对象上可使用过滤器进行更精确的查询，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; User.query.filter_by(role=role_visitor).all()</div><div class="line">&gt;&gt;&gt; [&lt;User &apos;john&apos;&gt;, &lt;User &apos;david&apos;&gt;]</div></pre></td></tr></table></figure></p>
+<p>表5-5 常用的SQLAlchemy查询过滤器<br>|过滤器     | 说明        |<br>|———–|:———–|<br>|filter()   | 把过滤器添加到原查询上，返回一个新查询|<br>|filter_by()| 把等值过滤器添加到原查询上，返回一个新查询|<br>|limit()    | 使用指定的值限制原查询返回的结果数量，返回一个新查询|<br>|offset()   | 偏移原查询返回的结果，返回一个新查询|<br>|order_by() | 根据指定条件对原查询结果进行排序，返回一个新查询|<br>|group_by() | 根据指定条件对原查询结果进行分组，返回一个新查询|</p>
+<p><strong>注意</strong>：在查询上应用指定过滤器后，需通过一些执行函数执行查询。</p>
+<p>表5-6 最常用的SQLAlchemy查询执行函数<br>|方法       | 说明       |<br>|———–|:———–|<br>|all()      | 以列表的形式返回查询的所有结果|<br>|fitst()    | 返回查询的第一个结果，如果没有，则返回None|<br>|first_or_404()| 返回查询的第一个结果，如果没有，则终止请求，返回404错误响应|<br>|get()      | 返回指定主键对应的行，如果没有，则返回None|<br>|get_or_404()| 返回指定主键对应的行，如果没有，则返回None|<br>|count()    | 返回查询结果的数量|<br>|paginate() | 返回一个Paginate对象，它包含指定范围的结果|</p>
+<p>再看一个从关系的两端查询Role和User之间一对多的关系的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; users = role_visitor.users</div><div class="line">&gt;&gt;&gt; users</div><div class="line">[&lt;User &apos;john&apos;&gt;, &lt;User &apos;david&apos;&gt;]</div><div class="line">&gt;&gt;&gt; users[0].role</div><div class="line">&gt;&gt;&gt; &lt;Role &apos;visitor&apos;&gt;</div></pre></td></tr></table></figure></p>
+<p>执行<code>role_visitor.users</code>时，隐含的查询会调用<code>all()</code>方法返回一个列表，<code>query</code>对象时隐藏的，因此很难做更进一步的查询。此时可在<code>db.relationship()</code>中添加<code>lazy=&#39;dynamic</code>参数，从而禁止自动执行查询（添加后需调用<code>all()</code>等方法才能执行查询，当然也可在执行前调用过滤器）。</p>
+<h1 id="5-9-在视图函数中操作数据库"><a href="#5-9-在视图函数中操作数据库" class="headerlink" title="5.9 在视图函数中操作数据库"></a>5.9 在视图函数中操作数据库</h1><p>新版的<code>hello.py</code>当输入新用户名时，会把新用户名写入数据库，并显示<code>Pleased to meet you!</code>信息；当输入的是旧用户名（数据库中已有的名字）时，会显示<code>Happy to see you again!</code></p>
+<p><code>hello.py</code>如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;,methods=[&apos;GET&apos;, &apos;POST&apos;])</div><div class="line">def index():</div><div class="line">    form = NameForm()</div><div class="line">    if form.validate_on_submit():</div><div class="line">        session[&apos;name&apos;] = form.name.data</div><div class="line">        # 查找数据库中是否有该用户名，如果没有，就向数据库中添加新用户，</div><div class="line">        # 因为前面已经设置了SQLALCHEMY_COMMIT_ON_TEARDOWN，所以当请求结束时会自动提交事务</div><div class="line">        user = User.query.filter_by(user_name=form.name.data).first()</div><div class="line">        if user is None:</div><div class="line">            # 插入数据库</div><div class="line">            user = User(user_name=form.name.data)</div><div class="line">            db.session.add(user)</div><div class="line">            # 用于模板中判断是显示Pleased to meet you 还是 Happy to see you again</div><div class="line">            session[&apos;known&apos;] = Flase</div><div class="line">        else:</div><div class="line">            session[&apos;konwn&apos;] = True</div><div class="line">        return redirect(url_for(&apos;index&apos;)</div><div class="line">    return render_template(&apos;index.html&apos;, form=form, name=session.get(&apos;name&apos;), known=session.get(&apos;known&apos;, Flase))</div></pre></td></tr></table></figure></p>
+<p><code>index.html</code>如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&#123;% extends &quot;base.html&quot; %&#125;</div><div class="line">&#123;% import &quot;bootstarp/wtf.html&quot; as wtf %&#125;</div><div class="line"></div><div class="line">&#123;% block title %&#125;Flasky&#123;% endblock %&#125;</div><div class="line"></div><div class="line">&#123;% block page_content %&#125;</div><div class="line">&lt;div class=&quot;page-header&quot;&gt;</div><div class="line">   &lt;h1&gt;Hello, &#123;% if name %&#125;&#123;&#123; name &#125;&#125;&#123;% else %&#125;Stranger&#123;% endif %&#125;!&lt;/h1&gt;</div><div class="line">   &#123;% if known %&#125;</div><div class="line">   &lt;p&gt;Happy to see you again!&lt;/p&gt;</div><div class="line">   &#123;% else %&#125;</div><div class="line">   &lt;p&gt;Pleased to meet you!&lt;/p&gt;</div><div class="line">   &#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div><div class="line">&#123;&#123; wtf.quick_form(form) &#125;&#125;</div><div class="line">&#123;% endblock %&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="5-10-集成Python-shell"><a href="#5-10-集成Python-shell" class="headerlink" title="5.10 集成Python shell"></a>5.10 集成Python shell</h1><p>每次启动shell会话都要将数据库模型和实例一个一个地import进去很麻烦，对此我们可以为shell命令注册一个<code>make_context</code>回调函数，把想import的对象导入列表。<br>对<code>hello.py</code>修改如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from flask-script import Shell, Manager</div><div class="line"># ...</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">manager = Manager(app)</div><div class="line"></div><div class="line">def make_shell_context():</div><div class="line">    return dict(app=app, db=db, Role=Role, User=User)</div><div class="line">manager.add_command(&apos;shell&apos;, Shell(make_context=make_shell_context))</div></pre></td></tr></table></figure></p>
+<p>这样启动shell时就会将对象直接导入shell中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; python hello.py shell</div><div class="line">&gt;&gt;&gt; app</div><div class="line">&lt;Flask &apos;app&gt;</div><div class="line">&gt;&gt;&gt; User</div><div class="line">&lt;class &apos;app.User&apos;&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="5-11-使用Flask-Migrate实现数据库迁移"><a href="#5-11-使用Flask-Migrate实现数据库迁移" class="headerlink" title="5.11 使用Flask-Migrate实现数据库迁移"></a>5.11 使用Flask-Migrate实现数据库迁移</h1><p>在5.8.1 创建数据库表中我们说到，更新表的方法之一是删除旧表再重新创建表，但是这会丢失原有的数据。现在介绍方法二：使用数据库迁移框架。<br><strong>数据库迁移框架</strong>：能够跟踪数据库<strong>模式</strong>的变化，然后增量式地把变化应用到已有数据库中。（其功能类似与Git，能够跟踪数据库模式的变化）</p>
+<p>可从理解Git的角度理解数据库迁移框架。</p>
+<h2 id="5-11-1-创建迁移仓库"><a href="#5-11-1-创建迁移仓库" class="headerlink" title="5.11.1 创建迁移仓库"></a>5.11.1 创建迁移仓库</h2><p><code>hello.py</code>如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from flask-migrate import Migrate, MigrateCommand</div><div class="line"># ...</div><div class="line"></div><div class="line">migrate = Migrate(app, db)</div><div class="line">manager.add_command(&apos;db&apos;, MigrateCommand)</div></pre></td></tr></table></figure></p>
+<p>Flask-Migrate提供了一个<code>MigrateCommand</code>类，它可以附加到Flask-Script的<code>manager</code>对象上，从而导出数据库迁移命令。该例中，MigrateCommand类使用<code>db</code>命令附加（类似于5.10中，将Shell类使用<code>shell</code>命令附加）。</p>
+<p><strong>注意</strong>：在维护数据库迁移之前，首先要使用<code>init</code>子命令<strong>创建迁移仓库</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(venv)$ python hello.py db init</div><div class="line">Creating directory /home/flask/.....</div><div class="line">...</div><div class="line">...</div><div class="line">Please edit configuration/connection/logging setting in &apos;/home/flask/..../alembic.ini&apos; before proceeding.</div></pre></td></tr></table></figure></p>
+<p>这个命令会创建一个<code>migrations</code>的文件夹，所有迁移脚本都在里面。</p>
+<h2 id="5-11-2-创建迁移脚本"><a href="#5-11-2-创建迁移脚本" class="headerlink" title="5.11.2 创建迁移脚本"></a>5.11.2 创建迁移脚本</h2><p>在Alembic中，数据库迁移用<strong>迁移脚本</strong>表示。脚本中有两个函数：<br><code>upgrade()</code>函数：把迁移中的改动应用到数据库中。<br><code>downgrade()</code>函数：将改动删除。</p>
+<p>我们可以用<code>revision</code>命令手动创建Alembic迁移（<code>upgrade()</code>和<code>downgrade()</code>都是空的，需使用Alembic提供的<code>Operations</code>对象指令实现具体操作），<br>也可以用<code>migrate</code>命令自动创建Alembic迁移（会根据<strong>模型定义</strong>和<strong>数据库当前的状态</strong>之前的差异生成<code>upgrade()</code>和<code>downgrade()</code>函数的内容）。</p>
+<p>使用<code>migrate</code>命令自动创建迁移脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(venv)$ python hello.py db migrate -m &quot;initial migration&quot;</div><div class="line">INFO [alembic.migration] Context impl SQLiteImpl</div><div class="line">...</div><div class="line">INFO [alembic.qutogenerate] Detected added table &apos;users&apos;</div><div class="line">...</div><div class="line">.../falsky/migrations/versions/1bc...bb5_initial_migration.py...done</div></pre></td></tr></table></figure></p>
+<h2 id="5-11-3-更新数据库"><a href="#5-11-3-更新数据库" class="headerlink" title="5.11.3 更新数据库"></a>5.11.3 更新数据库</h2><p>检查并修正好迁移脚本后，可以使用<code>db upgrade</code>命令把迁移应用到数据库中。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(venv)$ python hello.py db upgrade</div><div class="line">INFO [alembic.migration] Context impl SQLiteImpl</div><div class="line">...</div><div class="line">INFO [alembic.migration] Running upgrade None -&gt; 1bc...bb5, initial migration</div></pre></td></tr></table></figure></p>
+<p>对于第一个迁移来说，其作用和调用<code>db.create_all()</code>方法一样，但在后续的迁移中，<code>upgrade</code>命令能把改动应用到数据库中，而且不影响其中保存的数据。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最後更新時間：<time datetime="2017-11-14T12:57:06.000Z" itemprop="dateUpdated">2017-11-14 20:57:06</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/" target="_blank" rel="external">https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/&title=《把《Flask Web开发》读薄系列之第五章 数据库》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/&title=《把《Flask Web开发》读薄系列之第五章 数据库》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第五章 数据库》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/14/把《Flask Web开发》读薄系列之第六章 电子邮件/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第六章 电子邮件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第四章 Web表单</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/&title=《把《Flask Web开发》读薄系列之第五章 数据库》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/&title=《把《Flask Web开发》读薄系列之第五章 数据库》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第五章 数据库》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMUlEQVR42u3ay27iQBAFUP7/pzPbRCPg3iqQcHO8ioyx+7SlFPW43eLj59dx78zv8/fO/P/p4yvvfTe/5+rAxsbGvgj75+Gxecye8Xg9yfl7rwcbGxv7PHa+6HyJ0ePjjUuCYnI9NjY2Nva9ZKO9Jvk032hsbGxs7DxI5I9PqLMA2RatsLGxsb+BnRSVWvyskdAmM2+vpWFjY2N/PHtW6P/Mv9/S38bGxsb+YPbP4kiC0KyoNAuZxcqxsbGxD2K/anTm8UI3rdx2KKdoHmBjY2Mfx35tYtAGpPYOSYmqSEiwsbGxL8t+HHJmP/rbBCNZQ45P2g/Y2NjYJ7E3jdK2eDSD5QNDyagQNjY29tnsvGA0KxvlKUTbxJ2lUtjY2NjnsesAMFpEOww0W0n0erCxsbEPYiePmZX4N0+cbVy+rdjY2NhnsPNxmbbos28h50lLncxgY2NjfwE7Wcpma9oA2QbLJ8/CxsbGPo6dt2zzYs1sg9ow1r4MbGxs7LPZs8J9XppvU4t8a/LkChsbG/s8dvITvx24KQLJGrzZYmxsbOyT2LNltanCppU726YnT8HGxsY+iJ3ftF3WPpHYNIPr9WNjY2Nflt0OvuRhoy7cv+j+dbjCxsbGviy7LQntQ1HbkJiN70TvGRsbG/sgdv6v/91N3PaVtCNB2NjY2N/GzkPIJl2ZFZ7ysPqkxYuNjY19cXYSGNqHJcudjQTl6ykSG2xsbOyLs9sv5MWgJJ3YFPrbIPfnSmxsbOyD2Dkg2YJk+2bDN/mA0ew1YGNjY1+XnRdl6mLNm/OnWUC9tf0EbGxs7I9nb0LIJry9u8AUvR5sbGzsI9htSpB8+qpm7azYFK0KGxsb+yD2LHjkgFeN+OxLTrd86djY2NiXYu8Dyb4wtLnnqq2LjY2NfQQ7P2YtgXbgJgmT+4EhbGxs7PPYs4JOW2+flfU3559sHDY2NvZx7FlgyFOF2bBOURtrXwY2Njb2V7LzhGTTKn4ceIZzSfn+YWNjYx/Nzgv9bfshL0jlyc+TjcDGxsY+jj1r7iZhpt2aNiGZbRY2Njb2SezZ7/b9RsxSi8fnb689sLGxsT+d/Q8q1aH1HaseDQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

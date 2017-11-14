@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>把《Flask Web开发》读薄系列之第三章 模板 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置|配置      | 默认值      | 说明       ||———-|:————|:———–||MAIL_SERVER| localhost  | 电子邮件服务器的主机名或IP地址||MAIL_PORT | 25          | 电子邮件服务器的端口||MAIL_USE_TLS| False">
+<meta name="keywords" content="python, mongodb, jupyter-notebook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把《Flask Web开发》读薄系列之第三章 模板">
+<meta property="og:url" content="https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置|配置      | 默认值      | 说明       ||———-|:————|:———–||MAIL_SERVER| localhost  | 电子邮件服务器的主机名或IP地址||MAIL_PORT | 25          | 电子邮件服务器的端口||MAIL_USE_TLS| False">
+<meta property="og:updated_time" content="2017-11-14T13:05:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把《Flask Web开发》读薄系列之第三章 模板">
+<meta name="twitter:description" content="使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置|配置      | 默认值      | 说明       ||———-|:————|:———–||MAIL_SERVER| localhost  | 电子邮件服务器的主机名或IP地址||MAIL_PORT | 25          | 电子邮件服务器的端口||MAIL_USE_TLS| False">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">把《Flask Web开发》读薄系列之第三章 模板</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">把《Flask Web开发》读薄系列之第三章 模板</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-14T12:52:00.000Z" itemprop="datePublished" class="page-time">
+  2017-11-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#使用Flask-Mail提供电子邮件支持"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用Flask-Mail提供电子邮件支持</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#在Python-shell中发送电子邮件"><span class="post-toc-number">2.</span> <span class="post-toc-text">在Python shell中发送电子邮件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#在程序中集成发送电子邮件功能"><span class="post-toc-number">3.</span> <span class="post-toc-text">在程序中集成发送电子邮件功能</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#异步发送电子邮件"><span class="post-toc-number">4.</span> <span class="post-toc-text">异步发送电子邮件</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-把《Flask Web开发》读薄系列之第三章 模板"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">把《Flask Web开发》读薄系列之第三章 模板</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-14 20:52:00" datetime="2017-11-14T12:52:00.000Z"  itemprop="datePublished">2017-11-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="使用Flask-Mail提供电子邮件支持"><a href="#使用Flask-Mail提供电子邮件支持" class="headerlink" title="使用Flask-Mail提供电子邮件支持"></a>使用Flask-Mail提供电子邮件支持</h1><p>表6-1 Flask-Mail SMTP服务器的配置<br>|配置      | 默认值      | 说明       |<br>|———-|:————|:———–|<br>|MAIL_SERVER| localhost  | 电子邮件服务器的主机名或IP地址|<br>|MAIL_PORT | 25          | 电子邮件服务器的端口|<br>|MAIL_USE_TLS| False     | 启用传输层安全（TLS）协议|<br>|MAIL_USE_SSL| False     | 启用安全套接层（SSL）协议|<br>|MAIL_USENAME| None      | 邮件账户的用户名|<br>|MAIL_PASSWORD| None     | 邮件账户的授权码|</p>
+<ol>
+<li>在<code>hello.py</code>中配置Flask-Mail使用QQ邮箱：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">import os</div><div class="line">	#...</div><div class="line"></div><div class="line">app.config[&apos;MAIL_SERVER&apos;] = &apos;smtp.qq.com&apos;</div><div class="line">app.config[&apos;MAIL_PORT&apos;] = 465</div><div class="line">app.config[&apos;MAIL_USE_SSL&apos;] = True</div><div class="line">app.config[&apos;MAIL_USERNAME&apos;] = os.environ.get(&apos;MAIL_USERNAME&apos;)</div><div class="line">app.config[&apos;MAIL_PASSWORD&apos;] = os.environ.get(&apos;MAIL_PASSWORD&apos;)</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：千万不要把账号密令直接写在脚本中，应该从环境变量中导入。</p>
+<ol>
+<li>初始化Flask-Mail：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">from flask_mail import Mail</div><div class="line"># ...</div><div class="line"></div><div class="line">mail = Mail(app)</div></pre></td></tr></table></figure>
+<ol>
+<li>在环境变量中定义<code>MAIL_USERNAME</code>和<code>MAIL_PASSWORD</code>：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(venv) $ export MAIL_USERNAME=&apos;12345678@qq.com&apos;</div><div class="line">(venv) $ export MAIL_PASSWORD=&apos;qwertyuiop&apos;</div></pre></td></tr></table></figure>
+<p>此时可以使用<code>echo</code>命令打印出来检查一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(venv) $ echo $MAIL_USERNAME</div><div class="line">&gt;&gt;&gt; &apos;12345678@qq.com&apos;</div><div class="line">(venv) $ echo $MAIL_PASSWORD</div><div class="line">&gt;&gt;&gt; &apos;qwertyuiop&apos;</div></pre></td></tr></table></figure>
+<p>定义环境变量后，此时在<strong>同一个终端中</strong>执行<code>python hello.py shell</code>命令，便能获取到想要的环境变量。</p>
+<p><strong>注意</strong>：如果定义好环境变量后把终端关闭再重新打开，那么此时是没有上次定义的环境变量的。所以需要在同一个终端中执行。</p>
+<p>如何让QQ邮箱开启SMTP功能，可以参考<a href="http://blog.csdn.net/lagelangzhi/article/details/51717433" target="_blank" rel="external">flask-mail常见的邮箱配置问题解决</a></p>
+<h1 id="在Python-shell中发送电子邮件"><a href="#在Python-shell中发送电子邮件" class="headerlink" title="在Python shell中发送电子邮件"></a>在Python shell中发送电子邮件</h1><p>在上一个终端中，发送电子邮件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(venv) $ python hello.py shell</div><div class="line">&gt;&gt;&gt; from flask_mail import Message</div><div class="line">&gt;&gt;&gt; from hello import mail</div><div class="line">&gt;&gt;&gt; msg = Message(&apos;test subject&apos;, sender=&apos;12345678@qq.com&apos;, recipients=[&apos;87654321@qq.com&apos;])</div><div class="line">&gt;&gt;&gt; msg.body = &apos;test body&apos;</div><div class="line">&gt;&gt;&gt; msg.html = &apos;&lt;p&gt;test body&lt;/p&gt;&apos;</div><div class="line">&gt;&gt;&gt; with app.app_context():</div><div class="line">···    mail.send(msg)</div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：在Flask-Mail中的<code>send()</code>函数使用<code>current_app</code>（程序上下文），因此在shell中发送邮件，需要激活程序上下文。</p>
+<h1 id="在程序中集成发送电子邮件功能"><a href="#在程序中集成发送电子邮件功能" class="headerlink" title="在程序中集成发送电子邮件功能"></a>在程序中集成发送电子邮件功能</h1><ol>
+<li>定义用于发邮件的函数，使<code>hello.py</code>支持电子邮件：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">from flask_mail import Message</div><div class="line"># ...</div><div class="line"></div><div class="line"># 给邮件标题添加一个前缀</div><div class="line">app.config[&apos;FLASKY_MAIL_SUBJECT_PREFIX&apos;] = &apos;[Flasky]&apos;</div><div class="line"># 定义发件人</div><div class="line">app.config[&apos;FLASKY_MAIL_SENDER&apos;] = &apos;12345678@qq.com&apos;</div><div class="line"></div><div class="line">def send_email(recipients, subject, template, **kwargs):</div><div class="line">    msg = Message(app.config[&apos;FLASKY_MAIL_SUBJECT_PREFIX&apos;] + subject, sender=app.config[&apos;FLASKY_MAIL_SENDER&apos;], recipients=[recilients])</div><div class="line">    msg.body = render_template(template + &apos;.txt&apos;, **kwargs)</div><div class="line">    msg.html = render_template(template + &apos;.html&apos;, **kwargs)</div><div class="line">    mail.send(msg)</div></pre></td></tr></table></figure>
+<p>邮件有纯文本<code>.txt</code>，也有HTML文本<code>.html</code>，客户端显示哪个，取决于邮件客户端的设置。</p>
+<p><strong>拓展</strong>：为什么<code>send()</code>函数中需要<code>**kwargs</code>？<code>**kwargs</code>的作用是什么？<br>答：（1）因为我们不确定模板中需要什么变量参数，在此例中，模板需要的时<code>user</code>这个参数，但是如果换成别的模版，它不仅需要<code>user</code>参数，也需要其他一些参数（如datatime等，关键取决于模板设计成什么样），此时如果我们死死地把<code>send_email()</code>函数写成<code>send_email(recipient, subject, template, user)</code>，那么就失去了灵活性，当换成其他模版时，<code>datatime</code>参数也就无法传入了，因此<code>send()</code>函数需要<code>**kwargs</code>。<br>（2）<code>**kwargs</code>的作用是：当我们不知道需要往函数中传入多少个关键字参数或者想以字典的形式作为参数时，我们可以用<code>**kwargs</code>，这样我们就可以根据实际情况需要，往函数中传入特定个数的参数（数量使具体情况而定）。</p>
+<ol>
+<li>结合视图函数发送电子邮件：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"># 定义收件人为Flasky的管理员</div><div class="line">app.config[&apos;FLASKY_ADMIN&apos;] = os.environ.get(&apos;FLASKY_ADMIN&apos;)</div><div class="line"># ...</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;]</div><div class="line">def index():</div><div class="line">    form = NameForm()</div><div class="line">    if form.validate_on_submit():</div><div class="line">        session[&apos;name&apos;] = form.name.data</div><div class="line">        # 查找数据库中是否有该用户名，如果没有，就向数据库中添加新用户，</div><div class="line">        # 因为前面已经设置了SQLALCHEMY_COMMIT_ON_TEARDOWN，所以当请求结束时会自动提交事务</div><div class="line">        user = User.query.filter_by(user_name=form.name.data).first()</div><div class="line">        if user is None:</div><div class="line">            # 插入数据库</div><div class="line">            user = User(user_name=form.name.data)</div><div class="line">            db.session.add(user)</div><div class="line">            # 用于模板中判断是显示Pleased to meet you 还是 Happy to see you again</div><div class="line">            session[&apos;known&apos;] = Flase</div><div class="line">            # 如果收件人不为空，则发送邮件</div><div class="line">            if app.config[&apos;FLASKY_ADMIN&apos;]:</div><div class="line">                send_email(app.config[&apos;FLASKY_ADMIN&apos;], &apos;New User&apos;, &apos;mail/new_user&apos;, user=user)</div><div class="line">        else:</div><div class="line">            session[&apos;konwn&apos;] = True</div><div class="line">        return redirect(url_for(&apos;index&apos;)</div><div class="line">    return render_template(&apos;index.html&apos;, form=form, name=session.get(&apos;name&apos;), known=session.get(&apos;known&apos;, Flase))</div></pre></td></tr></table></figure>
+<p>此时我们也需要定义环境变量<code>FLASKY_ADMIN</code>：<br><code>(venv) $ export FLASKY_ADMIN=&#39;12345678@qq.com&#39;</code></p>
+<p><code>template</code>文件夹下的模板文件<code>mail/new_user</code>有两个，分别为<code>new_user.txt</code>和<code>new_user.html</code>。</p>
+<p><code>new_user.txt</code>如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">There has a new user that name is &#123;&#123; user.user_name &#125;&#125;</div></pre></td></tr></table></figure>
+<p><code>new_user.html</code>如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt;There has a new user that name is &#123;&#123; user.user_name &#125;&#125;&lt;/h1&gt;</div></pre></td></tr></table></figure>
+<h1 id="异步发送电子邮件"><a href="#异步发送电子邮件" class="headerlink" title="异步发送电子邮件"></a>异步发送电子邮件</h1><p>为了避免处理请求过程中不必要的延迟，我们可以把发送电子邮件的函数移到后台线程中处理：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">from threading import Thread</div><div class="line"># ...</div><div class="line"></div><div class="line">def send_async_email(app, msg):</div><div class="line">    with app.app_context():</div><div class="line">        mail.send(msg)</div><div class="line">        </div><div class="line">def send_email(recipients, subject, template, **kwargs):</div><div class="line">    msg = Message(app.config[&apos;FLASKY_MAIL_SUBJECT_PREFIX&apos;] + subject, sender=app.config[&apos;FLASKY_MAIL_SENDER&apos;], recipients=[recilients])</div><div class="line">    msg.body = render_template(template + &apos;.txt&apos;, **kwargs)</div><div class="line">    msg.html = render_template(template + &apos;.html&apos;, **kwargs)</div><div class="line">    thr = Thread(target=send_async_email, args=[app, msg])</div><div class="line">    thr.start()</div><div class="line">    return thr</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：由于在不同线程中执行<code>mail.send()</code>函数，就如前面<em>在Python shell中发送电子邮件</em>章节中提到，<code>send()</code>函数需要程序<code>current_app</code>（程序上下文）中执行，因此需要在执行<code>send()</code>函数的线程中使用<code>app.app_context()</code>人工创建<code>current_app</code>。</p>
+<p>当需要发送大量电子邮件时，使用专门发送电子邮件的作业（如<a href="http://www.celeryproject.org" target="_blank" rel="external">Celery</a>任务队列）处理更合适。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最後更新時間：<time datetime="2017-11-14T13:05:13.000Z" itemprop="dateUpdated">2017-11-14 21:05:13</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/" target="_blank" rel="external">https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/&title=《把《Flask Web开发》读薄系列之第三章 模板》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/&title=《把《Flask Web开发》读薄系列之第三章 模板》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第三章 模板》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第四章 Web表单</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/14/把《Flask Web开发》读薄系列之第二章 程序的基本概念/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第二章 程序的基本概念</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/&title=《把《Flask Web开发》读薄系列之第三章 模板》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/&title=《把《Flask Web开发》读薄系列之第三章 模板》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第三章 模板》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMklEQVR42u3awU4jQQwE0Pz/T2evi9iEKnuQMr1vTghBpp+RsFzuxyN+nt+ev7///ufff3/2aa/Oc/GDjY2NfRP28+2Tv/gVMiG9+pmkTMmp/vF2bGxs7OPY+YHaZpY0tvfneV+OtrjY2NjY2LNybMYPbGxsbOxr2clIsG9IyedjY2NjY7ehUh79JGNG/pl5XPUrWRo2Njb2x7Pzrejnf/0r+21sbGzsD2Y/y2ezjk2Gnzwwei4ebGxs7JPYswXtrDSz0SX53eGCGRsbG/sg9iyaaRvMbMjJSzMMkrCxsbGPY2+Cm81lnXxcma2BX54fGxsb++bs9x+RX8TZB1Lt+raNqL58jY2NjX0Qe7bcTdpGG/fvLwAlZ1jttLGxsbE/kr05dBvr5N/fLx4ebbWwsbGxb87O28BmnVD3z0vHjB9CJWxsbOzbsmf/59s1QB5XtYNKvmx+tJXGxsbGviE7OdBmk5xTNyNNGzZhY2Njn8GetYoWc1WZZlFXvVvAxsbGvgl7NmxsRpTZkrj98/zwCdjY2NhHs/fNpl3Z5sNJ0uSi4QQbGxv7IHZ+ceeqV26ipc3VImxsbOxT2fs2k4T17UH3OVnUurCxsbGPYCcHal8zuwCUHHq21n1ZRGxsbOzj2PuhYt/M2sa2OQM2Njb2GewkvplF9nmZ8iaUh0fDUAkbGxv7hux8zEiGjU30k/xuG0tFb8HGxsa+OTsn5TF90sCSxpM3v7rRYmNjYx/E3oTy7dK3bTZtydplAzY2NvZJ7PyaTgLeNKQiDCqHnGIrgo2NjX1zdr6mba9Xzha6bUMt/njY2NjYx7Gvin7akWBzBWf2FmxsbOxT2fkz6wX5mja/GNRe4sTGxsY+mz0L62eRUN4yZ4vnqEzY2NjYR7BnrWs2qLRPux4uCoeNjY19EPuqQ+RNLmlmxT2jRVyFjY2NfRI7b1qzo7TF3ayTL1sPYGNjY9+Q3baW2TCzudbTFrS4soONjY2NHa+B29bVDj/FAgMbGxv7v2fvI6Q2HiqaUx4qYWNjYx/Ebpe7dYgTF6i9jtkWCxsbG/s8dhvczwqRRPl5K81HoAv229jY2Nify/4DR6J8uIdRpigAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
