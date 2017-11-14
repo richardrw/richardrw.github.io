@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>把《Flask Web开发》读系列之第二章 程序的基本概念 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="2.1 初始化123from flask import Flaskapp = Flask(__name__) Flask实例化只有一个必须指定的参数，即程序主模块或包的名字（也即__name__）1234# 2.2 路由和视图函数1. **路由**：处理URL和函数之间的关系（URL到Python函数的映射关系）的程序。```可通过Flask实例提供的`app.route()`装饰器把函数注册为路">
+<meta name="keywords" content="python, mongodb, jupyter-notebook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把《Flask Web开发》读系列之第二章 程序的基本概念">
+<meta property="og:url" content="https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="2.1 初始化123from flask import Flaskapp = Flask(__name__) Flask实例化只有一个必须指定的参数，即程序主模块或包的名字（也即__name__）1234# 2.2 路由和视图函数1. **路由**：处理URL和函数之间的关系（URL到Python函数的映射关系）的程序。```可通过Flask实例提供的`app.route()`装饰器把函数注册为路">
+<meta property="og:updated_time" content="2017-11-14T12:47:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把《Flask Web开发》读系列之第二章 程序的基本概念">
+<meta name="twitter:description" content="2.1 初始化123from flask import Flaskapp = Flask(__name__) Flask实例化只有一个必须指定的参数，即程序主模块或包的名字（也即__name__）1234# 2.2 路由和视图函数1. **路由**：处理URL和函数之间的关系（URL到Python函数的映射关系）的程序。```可通过Flask实例提供的`app.route()`装饰器把函数注册为路">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">把《Flask Web开发》读系列之第二章 程序的基本概念</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">把《Flask Web开发》读系列之第二章 程序的基本概念</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-14T12:45:31.000Z" itemprop="datePublished" class="page-time">
+  2017-11-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-1-初始化"><span class="post-toc-number">1.</span> <span class="post-toc-text">2.1 初始化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-4-一个完整的程序"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.4 一个完整的程序</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-5-请求-响应"><span class="post-toc-number">3.</span> <span class="post-toc-text">2.5 请求-响应</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-5-1-程序与请求上下文"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">2.5.1 程序与请求上下文</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-5-2-请求调度"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.5.2 请求调度</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-5-3-请求钩子"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">2.5.3 请求钩子</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-5-4-响应"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">2.5.4 响应</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-6-Flask扩展"><span class="post-toc-number">4.</span> <span class="post-toc-text">2.6 Flask扩展</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-把《Flask Web开发》读系列之第二章 程序的基本概念"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">把《Flask Web开发》读系列之第二章 程序的基本概念</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-14 20:45:31" datetime="2017-11-14T12:45:31.000Z"  itemprop="datePublished">2017-11-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="2-1-初始化"><a href="#2-1-初始化" class="headerlink" title="2.1 初始化"></a>2.1 初始化</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">from flask import Flask</div><div class="line"></div><div class="line">app = Flask(__name__)</div></pre></td></tr></table></figure>
+<p>Flask实例化只有一个必须指定的参数，即程序主模块或包的名字（也即<code>__name__</code>）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># 2.2 路由和视图函数</div><div class="line">1. **路由**：处理URL和函数之间的关系（URL到Python函数的映射关系）的程序。</div><div class="line">```可通过Flask实例提供的`app.route()`装饰器把函数注册为路由。</div></pre></td></tr></table></figure></p>
+<ol>
+<li><strong>视图函数</strong>：像<code>index()</code>这样的函数。</li>
+</ol>
+<h1 id="2-4-一个完整的程序"><a href="#2-4-一个完整的程序" class="headerlink" title="2.4 一个完整的程序"></a>2.4 一个完整的程序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">from flask import Flask</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;)</div><div class="line">def index():</div><div class="line">    return &apos;&lt;h1&gt;Hello World!&lt;/h1&gt;</div><div class="line"></div><div class="line">@app.route(&apos;/user/&lt;name&gt;&apos;)      # &lt; &gt;尖括号部门是动态url部分</div><div class="line">def user(name):                 # Flask会将动态部分（也即&lt; &gt;部分）作为参数传入视图函数中</div><div class="line">    return &apos;&lt;h1&gt;Hello &#123;&#125;!&apos;.format(name)</div><div class="line">    </div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    app.run(debug=True)</div></pre></td></tr></table></figure>
+<h1 id="2-5-请求-响应"><a href="#2-5-请求-响应" class="headerlink" title="2.5 请求-响应"></a>2.5 请求-响应</h1><h2 id="2-5-1-程序与请求上下文"><a href="#2-5-1-程序与请求上下文" class="headerlink" title="2.5.1 程序与请求上下文"></a>2.5.1 程序与请求上下文</h2><ol>
+<li><code>程序上下文</code>：</li>
+<li><code>请求上下文</code>:</li>
+</ol>
+<h2 id="2-5-2-请求调度"><a href="#2-5-2-请求调度" class="headerlink" title="2.5.2 请求调度"></a>2.5.2 请求调度</h2><p>Flask使用<code>app.route()</code>装饰器或者非装饰器形式的<code>app.add_url_rule()</code>生成<strong>URL和视图函数之间的映射</strong></p>
+<h2 id="2-5-3-请求钩子"><a href="#2-5-3-请求钩子" class="headerlink" title="2.5.3 请求钩子"></a>2.5.3 请求钩子</h2><p><strong>应用场景：</strong>在请求开始时，创建数据库链接或认证用户。（即在处理请求<strong>之前</strong>或<strong>之后</strong>，执行某些代码）<br>Flask提供以下4种钩子：</p>
+<ol>
+<li><code>before_first_request</code>：注册一个函数，<strong>在处理第一个请求之前运行</strong></li>
+<li><code>before_request</code>：注册一个函数，<strong>在每次请求之前运行</strong></li>
+<li><code>after_request</code>：注册一个函数，<strong>如果没有未处理的异常抛出，在每次请求之后运行</strong></li>
+<li><code>teardown_request</code>：注册一个函数，<strong>即使有未处理的异常抛出，也在每次请求之后运行</strong></li>
+</ol>
+<h2 id="2-5-4-响应"><a href="#2-5-4-响应" class="headerlink" title="2.5.4 响应"></a>2.5.4 响应</h2><p><strong>视图函数返回值</strong>可以接受3个参数：响应文本，状态码，一个由header组成的字典。<br><code>make_response()</code>函数可以接受3个参数（和视图函数返回值一样），并返回一个<code>response</code>对象，此时我们可以在<code>response</code>对象上调用各种方法，进一步设置响应。<br>如获得一个<code>response</code>对象，然后设置<code>cookie</code>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">from flask import Flask</div><div class="line">from flask import make_response</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;)</div><div class="line">def index():</div><div class="line">    response = make_response(&apos;&lt;h1&gt;This document carries a cookie!&lt;/h1&gt;&apos;)</div><div class="line">    response.set_cookie(&apos;answer&apos;, &apos;42&apos;)</div><div class="line">    return response</div></pre></td></tr></table></figure></p>
+<p><code>redirect()</code>函数用于生成<strong>重定向</strong>（一种特殊的响应）。</p>
+<p><code>abort</code>函数用于生产另一种特殊响应，用于处理错误。<br>如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">from flask import Flask</div><div class="line">from flask import redirect</div><div class="line">from flask import abort</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line"></div><div class="line">@app.route(&apos;/&apos;)</div><div class="line">def index():</div><div class="line">    return redirect(&apos;http://www.example.com&apos;)</div><div class="line">    </div><div class="line">@app.route(&apos;/user/&lt;id&gt;&apos;)</div><div class="line">def get_user(id):</div><div class="line">    user = load_user(id)        # load_user()用于读取id，不展开写</div><div class="line">    if not user:</div><div class="line">        abort(404)        # 如果id不存在，返回状态吗404</div><div class="line">    return &apos;&lt;h1&gt;Hello &#123;&#125;&lt;/h1&gt;&apos;.format(id)</div></pre></td></tr></table></figure></p>
+<h1 id="2-6-Flask扩展"><a href="#2-6-Flask扩展" class="headerlink" title="2.6 Flask扩展"></a>2.6 Flask扩展</h1><p>可使用<code>flask-script</code>扩展为Flask程序添加一个命令行解析器，那么就可以自定义很多参数，如监听的host、port等。<br>实现方式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">from flask.ext.script import Manager</div><div class="line"># ...</div><div class="line"></div><div class="line">manager = Manager(app)</div><div class="line"></div><div class="line">if __name__ = &apos;__main__&apos;:</div><div class="line">    manager.run()</div></pre></td></tr></table></figure></p>
+<p>把Flask实例<code>app</code>作为参数传给<code>Manager()</code>，初始化实例。<br><strong>注意</strong>：Flask扩展都在<code>flask.ext</code>命名空间下，而Python3.5之后都直接使用<code>from flask-xxx import xxx</code>来导入。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-11-14T12:47:02.000Z" itemprop="dateUpdated">2017-11-14 20:47:02</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/" target="_blank" rel="external">https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/&title=《把《Flask Web开发》读系列之第二章 程序的基本概念》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/&title=《把《Flask Web开发》读系列之第二章 程序的基本概念》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读系列之第二章 程序的基本概念》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/14/把《Flask Web开发》读薄系列之第一章 创建虚拟环境/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第一章 创建虚拟环境</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/&title=《把《Flask Web开发》读系列之第二章 程序的基本概念》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/&title=《把《Flask Web开发》读系列之第二章 程序的基本概念》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读系列之第二章 程序的基本概念》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/14/把《Flask Web开发》读系列之第二章 程序的基本概念/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD7UlEQVR42u3awY7iQAwEUP7/p2evKwGhyu4ss9LjNGIg6X4cKnb78YhfP3+9nt9//sypzz9/K7nOu28de+HAgQMHjnir15e+Xu71t95t6XobOd/1apM94sCBAweOsxzX8XYdWi1THuQt+vU70cpx4MCBA8cv4EjKvKQMuy7Y8qDN148DBw4cOH4DR16YzViTteWFJQ4cOHDg+BZH23rLw7VlTYJ51jo83CvFgQMHDhyf+29R4P2Pf98y34EDBw4cOIKDnHa4YTb6lodxXtq1LcUXd8eBAwcOHGuO2ZFSOwA3y/8Z1oGjMhw4cODAseBog3AWt+2Gr4+vNoF67IwLBw4cOHCMGn/J6EAevTnBLOBPtThx4MCBA8cpjiTYNqMJs1C/YzThQ3jjwIEDB44FR36httCaNeyShuD1mldhjwMHDhw41hztBvJCLm9EzsYjcpS67MSBAwcOHAuOqFkWt9WSGM5DOikm85XUkx04cODAgeMQx+wYaXYE1RZd++MlHDhw4MBxN8eseTcbUGvhkiJw86CAAwcOHDj+DcepAYXZqMRmNOGWpw8cOHDgwHGUY7/VdsP7oboDTDhw4MCB40ziPNrDnnZsLh9ZmMVtewQV3QsHDhw4cJQc7XFOi7I/OmqxZo8IOHDgwIHjFEcyUtC29vJjnlMtyNnPVuQ2Dhw4cOCIr5MXP5uBufYK9QjCYtzhxXMHDhw4cOA4xHEqaPORuOTum/hsP4kDBw4cOO7gmLXwknGE/PrtyML+sAoHDhw4cNzBkZdP7baTEM3f2YxEfPjxcODAgQPHIY5Ze6698b6l2AZqezCGAwcOHDj2HG3h1GLlzb7k+rMjqLzIxIEDBw4cpzjakGuX2zYcN2MNbRkZRSwOHDhw4Ig5hn7lsEK70Nn7m0eBoqLFgQMHDhwxR3KzTYsw30wb57NjqhffwoEDBw4ca458UGC/ydkSZzQJ0Ns148CBAweOBcesoNoMpW3ahTPK4ls4cODAgeMGjs3AwdlNziIz/4FffB4HDhw4cBzlaNtts7hthxXyA63ZAMSLXikOHDhw4Fhz7CMw2UwbpftP1o8FOHDgwIFjzZEf27Rb3TQEZ6DtAdjbvePAgQMHjgXHT/ma5dG+xNr/N2LCgQMHDhxrjlkgzY6IkkCdhXoe2McOzHDgwIEDxyVHEq7tcmeNxXaTs6GHoqLFgQMHDhwLjlNBuC+i2gG4WXn2dm04cODAgeOrHJtWYB7Dm4ZmTYkDBw4cOL7EkS+6DdFk8y1iPkKBAwcOHDhOcSQ3bpfSjrhtgrn9CQ/0SnHgwIEDx3qgIS/M8oOrdmN1cMblJQ4cOHDgWHP8AdnzIIKCQsq2AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
