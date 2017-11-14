@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://richardrw.github.io/"/>
-  <updated>2017-11-04T14:29:19.000Z</updated>
+  <updated>2017-11-14T12:23:19.000Z</updated>
   <id>https://richardrw.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>把《Flask Web开发》读薄系列之序言</title>
+    <link href="https://richardrw.github.io/2017/11/14/%E6%8A%8A%E3%80%8AFlask%20Web%E5%BC%80%E5%8F%91%E3%80%8B%E8%AF%BB%E8%96%84%E7%B3%BB%E5%88%97%E4%B9%8B%E5%BA%8F%E8%A8%80/"/>
+    <id>https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之序言/</id>
+    <published>2017-11-14T12:20:58.000Z</published>
+    <updated>2017-11-14T12:23:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="读者的疑惑"><a href="#读者的疑惑" class="headerlink" title="读者的疑惑"></a>读者的疑惑</h1><p>《把<flask web开发——基于python的web应用开发实战="">读薄系列》主要是对《Flask Web开发》一书的概括，或许你读起来会吐槽说“卧靠，这不就是书中的内容吗，直接把书中的内容搬过来就可以成一个系列了，真牛逼“。对此，我只能说读书笔记大概就是这样吧。你对其中的内容懂了，就会觉得很容易，觉得很没必要做这样的一种记录，完全是照搬书中内容，没有什么实质东西。但是，该系列也并不完全是书中内容，它还包括作者对一些该概念的理解、类比，以及代码实现过程中可能遇到的、应该注意的坑等。如：把第五章数据库中的5.11 使用Flask-Migrate实现数据库迁移，跟Git版本控制联系起来，结合理解。如：第六章电子邮件中通过QQ邮箱服务器发送邮件应该注意的坑，以及拓展对<code>**kwargs</code>的理解和实际应用情景。总的来说，该系列主要起到的作用如下：</flask></p><ul><li>起到思维导图作用。当你初学完或者之前学过但是没有实际应用过，那么该系列可以帮助你勾起记忆，尽快掌握Flask的一些基本知识。另外也能让你根据思维导图你查漏补缺。</li><li>加入一些类比，加强理解书中概念。如前面说到的Flask-Migrate与Git的类比。书中的一些类比能否帮助你，视人而已，因为每个人对概念的理解都不同，就像不是所有读者都了解Git一样。</li><li>拓展对Python一些概念的理解。亦如前面说到的对<code>**kwargs</code>的理解。</li></ul><h1 id="最后说两句"><a href="#最后说两句" class="headerlink" title="最后说两句"></a>最后说两句</h1><p>可能是翻译的原因，书中偶尔会出现的一些句子或内容读起来很费劲，很难理解，对此，作者也尽量以平实的语言概括该系列，甚至是以提炼出“存在问题—解决思路—解决方法“或者问答的形式来概括书中内容，加深理解。如第四章4.5 重定向和用户会话，作者根据书中内容提炼出“存在问题—解决思路—解决方法”来解释为什么使用重定向和用户会话。</p><p>最后还是要感谢一下@路人甲，他在小密圈对圈友发布的读书笔记奖励活动，激励大家读书长知识。（虽然该系列在发发布活动前就已经在写哈哈，但也起到了很大的激励作用，营造出了一种学习气氛）</p><h1 id="联系作者"><a href="#联系作者" class="headerlink" title="联系作者"></a>联系作者</h1><p>如果你对《Flask Web开发——基于Python的Web应用开发实战》书中的内容有一些很好的个人理解（如用类比来理解）等，可以把你的理解整理好发送到作者邮箱：weichang321@gmail.com。我将会筛选一些好的内容加入到该系列中，并署上你的名字。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;读者的疑惑&quot;&gt;&lt;a href=&quot;#读者的疑惑&quot; class=&quot;headerlink&quot; title=&quot;读者的疑惑&quot;&gt;&lt;/a&gt;读者的疑惑&lt;/h1&gt;&lt;p&gt;《把&lt;flask web开发——基于python的web应用开发实战=&quot;&quot;&gt;读薄系列》主要是对《Flask Web开
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>构建爬取大众点评美食数据的多线程爬虫（含多进程实现）（一）</title>
