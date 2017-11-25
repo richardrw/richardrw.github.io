@@ -20,17 +20,17 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置|配置      | 默认值      | 说明       ||———-|:————|:———–||MAIL_SERVER| localhost  | 电子邮件服务器的主机名或IP地址||MAIL_PORT | 25          | 电子邮件服务器的端口||MAIL_USE_TLS| False">
+    <meta name="description" content="使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置    配置 默认值 说明     MAIL_SERVER localhost 电子邮件服务器的主机名或IP地址   MAIL_PORT 25 电子邮件服务器的端口   MAIL_USE_TLS False 启用传输层安全（TLS）协议   MAIL_USE_SSL False 启用安全套接层（SSL）协议">
 <meta name="keywords" content="python, mongodb, jupyter-notebook">
 <meta property="og:type" content="article">
 <meta property="og:title" content="把《Flask Web开发》读薄系列之第三章 模板">
 <meta property="og:url" content="https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/index.html">
 <meta property="og:site_name" content="Richard‘s Blog">
-<meta property="og:description" content="使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置|配置      | 默认值      | 说明       ||———-|:————|:———–||MAIL_SERVER| localhost  | 电子邮件服务器的主机名或IP地址||MAIL_PORT | 25          | 电子邮件服务器的端口||MAIL_USE_TLS| False">
-<meta property="og:updated_time" content="2017-11-14T13:05:13.000Z">
+<meta property="og:description" content="使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置    配置 默认值 说明     MAIL_SERVER localhost 电子邮件服务器的主机名或IP地址   MAIL_PORT 25 电子邮件服务器的端口   MAIL_USE_TLS False 启用传输层安全（TLS）协议   MAIL_USE_SSL False 启用安全套接层（SSL）协议">
+<meta property="og:updated_time" content="2017-11-25T10:34:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把《Flask Web开发》读薄系列之第三章 模板">
-<meta name="twitter:description" content="使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置|配置      | 默认值      | 说明       ||———-|:————|:———–||MAIL_SERVER| localhost  | 电子邮件服务器的主机名或IP地址||MAIL_PORT | 25          | 电子邮件服务器的端口||MAIL_USE_TLS| False">
+<meta name="twitter:description" content="使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置    配置 默认值 说明     MAIL_SERVER localhost 电子邮件服务器的主机名或IP地址   MAIL_PORT 25 电子邮件服务器的端口   MAIL_USE_TLS False 启用传输层安全（TLS）协议   MAIL_USE_SSL False 启用安全套接层（SSL）协议">
     
         <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
     
@@ -117,7 +117,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -179,7 +179,48 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="使用Flask-Mail提供电子邮件支持"><a href="#使用Flask-Mail提供电子邮件支持" class="headerlink" title="使用Flask-Mail提供电子邮件支持"></a>使用Flask-Mail提供电子邮件支持</h1><p>表6-1 Flask-Mail SMTP服务器的配置<br>|配置      | 默认值      | 说明       |<br>|———-|:————|:———–|<br>|MAIL_SERVER| localhost  | 电子邮件服务器的主机名或IP地址|<br>|MAIL_PORT | 25          | 电子邮件服务器的端口|<br>|MAIL_USE_TLS| False     | 启用传输层安全（TLS）协议|<br>|MAIL_USE_SSL| False     | 启用安全套接层（SSL）协议|<br>|MAIL_USENAME| None      | 邮件账户的用户名|<br>|MAIL_PASSWORD| None     | 邮件账户的授权码|</p>
+            <h1 id="使用Flask-Mail提供电子邮件支持"><a href="#使用Flask-Mail提供电子邮件支持" class="headerlink" title="使用Flask-Mail提供电子邮件支持"></a>使用Flask-Mail提供电子邮件支持</h1><p>表6-1 Flask-Mail SMTP服务器的配置</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th style="text-align:left">默认值</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAIL_SERVER</td>
+<td style="text-align:left">localhost</td>
+<td style="text-align:left">电子邮件服务器的主机名或IP地址</td>
+</tr>
+<tr>
+<td>MAIL_PORT</td>
+<td style="text-align:left">25</td>
+<td style="text-align:left">电子邮件服务器的端口</td>
+</tr>
+<tr>
+<td>MAIL_USE_TLS</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">启用传输层安全（TLS）协议</td>
+</tr>
+<tr>
+<td>MAIL_USE_SSL</td>
+<td style="text-align:left">False</td>
+<td style="text-align:left">启用安全套接层（SSL）协议</td>
+</tr>
+<tr>
+<td>MAIL_USENAME</td>
+<td style="text-align:left">None</td>
+<td style="text-align:left">邮件账户的用户名</td>
+</tr>
+<tr>
+<td>MAIL_PASSWORD</td>
+<td style="text-align:left">None</td>
+<td style="text-align:left">邮件账户的授权码</td>
+</tr>
+</tbody>
+</table>
 <ol>
 <li>在<code>hello.py</code>中配置Flask-Mail使用QQ邮箱：</li>
 </ol>
@@ -227,7 +268,7 @@
     <div class="content">
         
 <span class="post-time">
-    最後更新時間：<time datetime="2017-11-14T13:05:13.000Z" itemprop="dateUpdated">2017-11-14 21:05:13</time>
+    Last updated: <time datetime="2017-11-25T10:34:33.000Z" itemprop="dateUpdated">2017-11-25 18:34:33</time>
 </span><br>
 
 
@@ -400,7 +441,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

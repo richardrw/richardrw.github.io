@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/index.html">
 <meta property="og:site_name" content="Richard‘s Blog">
 <meta property="og:description" content="5.1 SQL数据库表中有个特殊的列，称为主键，其值是表中各行的唯一标识符，表中还可以有称为外键的列，引用同一个表或不同表中某行的主键，行之间的这种联系称为关系，这是SQL数据库的基础。 5.2 NoSQL数据库所有不遵循上节所述关系模型的数据库统称为NoSQL数据库。NoSQL数据库一般使用集合Collection代替表，使用文档Document代替记录（行）。 NoSQL数据库可以减少表的数量">
-<meta property="og:updated_time" content="2017-11-14T12:57:06.000Z">
+<meta property="og:updated_time" content="2017-11-25T10:33:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把《Flask Web开发》读薄系列之第五章 数据库">
 <meta name="twitter:description" content="5.1 SQL数据库表中有个特殊的列，称为主键，其值是表中各行的唯一标识符，表中还可以有称为外键的列，引用同一个表或不同表中某行的主键，行之间的这种联系称为关系，这是SQL数据库的基础。 5.2 NoSQL数据库所有不遵循上节所述关系模型的数据库统称为NoSQL数据库。NoSQL数据库一般使用集合Collection代替表，使用文档Document代替记录（行）。 NoSQL数据库可以减少表的数量">
@@ -117,7 +117,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -186,7 +186,33 @@
 <h1 id="5-4-Python数据库框架"><a href="#5-4-Python数据库框架" class="headerlink" title="5.4 Python数据库框架"></a>5.4 Python数据库框架</h1><p>数据库包：MySQL、Postgres、SQLite、Redis、MongoDB、CouchDB<br>数据库抽象层代码包（ORM或ODM）：SQLAlchemy、MongoEngine</p>
 <p>一般情况下，ORM和ODM对生产率的提升远远超过“把对象业务转换成数据库业务”而带来的性能降低。</p>
 <h1 id="5-5-使用Flask-SQLAlchemy管理数据库"><a href="#5-5-使用Flask-SQLAlchemy管理数据库" class="headerlink" title="5.5 使用Flask-SQLAlchemy管理数据库"></a>5.5 使用Flask-SQLAlchemy管理数据库</h1><p>在Flask-SQLAlchemy中，使用哪种数据库，要通过URL指定。常用的数据库引擎采用的数据库URL格式如下：</p>
-<p>表5-1 Flask-SQLAlchemy数据库URL<br>|数据库引擎   | URL      |<br>|————-|:——–:|<br>|MySQL        | mysql://username:password@hostname/database|<br>|Postgres     | postgres://username:password@hostname/database|<br>|SQLite(Unix) | sqlite:////absolute/path/to/database|<br>|SQLite(Windows)| sqlite:///c:/absolute/path/to/database|</p>
+<p>表5-1 Flask-SQLAlchemy数据库URL</p>
+<table>
+<thead>
+<tr>
+<th>数据库引擎</th>
+<th style="text-align:left">URL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td style="text-align:left">mysql://username:password@hostname/database</td>
+</tr>
+<tr>
+<td>Postgres</td>
+<td style="text-align:left">postgres://username:password@hostname/database</td>
+</tr>
+<tr>
+<td>SQLite(Unix)</td>
+<td style="text-align:left">sqlite:////absolute/path/to/database</td>
+</tr>
+<tr>
+<td>SQLite(Windows)</td>
+<td style="text-align:left">sqlite:///c:/absolute/path/to/database</td>
+</tr>
+</tbody>
+</table>
 <p><code>hostname</code>可以是本地主机（<code>localhost</code>)，也可以是原创服务器。<br><code>database</code>表示要使用的数据库名称。</p>
 <p>程序使用的数据库URL必须保存到Flask配置对象的<code>SQLALCHEMY_DATABASE_URI</code>键中。<br>配置对象中有个<code>SQLALCHEMY_COMMIT_ON_TEARDOWN</code>键，将其设为<code>True</code>时，每次请求结束后都会自动提交数据库中的变动（相当于自动<code>commit</code>）。</p>
 <p>初始化及配置SQLite如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">form flask_sqlalchemy import SQLAlchemy</div><div class="line">import os</div><div class="line"># ...</div><div class="line"></div><div class="line"># 获取文件当前文件父路径</div><div class="line">basedir = os.path.abspath(os.path.dirname(__file__))</div><div class="line"></div><div class="line">app = Flask(__name__)</div><div class="line">app.config[&apos;SQLALCHEMY_DATABASE_URI`] = &apos;sqlite:///&apos; + os.path.join(basedir, &apos;data.sqlite&apos;)</div><div class="line">app.config[`SQLALCHEMY_COMMIT_ON_TEARDOWN`] = True</div><div class="line"></div><div class="line">db = SQLAlchemy(app)</div></pre></td></tr></table></figure></p>
@@ -195,14 +221,138 @@
 <p>在hello.py中定义Role模型和User模型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Role(db.Model):</div><div class="line">    __tablename__ &apos;roles&apos;</div><div class="line">    id = db.Column(db.Integer, primary_key=True)</div><div class="line">    role_name = db.Column(db.String(64), unique=True)</div><div class="line">    </div><div class="line">    def __repr__(self):</div><div class="line">        return &apos;&lt;Role &#123;&#125;&gt;&apos;.format(self.role_name)</div><div class="line">  </div><div class="line">def User(db.Model):</div><div class="line">    __tablename__ = &apos;users&apos;</div><div class="line">    id = db.Column(db.integer, primary_key=True)</div><div class="line">    user_name = db.Column(db.String(64), unique=True, index=True)</div><div class="line">    </div><div class="line">    def __repr__(self):</div><div class="line">        return &apos;&lt;User &#123;&#125;&gt;&apos;.format(self.user_name)</div></pre></td></tr></table></figure></p>
 <p>类变量<code>__tablename__</code>定义在数据库中使用的<strong>表名</strong>，如果没有定义，Flask-SQLAlchemy会使用一个默认名字，但该名字没有遵守使用复数形式进行命名的约定。</p>
 <p><code>db.Column</code>类构造函数的第一个参数是数据库列的类型（如Integer、String等），对应模型（即Python类）的对象类型（如int、str等）</p>
-<p>表5-2 最常用的SQLAlchemy列类型<br>|类型名称   | 对应Python类型   | 说明      |<br>|:———-|:—————-:|:———:|<br>|Integer    | int              | 普通整数，一般时32位|<br>|Float      | int              | 浮点数    |<br>|String     | str              | 变长字符串|<br>|Text       | str              | 变成字符串，对较长或不限长度的字符串做了优化|<br>|Unicode    | unicode          | 变长Unicode字符串|<br>|UnicodeText| unicode          | 变长Unicode字符串，对较长货不限长度的字符串做了优化|<br>|Date       | datetime.data    | 日期      |<br>|Time       | datetime.time    | 时间      |<br>|DateTime   | datetime.datetime| 日期和时间|</p>
+<p>表5-2 最常用的SQLAlchemy列类型</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">类型名称</th>
+<th style="text-align:center">对应Python类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Integer</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">普通整数，一般时32位</td>
+</tr>
+<tr>
+<td style="text-align:left">Float</td>
+<td style="text-align:center">int</td>
+<td style="text-align:center">浮点数</td>
+</tr>
+<tr>
+<td style="text-align:left">String</td>
+<td style="text-align:center">str</td>
+<td style="text-align:center">变长字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">Text</td>
+<td style="text-align:center">str</td>
+<td style="text-align:center">变成字符串，对较长或不限长度的字符串做了优化</td>
+</tr>
+<tr>
+<td style="text-align:left">Unicode</td>
+<td style="text-align:center">unicode</td>
+<td style="text-align:center">变长Unicode字符串</td>
+</tr>
+<tr>
+<td style="text-align:left">UnicodeText</td>
+<td style="text-align:center">unicode</td>
+<td style="text-align:center">变长Unicode字符串，对较长货不限长度的字符串做了优化</td>
+</tr>
+<tr>
+<td style="text-align:left">Date</td>
+<td style="text-align:center">datetime.data</td>
+<td style="text-align:center">日期</td>
+</tr>
+<tr>
+<td style="text-align:left">Time</td>
+<td style="text-align:center">datetime.time</td>
+<td style="text-align:center">时间</td>
+</tr>
+<tr>
+<td style="text-align:left">DateTime</td>
+<td style="text-align:center">datetime.datetime</td>
+<td style="text-align:center">日期和时间</td>
+</tr>
+</tbody>
+</table>
 <p><code>db.Column</code>中其余的参数可对列中的数据做一些配置或设置</p>
-<p>表5-3 最常用的SQLAlchemy列选项<br>|选项名     | 说明      |<br>|———–|:———-|<br>|primary_key| 如果设为True，这列是主键|<br>|unique     | 如果设为True，这列不允许出现重复值|<br>|index      | 如果设为True，为这列创建索引，提高查询效率|<br>|nullable   | 如果设为True，这列允许使用空值；设为False，则不允许为空|<br>|default    | 为这列设置默认值|</p>
+<p>表5-3 最常用的SQLAlchemy列选项</p>
+<table>
+<thead>
+<tr>
+<th>选项名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>primary_key</td>
+<td style="text-align:left">如果设为True，这列是主键</td>
+</tr>
+<tr>
+<td>unique</td>
+<td style="text-align:left">如果设为True，这列不允许出现重复值</td>
+</tr>
+<tr>
+<td>index</td>
+<td style="text-align:left">如果设为True，为这列创建索引，提高查询效率</td>
+</tr>
+<tr>
+<td>nullable</td>
+<td style="text-align:left">如果设为True，这列允许使用空值；设为False，则不允许为空</td>
+</tr>
+<tr>
+<td>default</td>
+<td style="text-align:left">为这列设置默认值</td>
+</tr>
+</tbody>
+</table>
 <p><strong>注意</strong>：Flask-SQLAlchemy要求每个模型都要定义主键。</p>
 <h1 id="5-7-关系"><a href="#5-7-关系" class="headerlink" title="5.7 关系"></a>5.7 关系</h1><p>定义<strong>一对多关系</strong>（Role对User）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Role(db.Model):</div><div class="line">    # ...</div><div class="line">    users = db.relationship(&apos;User&apos;, backref=&apos;role&apos;)</div><div class="line">    </div><div class="line">class User(db.Model):</div><div class="line">    # ....</div><div class="line">    role_id = db.Column(db.Integer, db.ForeignKey(&apos;roles.id&apos;)    # 外键：roles表中的id</div></pre></td></tr></table></figure></p>
 <p>添加到Role模型中的类变量<code>users</code>代表这个关系（Role与User的关系）的面向对象视角，它将返回与具体Role实例相关联的用户（具体User实例）组成的列表。（如Role实例<code>role_admin</code>返回的users为<code>[richard, john]</code>，其中<code>richard</code>和<code>john</code>都是User实例，即<code>role_admin.users = [richard,john]</code>体现了面向对象视角的一对多关系）</p>
 <p><code>db.relationship()</code>的第一个参数是这个关系的另一端对应的模型。如果模型尚未定义，可使用字符串形式指定。<code>backref</code>参数为<code>&#39;role&#39;</code>表明：在User模型中添加一个属性（或称为类变量）<code>role</code>（可理解成在User表中添加一列名为<code>role</code>的列。但实际查看数据库表时是看不到的），从而定义反向关系。<br><strong>注意</strong>：一般情况下，<code>db.relationship()</code>都能自行找到关系中的外键，有在某些情况下无法决定把哪一列作为外键。如User模型中有两列或以上的列定义为Role模型的外键，那么SQLAlchemy就不知道该使用哪列了。此时，你就要为<code>db.relationship()</code>提供额外参数，从而确定使用哪列外键。常用配置如表5-4。</p>
-<p>表5-4 <code>db.relationship()</code>常用的SQLAlchemy关系选项<br>|选项名   | 说明          |<br>|———|:————–|<br>|backref  | 在关系的另一端模型中添加反向作用|<br>|primaryjoin| 明确指定两个模型之间使用的联结条件。只在模凌两可的关系中需要指定|<br>|lazy     | 指定如何加载相关记录。可选值有：select（首次访问时按需加载），immediate（源对象加载后加载），joined（加载记录，但使用联结），subquery（立即加载，但使用子查询），noload（永不加载），dynamic（不加载记录，单提供加载记录的查询）|<br>|userlist | 如果设为Fales，不适用列表，而使用标量值|<br>|order_by | 指定关系中记录的排序方式|<br>|secondary| 指定多对多关系中关系表的名字|<br>|secondaryjoin| SQLAlchemy无法自行决定时，指定多对多关系中的二级联结条件|</p>
+<p>表5-4 <code>db.relationship()</code>常用的SQLAlchemy关系选项</p>
+<table>
+<thead>
+<tr>
+<th>选项名</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>backref</td>
+<td style="text-align:left">在关系的另一端模型中添加反向作用</td>
+</tr>
+<tr>
+<td>primaryjoin</td>
+<td style="text-align:left">明确指定两个模型之间使用的联结条件。只在模凌两可的关系中需要指定</td>
+</tr>
+<tr>
+<td>lazy</td>
+<td style="text-align:left">指定如何加载相关记录。可选值有：select（首次访问时按需加载），immediate（源对象加载后加载），joined（加载记录，但使用联结），subquery（立即加载，但使用子查询），noload（永不加载），dynamic（不加载记录，单提供加载记录的查询）</td>
+</tr>
+<tr>
+<td>userlist</td>
+<td style="text-align:left">如果设为Fales，不适用列表，而使用标量值</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td style="text-align:left">指定关系中记录的排序方式</td>
+</tr>
+<tr>
+<td>secondary</td>
+<td style="text-align:left">指定多对多关系中关系表的名字</td>
+</tr>
+<tr>
+<td>secondaryjoin</td>
+<td style="text-align:left">SQLAlchemy无法自行决定时，指定多对多关系中的二级联结条件</td>
+</tr>
+</tbody>
+</table>
 <p><strong>一对一关系</strong>：可以用前面介绍的一对多关系表示，但调用<code>db.relationship()</code>时要把<code>userlist</code>设为<code>False</code>。<br><strong>多对一关系</strong>：可以用一对多关系表示，只是两个表对调。或者把<code>外键</code>和<code>db.relationship()</code>都放在“多”这一侧。<br><strong>多对多关系</strong>：需要用到第三张表（关系表）。</p>
 <h1 id="5-8-数据库操作"><a href="#5-8-数据库操作" class="headerlink" title="5.8 数据库操作"></a>5.8 数据库操作</h1><p>需要在Python Shell中进行操作。</p>
 <h2 id="5-8-1-创建表"><a href="#5-8-1-创建表" class="headerlink" title="5.8.1 创建表"></a>5.8.1 创建表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(venv)$ python hello.py shell</div><div class="line">&gt;&gt;&gt; from hello.py import db</div><div class="line">&gt;&gt;&gt; db.create_all()</div></pre></td></tr></table></figure>
@@ -228,9 +378,81 @@
 <p><strong>注意</strong>：插入、更新、删除，只有<code>commit()</code>后才会真正写入数据库。</p>
 <h2 id="5-8-5-查询行"><a href="#5-8-5-查询行" class="headerlink" title="5.8.5 查询行"></a>5.8.5 查询行</h2><p>Flask-SQLAlechemy为每个<strong>模型</strong>（注意不是具体的模型实例）都提供了<code>query</code>对象，在<code>query</code>对象上调用相应方法可进行查询。如查询所有记录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; Role.query.all()</div><div class="line">&gt;&gt;&gt;[&lt;Role &apos;admin&apos;&gt;, &lt;Role &apos;visitor&apos;&gt;]</div></pre></td></tr></table></figure></p>
 <p>在<code>query</code>对象上可使用过滤器进行更精确的查询，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; User.query.filter_by(role=role_visitor).all()</div><div class="line">&gt;&gt;&gt; [&lt;User &apos;john&apos;&gt;, &lt;User &apos;david&apos;&gt;]</div></pre></td></tr></table></figure></p>
-<p>表5-5 常用的SQLAlchemy查询过滤器<br>|过滤器     | 说明        |<br>|———–|:———–|<br>|filter()   | 把过滤器添加到原查询上，返回一个新查询|<br>|filter_by()| 把等值过滤器添加到原查询上，返回一个新查询|<br>|limit()    | 使用指定的值限制原查询返回的结果数量，返回一个新查询|<br>|offset()   | 偏移原查询返回的结果，返回一个新查询|<br>|order_by() | 根据指定条件对原查询结果进行排序，返回一个新查询|<br>|group_by() | 根据指定条件对原查询结果进行分组，返回一个新查询|</p>
+<p>表5-5 常用的SQLAlchemy查询过滤器</p>
+<table>
+<thead>
+<tr>
+<th>过滤器</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter()</td>
+<td style="text-align:left">把过滤器添加到原查询上，返回一个新查询</td>
+</tr>
+<tr>
+<td>filter_by()</td>
+<td style="text-align:left">把等值过滤器添加到原查询上，返回一个新查询</td>
+</tr>
+<tr>
+<td>limit()</td>
+<td style="text-align:left">使用指定的值限制原查询返回的结果数量，返回一个新查询</td>
+</tr>
+<tr>
+<td>offset()</td>
+<td style="text-align:left">偏移原查询返回的结果，返回一个新查询</td>
+</tr>
+<tr>
+<td>order_by()</td>
+<td style="text-align:left">根据指定条件对原查询结果进行排序，返回一个新查询</td>
+</tr>
+<tr>
+<td>group_by()</td>
+<td style="text-align:left">根据指定条件对原查询结果进行分组，返回一个新查询</td>
+</tr>
+</tbody>
+</table>
 <p><strong>注意</strong>：在查询上应用指定过滤器后，需通过一些执行函数执行查询。</p>
-<p>表5-6 最常用的SQLAlchemy查询执行函数<br>|方法       | 说明       |<br>|———–|:———–|<br>|all()      | 以列表的形式返回查询的所有结果|<br>|fitst()    | 返回查询的第一个结果，如果没有，则返回None|<br>|first_or_404()| 返回查询的第一个结果，如果没有，则终止请求，返回404错误响应|<br>|get()      | 返回指定主键对应的行，如果没有，则返回None|<br>|get_or_404()| 返回指定主键对应的行，如果没有，则返回None|<br>|count()    | 返回查询结果的数量|<br>|paginate() | 返回一个Paginate对象，它包含指定范围的结果|</p>
+<p>表5-6 最常用的SQLAlchemy查询执行函数</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all()</td>
+<td style="text-align:left">以列表的形式返回查询的所有结果</td>
+</tr>
+<tr>
+<td>fitst()</td>
+<td style="text-align:left">返回查询的第一个结果，如果没有，则返回None</td>
+</tr>
+<tr>
+<td>first_or_404()</td>
+<td style="text-align:left">返回查询的第一个结果，如果没有，则终止请求，返回404错误响应</td>
+</tr>
+<tr>
+<td>get()</td>
+<td style="text-align:left">返回指定主键对应的行，如果没有，则返回None</td>
+</tr>
+<tr>
+<td>get_or_404()</td>
+<td style="text-align:left">返回指定主键对应的行，如果没有，则返回None</td>
+</tr>
+<tr>
+<td>count()</td>
+<td style="text-align:left">返回查询结果的数量</td>
+</tr>
+<tr>
+<td>paginate()</td>
+<td style="text-align:left">返回一个Paginate对象，它包含指定范围的结果</td>
+</tr>
+</tbody>
+</table>
 <p>再看一个从关系的两端查询Role和User之间一对多的关系的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; users = role_visitor.users</div><div class="line">&gt;&gt;&gt; users</div><div class="line">[&lt;User &apos;john&apos;&gt;, &lt;User &apos;david&apos;&gt;]</div><div class="line">&gt;&gt;&gt; users[0].role</div><div class="line">&gt;&gt;&gt; &lt;Role &apos;visitor&apos;&gt;</div></pre></td></tr></table></figure></p>
 <p>执行<code>role_visitor.users</code>时，隐含的查询会调用<code>all()</code>方法返回一个列表，<code>query</code>对象时隐藏的，因此很难做更进一步的查询。此时可在<code>db.relationship()</code>中添加<code>lazy=&#39;dynamic</code>参数，从而禁止自动执行查询（添加后需调用<code>all()</code>等方法才能执行查询，当然也可在执行前调用过滤器）。</p>
 <h1 id="5-9-在视图函数中操作数据库"><a href="#5-9-在视图函数中操作数据库" class="headerlink" title="5.9 在视图函数中操作数据库"></a>5.9 在视图函数中操作数据库</h1><p>新版的<code>hello.py</code>当输入新用户名时，会把新用户名写入数据库，并显示<code>Pleased to meet you!</code>信息；当输入的是旧用户名（数据库中已有的名字）时，会显示<code>Happy to see you again!</code></p>
@@ -256,7 +478,7 @@
     <div class="content">
         
 <span class="post-time">
-    最後更新時間：<time datetime="2017-11-14T12:57:06.000Z" itemprop="dateUpdated">2017-11-14 20:57:06</time>
+    Last updated: <time datetime="2017-11-25T10:33:45.000Z" itemprop="dateUpdated">2017-11-25 18:33:45</time>
 </span><br>
 
 
@@ -429,7 +651,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

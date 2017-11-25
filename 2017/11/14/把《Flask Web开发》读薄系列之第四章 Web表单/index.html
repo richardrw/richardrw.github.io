@@ -27,7 +27,7 @@
 <meta property="og:url" content="https://richardrw.github.io/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/index.html">
 <meta property="og:site_name" content="Richard‘s Blog">
 <meta property="og:description" content="4.1 跨站请求伪造保护跨站请求伪造(CSRF)：恶意网站吧请求发送到，被攻击者已登录的其他网站。flask-wtf需要程序设置一个密匙。然后利用这个密匙生成加密令牌，再用令牌验证请求中表单数据的真伪，从而实现CSRF保护。 设置flask-wtf：123# ...app = Flask(__name__)app.config[&amp;apos;SECRET_KEY&amp;apos;] = &amp;apos;har">
-<meta property="og:updated_time" content="2017-11-14T12:55:14.000Z">
+<meta property="og:updated_time" content="2017-11-25T10:34:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把《Flask Web开发》读薄系列之第四章 Web表单">
 <meta name="twitter:description" content="4.1 跨站请求伪造保护跨站请求伪造(CSRF)：恶意网站吧请求发送到，被攻击者已登录的其他网站。flask-wtf需要程序设置一个密匙。然后利用这个密匙生成加密令牌，再用令牌验证请求中表单数据的真伪，从而实现CSRF保护。 设置flask-wtf：123# ...app = Flask(__name__)app.config[&amp;apos;SECRET_KEY&amp;apos;] = &amp;apos;har">
@@ -117,7 +117,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -187,8 +187,52 @@
 <p><code>NameForm</code>表单中的字段定义为类变量，<br>类变量的值为对应字段的对象。</p>
 <p><strong>字段构造函数（如SubmitField()）</strong>：的第一个参数是把表单渲染成HTML时使用的标号（或文本）。</p>
 <p><code>validators</code>参数：一个由验证函数组成的<strong>列表</strong>。</p>
-<p><strong>表4-1 WTFORMS支持的HTML标准字段</strong><br>|字段类型   | 说明    |<br>|———–|:——-:|<br>|StringField| 文本字段|<br>|TextAreaField| 多行文本字段|<br>|PasswordField| 密码文本字段|</p>
-<p><strong>表4-2 WTFORMS验证函数</strong><br>|验证函数   | 说明    |<br>|———–|:——-:|<br>|Email      | 验证电子邮件地址|<br>|Required   | 确保字段中有数据|<br>|AnyOf      | 确保输入值在可选值列表中|</p>
+<p><strong>表4-1 WTFORMS支持的HTML标准字段</strong></p>
+<table>
+<thead>
+<tr>
+<th>字段类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StringField</td>
+<td style="text-align:center">文本字段</td>
+</tr>
+<tr>
+<td>TextAreaField</td>
+<td style="text-align:center">多行文本字段</td>
+</tr>
+<tr>
+<td>PasswordField</td>
+<td style="text-align:center">密码文本字段</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表4-2 WTFORMS验证函数</strong></p>
+<table>
+<thead>
+<tr>
+<th>验证函数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email</td>
+<td style="text-align:center">验证电子邮件地址</td>
+</tr>
+<tr>
+<td>Required</td>
+<td style="text-align:center">确保字段中有数据</td>
+</tr>
+<tr>
+<td>AnyOf</td>
+<td style="text-align:center">确保输入值在可选值列表中</td>
+</tr>
+</tbody>
+</table>
 <h1 id="4-3-把表单渲染成HTML"><a href="#4-3-把表单渲染成HTML" class="headerlink" title="4.3 把表单渲染成HTML"></a>4.3 把表单渲染成HTML</h1><p>假设视图函数把一个<code>NameForm</code>实例（通过参数<code>form</code>）传给模板，那么在模板中可以生成一个简单的表单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form method=&quot;POST&quot;&gt;</div><div class="line">    &#123;&#123; form.hidden_tag() &#125;&#125;</div><div class="line">    &#123;&#123; form.name.label&#125;&#125; &#123;&#123; form.name() &#125;&#125;</div><div class="line">    &#123;&#123; form.submit() &#125;&#125;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
 <p>为了改进外观，可以将HTML属性（如id、class等）传给渲染字段的函数，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;form method=&quot;POST&quot;&gt;</div><div class="line">    &#123;&#123; form.hidden_tag() &#125;&#125;</div><div class="line">    &#123;&#123; form.name.label&#125;&#125; &#123;&#123; form.name(id=&apos;my-text-field&apos;) &#125;&#125;</div><div class="line">    &#123;&#123; form.submit() &#125;&#125;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure></p>
 <p><code>flask-bootstrap</code>提供了一个辅助函数涌来渲染<code>flask-wtf</code>表单。用法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&#123;% import &quot;bootstrap/wtf.html&quot; as wtf %&#125;</div><div class="line">&#123;&#123; wtf.quick_form(form) &#125;&#125;</div></pre></td></tr></table></figure></p>
@@ -221,7 +265,7 @@
     <div class="content">
         
 <span class="post-time">
-    最後更新時間：<time datetime="2017-11-14T12:55:14.000Z" itemprop="dateUpdated">2017-11-14 20:55:14</time>
+    Last updated: <time datetime="2017-11-25T10:34:11.000Z" itemprop="dateUpdated">2017-11-25 18:34:11</time>
 </span><br>
 
 
@@ -394,7 +438,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

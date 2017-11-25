@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>把《Flask Web开发》读薄系列之第七章 大型程序的结构 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="7.1 项目结构多文件Flask程序的结构：1234567891011121314151617181920|-flasky  |-app/    |-init__.py    |-templates/   # 模板    |-static/      # 静态文件    |-main/    # 蓝本，名字可更改      |-__init__.py      |-errors.py  # 路由，">
+<meta name="keywords" content="python, mongodb, jupyter-notebook">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把《Flask Web开发》读薄系列之第七章 大型程序的结构">
+<meta property="og:url" content="https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="7.1 项目结构多文件Flask程序的结构：1234567891011121314151617181920|-flasky  |-app/    |-init__.py    |-templates/   # 模板    |-static/      # 静态文件    |-main/    # 蓝本，名字可更改      |-__init__.py      |-errors.py  # 路由，">
+<meta property="og:updated_time" content="2017-11-25T10:23:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把《Flask Web开发》读薄系列之第七章 大型程序的结构">
+<meta name="twitter:description" content="7.1 项目结构多文件Flask程序的结构：1234567891011121314151617181920|-flasky  |-app/    |-init__.py    |-templates/   # 模板    |-static/      # 静态文件    |-main/    # 蓝本，名字可更改      |-__init__.py      |-errors.py  # 路由，">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">把《Flask Web开发》读薄系列之第七章 大型程序的结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">把《Flask Web开发》读薄系列之第七章 大型程序的结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-11-25T10:17:41.000Z" itemprop="datePublished" class="page-time">
+  2017-11-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-1-项目结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">7.1 项目结构</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-2-配置config-py"><span class="post-toc-number">2.</span> <span class="post-toc-text">7.2 配置config.py</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-3-程序包（app文件夹）"><span class="post-toc-number">3.</span> <span class="post-toc-text">7.3 程序包（app文件夹）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-3-1-使用程序工厂函数"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">7.3.1 使用程序工厂函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-3-2-在蓝本中实现程序功能"><span class="post-toc-number">4.</span> <span class="post-toc-text">7.3.2 在蓝本中实现程序功能</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-4-启动脚本"><span class="post-toc-number">5.</span> <span class="post-toc-text">7.4 启动脚本</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-5-需求文件"><span class="post-toc-number">6.</span> <span class="post-toc-text">7.5 需求文件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-6-单元测试"><span class="post-toc-number">7.</span> <span class="post-toc-text">7.6 单元测试</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-7-创建数据库"><span class="post-toc-number">8.</span> <span class="post-toc-text">7.7 创建数据库</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-把《Flask Web开发》读薄系列之第七章 大型程序的结构"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">把《Flask Web开发》读薄系列之第七章 大型程序的结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-11-25 18:17:41" datetime="2017-11-25T10:17:41.000Z"  itemprop="datePublished">2017-11-25</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="7-1-项目结构"><a href="#7-1-项目结构" class="headerlink" title="7.1 项目结构"></a>7.1 项目结构</h1><p>多文件Flask程序的结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">|-flasky</div><div class="line">  |-app/</div><div class="line">    |-init__.py</div><div class="line">    |-templates/   # 模板</div><div class="line">    |-static/      # 静态文件</div><div class="line">    |-main/    # 蓝本，名字可更改</div><div class="line">      |-__init__.py</div><div class="line">      |-errors.py  # 路由，视图函数</div><div class="line">      |-forms.py   # 表单</div><div class="line">      |-views.py   # 路由器，视图函数</div><div class="line">    |-email.py   # 邮件支持</div><div class="line">    |-models.py  # 数据库模型</div><div class="line">  |-migrations   # 数据库迁移</div><div class="line">  |-tests/    # 单元测试</div><div class="line">    |-__init__.py</div><div class="line">    |-test*.py</div><div class="line">  |-venv/</div><div class="line">  |-requirements.txt  # 依赖包文本</div><div class="line">  |-config.py  # 配置</div><div class="line">  |-manage.py  # 启动程序</div></pre></td></tr></table></figure></p>
+<h1 id="7-2-配置config-py"><a href="#7-2-配置config-py" class="headerlink" title="7.2 配置config.py"></a>7.2 配置<code>config.py</code></h1><p>在前面的章节中，我们在<code>hello.py</code>中是使用字典状结构配置的（如<code>app.config[&#39;FLASKY_ADMIN&#39;] = 12345678@qq.com</code>），现在我们把相关配置提取出来，在<code>config.py</code>中使用层次结构的配置类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">import os</div><div class="line">basedir = os.path.abspath(os.path.dirname(__file__))</div><div class="line"></div><div class="line"># 设置通用配置</div><div class="line">class Config:</div><div class="line">    SECRET_KEY = os.environ.get(&apos;SECRET_KEY&apos;) or &apos;hard to guess string&apos;</div><div class="line">    SQLALCHEMY_COMMIT_ON_TEARDOWN = True</div><div class="line">    FLASK_MAIL-SUBJECT_PREFECT = &apos;[Flasky]&apos;</div><div class="line">    FLASKY_MAIL_SENDER = &apos;Flasky Admin 123456789@qq.com&apos;</div><div class="line">    FLASK_ADMIN = os.environ.get(&apos;FLASKY_ADMIN&apos;)</div><div class="line">    </div><div class="line">    @staticmethod</div><div class="line">    # init_app()可对当前环境的配置初始化，参数是程序实例</div><div class="line">    def init_app(app):</div><div class="line">        pass</div><div class="line">        </div><div class="line"></div><div class="line"># 开发环境配置（继承Config基类）</div><div class="line">class DevelopmentConfig(Config):</div><div class="line">    DEBUG = True</div><div class="line">    MAIL_SERVER = &apos;smtp.qq.com&apos;</div><div class="line">    MAIL_PORT = 465</div><div class="line">    MAIL_USE_SSL = True</div><div class="line">    MAIL_USENAME = os.environ.get(&apos;MAIL_USENAME&apos;)</div><div class="line">    MAIL_PASSWORD = os.environ.get(&apos;MAIL_PASSWORD&apos;)</div><div class="line">    SQLALCHEMY_DATABASE_URI = os.environ,get(&apos;DEV_DATABASE_URI&apos;) or \&apos;sqlite:///&apos; + os.path.join(basedir, &apos;data-dev.sqlite&apos;)</div><div class="line">    </div><div class="line"></div><div class="line"># 测试环境配置（继承Config基类）    </div><div class="line">class TestingConfig(Config):</div><div class="line">    TESTING = True</div><div class="line">    SQLALCHEMY_DATABASE_URI = os.environ,get(&apos;TEST_DATABASE_URI&apos;) or \&apos;sqlite:///&apos; + os.path.join(basedir, &apos;data-test.sqlite&apos;)</div><div class="line">    </div><div class="line"></div><div class="line"># 生产环境配置（继承Config基类）  </div><div class="line">class ProductionConfig(Config):</div><div class="line">    SQLALCHEMY_DATABASE_URI = os.environ,get(&apos;DATABASE_URI&apos;) or \&apos;sqlite:///&apos; + os.path.join(basedir, &apos;data.sqlite&apos;)</div><div class="line">    </div><div class="line"></div><div class="line"># 配置字典</div><div class="line">config = &#123;</div><div class="line">    &apos;development&apos;: DevelopmentConfig,</div><div class="line">    &apos;testing&apos;: TestingConfig,</div><div class="line">    &apos;production&apos;: ProductionConfig,</div><div class="line">    &apos;default&apos;: DevelopmentConfig</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h1 id="7-3-程序包（app文件夹）"><a href="#7-3-程序包（app文件夹）" class="headerlink" title="7.3 程序包（app文件夹）"></a>7.3 程序包（app文件夹）</h1><p>程序包用来保存程序的所有代码、模板和静态文件。</p>
+<h2 id="7-3-1-使用程序工厂函数"><a href="#7-3-1-使用程序工厂函数" class="headerlink" title="7.3.1 使用程序工厂函数"></a>7.3.1 使用程序工厂函数</h2><p><strong>存在问题</strong>：在单脚本中开发程序的缺点是：脚步在运行时，程序实例已经创建，已经不能修改配置，自然也无法动态修改配置。这样也不利于单元测试。</p>
+<p><strong>解决思路</strong>：延迟创建程序实例。<br><strong>解决方法</strong>：把创建过程移到可显式调用的<strong>工厂函数</strong>中。<br>这样不仅可以给脚步流出配置程序时间，还能创建多个程序实例。</p>
+<p>程序的<strong>工厂函数在app包的构造文件（<code>__init__.py</code>）中定义</strong>。<br><code>app/__inti__.py</code>如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">from flask import Flask</div><div class="line">from flask_bootstrap import Bootstrap</div><div class="line">from flask_mail import Mail</div><div class="line">from flask_moment import Moment</div><div class="line">from flask_sqlalchemy import SQLAlchemy</div><div class="line">from config import config</div><div class="line"></div><div class="line">bootstrap = Bootstrap()</div><div class="line">mail = Mail()</div><div class="line">moment = Moment()</div><div class="line">db = SQLAlchemy()</div><div class="line"></div><div class="line"># 定义工厂函数，参数为程序使用的配置环境名</div><div class="line">def create_app(config_name):</div><div class="line">    app = Flask(__name__)</div><div class="line">    # 根据配置环境名获取对应的配置类从而获取相应的配置（类变量）</div><div class="line">    app.config.from_object(config[&apos;config_name&apos;]</div><div class="line">    # 使用配置类中的init_app()方法初始化配置</div><div class="line">    config[&apos;config_name&apos;].init_app(app)</div><div class="line">    </div><div class="line">    bootstrap.init_app(app)</div><div class="line">    mail.init_app(app)</div><div class="line">    moment.init_app(app)</div><div class="line">    db.init_app(app)</div><div class="line">    </div><div class="line">    # 附加路由和自定义的错误页面</div><div class="line">    </div><div class="line">    return app</div></pre></td></tr></table></figure></p>
+<p><code>config.py</code>文件中定义的配置类，可以使用<code>app.config</code>配置对象提供的<code>from_object()</code>方法直接导入程序。<br>程序创建（<code>app=Flask(__name__)</code>)并配置好后，就能初始化Flask拓展（在Flask拓展实例对象上调用<code>init_app()</code>方法，如<code>bootstrap.init(app)</code>）</p>
+<p><strong>工厂函数返回的是程序实例</strong>，不过此时工厂函数创建的程序实例还不完整，因为还没有路由和自定义的错误页面处理程序（简单来说就是缺少路由）。</p>
+<h1 id="7-3-2-在蓝本中实现程序功能"><a href="#7-3-2-在蓝本中实现程序功能" class="headerlink" title="7.3.2 在蓝本中实现程序功能"></a>7.3.2 在蓝本中实现程序功能</h1><p><strong>存在问题</strong>：在单脚本程序中，程序实例存在于全局作用域中，路由可以直接使用<code>app.route</code>修饰器定义，但是现在程序实例时在运行时创建的（调用<code>create_app()</code>函数），这时定义路由已经太晚了（因为只有调用<code>create_app()</code>函数创建实例后才能使用<code>app.route</code>修饰器，而路由又要定义在<code>create_app()</code>函数里）</p>
+<p><strong>解决方法</strong>：使用<strong>蓝本</strong>。蓝本和程序类似，也可以定义路由，但不同的是：在蓝本中定义的路由会处于休眠状态，直到调用<code>app.register_blueprint()</code>方法把蓝本注册到程序后，路由在真正称为程序的一部分。</p>
+<p><strong>理解蓝本</strong>：蓝本通常作用于相同的URL前缀，如<code>user/id</code>、<code>user/profile</code>这样的地址，都是以<code>/user</code>开头，它们是一组用户相关的操作，那么就可以放在一个模块中。大多数项目都是把蓝本当做拆分视图用的。</p>
+<p>使用位于全局作用域中的蓝本时，定义路由方法和单脚本程序基本一样（不同之处下面会讲到）</p>
+<ol>
+<li>创建蓝本<code>app/main/__init__.py</code>:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from flask import Blueprint</div><div class="line"></div><div class="line">main = Blueprint(&apos;main&apos;, __name__)</div><div class="line"></div><div class="line"># 导入view和error模块，导入之后就能将路由和错误处理程序与蓝本关联起来</div><div class="line">from . import views, errors</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>Blueprint()</code>类的第一个参数是蓝本名字，第二个参数是篮本所在的包或模块（一般使用<code>__name__</code>即可）。</p>
+<p><strong>注意</strong>： 像<code>view</code>和<code>error</code>这些模块，为了避免循环导入，要在<code>app/main/__init.py__</code>的末尾处导入，因为在<code>view.py</code>和<code>error.py</code>中还要导入蓝本<code>main</code>。</p>
+<ul>
+<li><code>app/main/error.py</code>如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">from flask import render_template</div><div class="line">from . import main</div><div class="line"></div><div class="line">@main.app_errorhandler(404)</div><div class="line">def page_not_found(e):</div><div class="line">    return render_template(&apos;404.html&apos;), 404</div><div class="line">    </div><div class="line">@main.app_errorhandler(500)</div><div class="line">def internal_server_error(e):</div><div class="line">    return render_template(&apos;500.html&apos;), 500</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：在蓝本中编写错误处理程序稍有不同，如果是使用<code>errorhandler</code>修饰器，那么<strong>只有蓝本中的错误才能触发处理程序</strong>。因此要想注册程序全局的错误处理程序，必须使用<code>app_errorhandler</code>修饰器。</p>
+<ul>
+<li><code>app/main/view.py</code>如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">from datetime import datetime</div><div class="line">from flask import render_template, session, redirect, url_for, current_app</div><div class="line"></div><div class="line">from . import main</div><div class="line">from .froms import NameForm</div><div class="line">from .. import db</div><div class="line">from ..models import User</div><div class="line"></div><div class="line">@main.route(&apos;/&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;])</div><div class="line">def index():</div><div class="line">    form = NmaeForm()</div><div class="line">    if form.validate_on_submit():</div><div class="line">        # ...</div><div class="line">        return redirect(url_for(&apos;.index&apos;)</div><div class="line">    return render_template(&apos;index.html&apos;, form=form, name=session.get(&apos;name&apos;), </div><div class="line">    know=session.get(&apos;know&apos;, Flase), current_time=datetime.utcnow())</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：在蓝本中编写视图函数主要有两点不同：（1）和前面的错误处理程序一样，<strong>路由修饰器由蓝本提供</strong>（体现在<code>main.route()</code>，而不是<code>app.route()</code>）。<br>（2）<code>url_for()</code>函数的第一个参数。<code>url_for()</code>函数的第一个参数时路由的<strong>端点名</strong>，在程序中默认为视图函数的名字（所以在单脚本中可以<code>url_for(&#39;index&#39;)</code>），但是在蓝本中，Flask会为蓝本中的全部端点加上一个命名空间（也就是蓝本的名字），这样做是为了可以在不同的蓝本中使用相同的端点名（函数名）定义视图函数。所以该蓝本中视图函数<code>index()</code>注册的端点名是<code>main.index</code>，因此需要使用<code>url_for(&#39;main.index&#39;)</code>，也可以简写为<code>url_for(&#39;.index&#39;)</code>（前提是同一蓝本，跨蓝本的话必须使用带有命名空间的端点名）。</p>
+<p><strong>另外</strong>：模板中的<code>hrfe</code>属性中的链接，使用<code>url_for()</code>获取的，其中参数也是同样写端点名。</p>
+<p><strong>重点注意</strong>：如果在其他地方（如这里的<code>app/main/view.py</code>、<code>app/email.py</code>等）需要用到程序实例<code>app</code>，均需使用<code>from flask import current_app</code>来导入<strong>程序上下文</strong>。</p>
+<p>2.在工厂函数<code>create_app()</code>中把蓝本注册到程序上，<code>app/__init__.py</code>如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">def create_app(config_name):</div><div class="line">    # ...</div><div class="line">    </div><div class="line">    # 导入整个包</div><div class="line">    from .main import main as main_blueprint</div><div class="line">    app.register_blueprint(main_blueprint)</div><div class="line">    </div><div class="line">    return app</div></pre></td></tr></table></figure>
+<h1 id="7-4-启动脚本"><a href="#7-4-启动脚本" class="headerlink" title="7.4 启动脚本"></a>7.4 启动脚本</h1><p><code>manage.py</code>用于启动脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">import os</div><div class="line">from app import create_app, db</div><div class="line">from app.models import User, Role</div><div class="line">from flask_script import Manager, Shell</div><div class="line">from flask_migrate import Migrate, MigrateCommand</div><div class="line"></div><div class="line"># 获取配置名，并创建程序</div><div class="line">app = create_app(os.getenv(&apos;FLASK_CONFIG&apos;) or &apos;default&apos;)</div><div class="line">manager = Manager(app)</div><div class="line">migrate = Migrate(app, db)</div><div class="line"></div><div class="line">def make_shell_context():</div><div class="line">    return dict(app=app, db=db, User=User, Role=Role)</div><div class="line"></div><div class="line">manager.add_command(&apos;shell&apos;, Shell(make_context=make_shell_context))</div><div class="line">manager.add_command(&apos;db&apos;, MigrateCommand)</div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    manager.run()</div></pre></td></tr></table></figure></p>
+<p>在脚本中加入了<code>#!/usr/bin/env python</code>声明，因此在Unix系统中可以直接通过<code>./manage.py</code>命令运行脚步，而无需使用<code>python manage.py</code>命令。</p>
+<h1 id="7-5-需求文件"><a href="#7-5-需求文件" class="headerlink" title="7.5 需求文件"></a>7.5 需求文件</h1><p><code>requirements.txt</code>文件：用于记录所有依赖包及其精确的版本号。可以使用如下命令自动生成这个文件：<br><code>(venv) $ pip freeze &gt; requirements.txt</code></p>
+<p>当要创建同一个环境时，可以使用如下命令：<br><code>(venv) $ pip install -r requirements.txt</code></p>
+<h1 id="7-6-单元测试"><a href="#7-6-单元测试" class="headerlink" title="7.6 单元测试"></a>7.6 单元测试</h1><ol>
+<li><code>tests/test_basics.py</code>文件如下：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">import unittest</div><div class="line">from flask import current_app</div><div class="line">from app import create_app, db</div><div class="line"></div><div class="line">class BasicsTestCase(unittest.TestCase):</div><div class="line">    # 创建一个测试环境，并激活程序上下文，并创建数据库</div><div class="line">    def setUp(self):</div><div class="line">        self.app = create_app(&apos;testing&apos;)</div><div class="line">        self.app_context = self.app.app_context()</div><div class="line">        self.app_context.push()</div><div class="line">        db.create_all()</div><div class="line">       </div><div class="line">    # 删除数据库、程序上下文 </div><div class="line">    def tearDown(self):</div><div class="line">        db.session.remove()</div><div class="line">        db.drop_all()</div><div class="line">        self.app_context.pop()</div><div class="line">       </div><div class="line">    # 测试程序实例是否存在 </div><div class="line">    def test_app_exists(self):</div><div class="line">        self.assertFalse(current_app is None)</div><div class="line">        </div><div class="line">    # 测试程序的环境是否为TESTING</div><div class="line">    def test_app_is_testing(self):</div><div class="line">        self.assertTrue(current_app.config[&apos;TESTING&apos;])</div></pre></td></tr></table></figure>
+<p><code>setUp()</code>和<code>tearDown()</code>方法分别在各测试前后运行。函数名字以<code>test_</code>开头的函数都作为测试执行。</p>
+<ol>
+<li>运行单元测试。可在<code>manage.py</code>文件中添加一个自定义命令，用于执行测试：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">@manager.command</div><div class="line">def test():</div><div class="line">    # 字符串内容会显示在帮助消息中</div><div class="line">    &quot;&quot;&quot;Run the unit tests&quot;&quot;&quot;</div><div class="line">    import unittest</div><div class="line">    tests = unittest.TestLoader().discover(&apos;tests&apos;)</div><div class="line">    unittest.TextRunner(verbosity=2).run(tests)</div></pre></td></tr></table></figure>
+<p><code>manager.command</code>修饰器修饰的函数名就是命令名。因此可以使用如下命令运行测试：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(venv) $ python manage.py test</div><div class="line">test_app_exits (test_basics.BasicsTestCase) ... ok</div><div class="line">test_app_is_testing  (test_basics.BasicsTestCase) ... ok</div><div class="line"></div><div class="line">--------------------------------------------------------</div><div class="line">Ran 2 tests in 0.001s</div><div class="line"></div><div class="line">OK</div></pre></td></tr></table></figure>
+<h1 id="7-7-创建数据库"><a href="#7-7-创建数据库" class="headerlink" title="7.7 创建数据库"></a>7.7 创建数据库</h1><p>首先需要在环境变量中定义所需要的数据库URI，然后再创建数据库。</p>
+<p>不管从哪里获取数据库URI，都要在新数据库中创建数据表，如果使用Flask-Migrate跟踪迁移，可以使用如下命令创建<strong>数据表</strong>或者<strong>更新到最新版本</strong>：<br><code>(venv) $ python manage.py db upgrade</code></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-11-25T10:23:03.000Z" itemprop="dateUpdated">2017-11-25 18:23:03</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/" target="_blank" rel="external">https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/&title=《把《Flask Web开发》读薄系列之第七章 大型程序的结构》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/&title=《把《Flask Web开发》读薄系列之第七章 大型程序的结构》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第七章 大型程序的结构》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/14/把《Flask Web开发》读薄系列之第六章 电子邮件/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第六章 电子邮件</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/&title=《把《Flask Web开发》读薄系列之第七章 大型程序的结构》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/&title=《把《Flask Web开发》读薄系列之第七章 大型程序的结构》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第七章 大型程序的结构》 — Richard‘s Blog&url=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD5UlEQVR42u3aO5LbQAwFwL3/pddVTm2J7wGwvEEzUlEUOdMKQHy+vuLj+/fx6syf3ya/fX/+/RNfXZ+vanXgwIEDB45gq/mtv8vjPcRs8+/R3z/l/Qpx4MCBA8cVR/KANsglwW/2B7TEyR5x4MCBA8fnOdrltlvdh882ycSBAwcOHP+XY1MufL/t5D7JGnDgwIEDx8/hyFOyPE2apXn7tO1DtVIcOHDgwJFGumHw+8mf/+F8Bw4cOHDgiENsG3pnjaU8lCbr3+wOBw4cOHDsOdqyXdIQ2myvbVblrwJFAMaBAwcOHGuOpDGTlwLbFtQVUDvisOrF4cCBAweOkmM/rNAOLrSVuvylIU8aceDAgQPHnmOfes1Sqdmgw6w0mVz/UCvFgQMHDhwjjjaRyynbM23gbOlf/hYHDhw4cJxybEYWZiXCWavpXxBHKRwOHDhw4IhnCTaNnzapuwrhm4TtYVU4cODAgeOUow23+fVtSja7W5vC/eUOOHDgwIFjwdE+Jidrg2U7DJFExnpEAwcOHDhwrDnyS9ugtW8XtWF4RvDw3oEDBw4cOEYc+YNn4e2qOLhJ2NowjAMHDhw4Zhyb1GuWqrWBvL1bnhY+zHfgwIEDB44RRx4OZ+MLbdBtpwtmu3jAwoEDBw4cC4629DajqScs4rG2WcL2cuU4cODAgWPNsQmZe8T2nm0hMgc9eIPAgQMHDhzxMMGm0JYscdMxmwXyl+vHgQMHDhxHHElAyttOs/u0wThvLxVlRBw4cODAccTx/qI8WZoN2LWf8xGHOsHDgQMHDhxHHO1I3H64IUnADlpHZUsMBw4cOHBccWyaTDnW7PpN4K+/xYEDBw4ca47bYl++iP04RT5g1/LhwIEDB45bjjoU5aW3MoTPhvNmCScOHDhw4LjiaJs6m5GCTZp3NR7xQIMDBw4cOE45koZQnj4lCdWmqDd7CXjYBQ4cOHDgWHO0BcF8S7cB+3t0DAcpcODAgQPHmqMt+SULzQuO+fl80GHzcoADBw4cODYcs4Sq3cCMaZiALchw4MCBA8cVx35MoR1ua9OqDUHRHsOBAwcOHGuOpGA3Y6pLb6OZvvbO0W9x4MCBA8eCY9bI2RQQZ8NwV6MMD+vHgQMHDhxrjtvg1zal2mLibHChTT5x4MCBA8eeIwmu7YM3gbYN/MnfkzS9cODAgQPHLcemSDdbytUgQrvOh7XhwIEDB46Pc8xG1vKRheSJ7eaLXBYHDhw4cHyQY5OG5eMI+VBdWwpczQ/iwIEDB46Sow2ECdymQZWE0jZgR+EZBw4cOHCsOWYFu832ZuNrySZvV4IDBw4cOMrzvwC9vveqwtYpuQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
