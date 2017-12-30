@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>把《Flask Web开发》读薄系列之第十四章 应用编程接口 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Flask,读书笔记">
+    <meta name="description" content="14.1 REST简介14.1.1 资源就是一切资源是REST架构方式的核心概念。在博客程序中，用户、文章、评论等都是资源。 每个资源都要使用唯一的URL表示。如某一篇文章URL：/api/posts/1234。 某一类资源的集合也要有个URL。如文章集合URL：api/posts/。 API还可以为某一类资源的逻辑子集合定义集合URL。如某一篇文章的所有评论URL：/api/posts/1234">
+<meta name="keywords" content="Flask,读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把《Flask Web开发》读薄系列之第十四章 应用编程接口">
+<meta property="og:url" content="https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="14.1 REST简介14.1.1 资源就是一切资源是REST架构方式的核心概念。在博客程序中，用户、文章、评论等都是资源。 每个资源都要使用唯一的URL表示。如某一篇文章URL：/api/posts/1234。 某一类资源的集合也要有个URL。如文章集合URL：api/posts/。 API还可以为某一类资源的逻辑子集合定义集合URL。如某一篇文章的所有评论URL：/api/posts/1234">
+<meta property="og:updated_time" content="2017-12-30T15:33:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把《Flask Web开发》读薄系列之第十四章 应用编程接口">
+<meta name="twitter:description" content="14.1 REST简介14.1.1 资源就是一切资源是REST架构方式的核心概念。在博客程序中，用户、文章、评论等都是资源。 每个资源都要使用唯一的URL表示。如某一篇文章URL：/api/posts/1234。 某一类资源的集合也要有个URL。如文章集合URL：api/posts/。 API还可以为某一类资源的逻辑子集合定义集合URL。如某一篇文章的所有评论URL：/api/posts/1234">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">把《Flask Web开发》读薄系列之第十四章 应用编程接口</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">把《Flask Web开发》读薄系列之第十四章 应用编程接口</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-30T15:32:41.000Z" itemprop="datePublished" class="page-time">
+  2017-12-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#14-1-REST简介"><span class="post-toc-number">1.</span> <span class="post-toc-text">14.1 REST简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-1-1-资源就是一切"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">14.1.1 资源就是一切</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-1-2-请求方法"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">14.1.2 请求方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-1-3-请求和响应主体"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">14.1.3 请求和响应主体</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-1-4-版本"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">14.1.4 版本</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#14-2-使用Flask提供REST-Web服务"><span class="post-toc-number">2.</span> <span class="post-toc-text">14.2 使用Flask提供REST Web服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-2-1-创建API蓝本"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">14.2.1 创建API蓝本</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-在app-api-init-py中构造API蓝本："><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">1. 在app/api/__init__.py中构造API蓝本：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-在app-init-py中注册API蓝本："><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">2. 在app/__init__.py中注册API蓝本：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-2-5-资源和JSON的序列化转换"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">14.2.5 资源和JSON的序列化转换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-在app-models-py中定义把文章、用户转换成JSON格式的序列化字典的方法："><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">3. 在app/models.py中定义把文章、用户转换成JSON格式的序列化字典的方法：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-在app-models-py中定义从JSON格式数据创建博客文章的方法："><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">4. 在app/models.py中定义从JSON格式数据创建博客文章的方法：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-在app-exceptions-py中定义ValidationError类："><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">5. 在app/exceptions.py中定义ValidationError类：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-在app-api-errors-py中定义API中ValidationError异常的处理程序："><span class="post-toc-number">2.2.4.</span> <span class="post-toc-text">6. 在app/api/errors.py中定义API中ValidationError异常的处理程序：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-2-6-实现资源端点-amp-14-2-7-分页大型资源集合"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">14.2.6 实现资源端点 & 14.2.7 分页大型资源集合</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-在app-api-posts-py中定义分页博客文章资源的GET请求："><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">7. 在app/api/posts.py中定义分页博客文章资源的GET请求：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-在app-api-posts-py中定义博客文章资源的POST请求："><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">8. 在app/api/posts.py中定义博客文章资源的POST请求：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-在app-api-posts-py中定义博客文章资源的PUT请求："><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">9. 在app/api/posts.py中定义博客文章资源的PUT请求：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-在app-api-decoratiors-py中定义permission-required修饰器："><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">10. 在app/api/decoratiors.py中定义permission_required修饰器：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-在app-api-errors-py中定义400、401、403状态码的错误处理程序："><span class="post-toc-number">2.3.5.</span> <span class="post-toc-text">11. 在app/api/errors.py中定义400、401、403状态码的错误处理程序：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-2-2-错误处理"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">14.2.2 错误处理</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-在app-main-errors-py中使用HTTP内容协商处理错误："><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">12. 在app/main/errors.py中使用HTTP内容协商处理错误：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-2-3-使用Flask-HTTPAuth认证用户-amp-14-2-4-基于令牌的认证"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">14.2.3 使用Flask-HTTPAuth认证用户 & 14.2.4 基于令牌的认证</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-在app-api-authentication-py中初始化Flask-HTTPAuth，并支持令牌验证回调："><span class="post-toc-number">2.5.1.</span> <span class="post-toc-text">13. 在app/api/authentication.py中初始化Flask-HTTPAuth，并支持令牌验证回调：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#14-在app-api-authentication-py中定义生成认证令牌的路由："><span class="post-toc-number">2.5.2.</span> <span class="post-toc-text">14. 在app/api/authentication.py中定义生成认证令牌的路由：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-在app-api-authentication-py中定义Flask-HTTPAuth错误处理程序："><span class="post-toc-number">2.5.3.</span> <span class="post-toc-text">15. 在app/api/authentication.py中定义Flask-HTTPAuth错误处理程序：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#16-在app-api-authentication-py中使得API蓝本所有路由在每次请求前都进行认证："><span class="post-toc-number">2.5.4.</span> <span class="post-toc-text">16. 在app/api/authentication.py中使得API蓝本所有路由在每次请求前都进行认证：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#17-在app-models-py中定义基于令牌的认证："><span class="post-toc-number">2.5.5.</span> <span class="post-toc-text">17. 在app/models.py中定义基于令牌的认证：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#14-2-8-使用HTTPie测试Web服务"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">14.2.8 使用HTTPie测试Web服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-安装HTTPie："><span class="post-toc-number">2.6.1.</span> <span class="post-toc-text">1. 安装HTTPie：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-GET请求可按照如下方式发起："><span class="post-toc-number">2.6.2.</span> <span class="post-toc-text">2. GET请求可按照如下方式发起：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-发送POST请求创建一篇新博客文章："><span class="post-toc-number">2.6.3.</span> <span class="post-toc-text">3. 发送POST请求创建一篇新博客文章：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-要想使用认证令牌，可向-api-v1-0-token发送请求："><span class="post-toc-number">2.6.4.</span> <span class="post-toc-text">4. 要想使用认证令牌，可向/api/v1.0/token发送请求：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-在接下来的1小时内，可以用这个令牌访问API，请求时要和空密码一起发送："><span class="post-toc-number">2.6.5.</span> <span class="post-toc-text">5. 在接下来的1小时内，可以用这个令牌访问API，请求时要和空密码一起发送：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-把《Flask Web开发》读薄系列之第十四章 应用编程接口"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">把《Flask Web开发》读薄系列之第十四章 应用编程接口</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-30 23:32:41" datetime="2017-12-30T15:32:41.000Z"  itemprop="datePublished">2017-12-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="14-1-REST简介"><a href="#14-1-REST简介" class="headerlink" title="14.1 REST简介"></a>14.1 REST简介</h1><h2 id="14-1-1-资源就是一切"><a href="#14-1-1-资源就是一切" class="headerlink" title="14.1.1 资源就是一切"></a>14.1.1 资源就是一切</h2><p><strong>资源</strong>是REST架构方式的核心概念。在博客程序中，用户、文章、评论等都是资源。</p>
+<p>每个资源都要<strong>使用唯一的URL表示</strong>。如某一篇文章URL：<code>/api/posts/1234</code>。</p>
+<p>某一类资源的集合也要有个URL。如文章集合URL：<code>api/posts/</code>。</p>
+<p>API还可以为某一类资源的逻辑子集合定义集合URL。如某一篇文章的所有评论URL：<code>/api/posts/1234/comments/</code>。</p>
+<p><strong>注意</strong>：<br>请求的URL末端没有<code>/</code>，路由没有<code>/</code>，则不重定向；<br>请求的URL末端没有<code>/</code>，路由有<code>/</code>，则重定向转向末端带<code>/</code>的URL。</p>
+<h2 id="14-1-2-请求方法"><a href="#14-1-2-请求方法" class="headerlink" title="14.1.2 请求方法"></a>14.1.2 请求方法</h2><p>在资源URL上发送请求，使用<strong>请求方法</strong>表示期望执行的操作。</p>
+<p>表14-1 REST架构API中使用的HTTP请求方法</p>
+<table>
+<thead>
+<tr>
+<th>请求方法</th>
+<th>目标</th>
+<th>说明</th>
+<th>状态码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>单个资源的URL</td>
+<td>获取目标资源</td>
+<td>200</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>资源集合的URL</td>
+<td>获取资源的集合（如果服务器实现了分页，就是一页中的资源）</td>
+<td>200</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>资源集合的URL</td>
+<td>创建新资源，并将其加入目标集合。服务器为新资源指派URL， 并在响应的Location首部中返回</td>
+<td>201</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>单个资源的URL</td>
+<td>修改一个现有资源。如果客户端能为资源指派URL，还可用来创建新资源</td>
+<td>200</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>单个资源的URL</td>
+<td>删除一个资源</td>
+<td>200</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>资源集合的URL</td>
+<td>删除目标集合中的所有资源</td>
+<td>200</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14-1-3-请求和响应主体"><a href="#14-1-3-请求和响应主体" class="headerlink" title="14.1.3 请求和响应主体"></a>14.1.3 请求和响应主体</h2><p>请求和响应中<code>Content-Type</code>首部用于指明主体中资源的<strong>编码方式</strong>。常用的编码方式是JavaScript对象表示法（JSON）和可拓展标记语言（XML）。</p>
+<h2 id="14-1-4-版本"><a href="#14-1-4-版本" class="headerlink" title="14.1.4 版本"></a>14.1.4 版本</h2><p>Web服务的容错能力要比一般的Web程序大，而且还要保证旧版客户端能继续使用（因为有些客服端如手机客户端，没有进行升级，但也要保证其能正常使用）。处理方法是使用<strong>版本</strong>区分Web服务所处理的URL。例如首次发布的博客Web服务可以通过<code>/api/v1.0/posts/</code>提供文章集合。</p>
+<h1 id="14-2-使用Flask提供REST-Web服务"><a href="#14-2-使用Flask提供REST-Web服务" class="headerlink" title="14.2 使用Flask提供REST Web服务"></a>14.2 使用Flask提供REST Web服务</h1><p>使用Flask创建REST Web服务很简单，使用<code>route()</code>修饰器及其<code>methods</code>可选参数即可。处理JSON数据也同样简单，通过<code>request.json</code>这个字典获取即可。返回包含JSON的响应只用使用Flask提供的<code>jsonify()</code>辅助函数<strong>从Python字典中生成JSON</strong>即可。</p>
+<h2 id="14-2-1-创建API蓝本"><a href="#14-2-1-创建API蓝本" class="headerlink" title="14.2.1 创建API蓝本"></a>14.2.1 创建API蓝本</h2><p>API蓝本结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">|-flasky</div><div class="line">  |-app/</div><div class="line">    |-api_1_0 # 可选</div><div class="line">      |-__init__.py</div><div class="line">      |-users.py</div><div class="line">      |-posts.py</div><div class="line">      |-comments.py</div><div class="line">      |-authentication.py</div><div class="line">      |-errors.py</div><div class="line">      |-decorators.py</div></pre></td></tr></table></figure>
+<h3 id="1-在app-api-init-py中构造API蓝本："><a href="#1-在app-api-init-py中构造API蓝本：" class="headerlink" title="1. 在app/api/__init__.py中构造API蓝本："></a>1. 在<code>app/api/__init__.py</code>中构造API蓝本：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">from flask import Blueprint</div><div class="line"></div><div class="line">api = Blueprint(&apos;api&apos;, __name__)</div><div class="line"></div><div class="line">from app.api import authentication, posts, users, comments, errors</div></pre></td></tr></table></figure>
+<h3 id="2-在app-init-py中注册API蓝本："><a href="#2-在app-init-py中注册API蓝本：" class="headerlink" title="2. 在app/__init__.py中注册API蓝本："></a>2. 在<code>app/__init__.py</code>中注册API蓝本：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">def create_app(config_name):</div><div class="line">    # ...</div><div class="line">    from app.api import api as api_blueprint</div><div class="line">    app.register_blueprint(api_blueprint, url_prefix=&apos;/api/v1.0&apos;)</div><div class="line">    # ...</div></pre></td></tr></table></figure>
+<h2 id="14-2-5-资源和JSON的序列化转换"><a href="#14-2-5-资源和JSON的序列化转换" class="headerlink" title="14.2.5 资源和JSON的序列化转换"></a>14.2.5 资源和JSON的序列化转换</h2><h3 id="3-在app-models-py中定义把文章、用户转换成JSON格式的序列化字典的方法："><a href="#3-在app-models-py中定义把文章、用户转换成JSON格式的序列化字典的方法：" class="headerlink" title="3. 在app/models.py中定义把文章、用户转换成JSON格式的序列化字典的方法："></a>3. 在<code>app/models.py</code>中定义把文章、用户转换成JSON格式的序列化<strong>字典</strong>的方法：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">class Post(db.Model):</div><div class="line">    # ...</div><div class="line">    def to_json(self):</div><div class="line">        json_psot = &#123;</div><div class="line">            &apos;url&apos;: url_for(&apos;api.get_post&apos;, id=self.id),</div><div class="line">            &apos;body&apos;: self.body,</div><div class="line">            &apos;body_html&apos;: self.body_html,</div><div class="line">            &apos;timestamp&apos;: self.timestamp,</div><div class="line">            &apos;author_url&apos;: url_for(&apos;api.get_user&apos;, id=self.author_id),</div><div class="line">            &apos;comments_url&apos;: url_for(&apos;api.get_post_commnets&apos;, id=self.id),</div><div class="line">            &apos;comment_count&apos;: self.comments.count()</div><div class="line">        &#125;</div><div class="line">        return json_psot</div><div class="line"></div><div class="line">class User(UserMixin, db.Model):</div><div class="line">    # ...</div><div class="line">    def to_json(self):</div><div class="line">        json_user = &#123;</div><div class="line">            &apos;url&apos;: url_for(&apos;api.get_user&apos;, id=self.id),</div><div class="line">            &apos;username&apos;: self.username,</div><div class="line">            &apos;member_since&apos;: self.member_since,</div><div class="line">            &apos;last_seen&apos;: self.last_seen,</div><div class="line">            &apos;posts_url&apos;: url_for(&apos;api.get_user_posts&apos;, id=self.id),</div><div class="line">            &apos;followed_posts_url&apos;: url_for(&apos;api.get_user_followed_posts&apos;, id=self.id),</div><div class="line">            &apos;post_count&apos;: self.posts.count()</div><div class="line">        &#125;</div><div class="line">        return json_user</div></pre></td></tr></table></figure>
+<h3 id="4-在app-models-py中定义从JSON格式数据创建博客文章的方法："><a href="#4-在app-models-py中定义从JSON格式数据创建博客文章的方法：" class="headerlink" title="4. 在app/models.py中定义从JSON格式数据创建博客文章的方法："></a>4. 在<code>app/models.py</code>中定义从JSON格式数据创建博客文章的方法：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">from app.api.exceptions import ValidationError</div><div class="line"># ...</div><div class="line"></div><div class="line">class Post(db.Model):</div><div class="line">    # ...</div><div class="line">    @staticmethod</div><div class="line">    def from_json(json_post):</div><div class="line">        body = json_post.get(&apos;body&apos;)</div><div class="line">        if body is None or body == &apos;&apos;:</div><div class="line">            raise ValidationError(&apos;post does not have a body&apos;)   # 抛出异常</div><div class="line">        return Post(body=body)</div></pre></td></tr></table></figure>
+<h3 id="5-在app-exceptions-py中定义ValidationError类："><a href="#5-在app-exceptions-py中定义ValidationError类：" class="headerlink" title="5. 在app/exceptions.py中定义ValidationError类："></a>5. 在<code>app/exceptions.py</code>中定义ValidationError类：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">class ValidationError(ValueError):</div><div class="line">    pass</div></pre></td></tr></table></figure>
+<p>为了避免在视图函数中编写<strong>捕获</strong>异常的代码，我们可创建一个全局异常处理程序：</p>
+<h3 id="6-在app-api-errors-py中定义API中ValidationError异常的处理程序："><a href="#6-在app-api-errors-py中定义API中ValidationError异常的处理程序：" class="headerlink" title="6. 在app/api/errors.py中定义API中ValidationError异常的处理程序："></a>6. 在<code>app/api/errors.py</code>中定义API中ValidationError异常的处理程序：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 定义API中ValidationError错误处理程序</div><div class="line">@api.errorhandler(ValidationError)</div><div class="line">def validation_error(e):</div><div class="line">    return bad_request(e.args[0])</div></pre></td></tr></table></figure>
+<ul>
+<li><code>bad_request</code>方法在第11步中定义。</li>
+</ul>
+<h2 id="14-2-6-实现资源端点-amp-14-2-7-分页大型资源集合"><a href="#14-2-6-实现资源端点-amp-14-2-7-分页大型资源集合" class="headerlink" title="14.2.6 实现资源端点 &amp; 14.2.7 分页大型资源集合"></a>14.2.6 实现资源端点 &amp; 14.2.7 分页大型资源集合</h2><p>GET请求往往是最简单的，因为它们只返回信息，无需修改信息。</p>
+<h3 id="7-在app-api-posts-py中定义分页博客文章资源的GET请求："><a href="#7-在app-api-posts-py中定义分页博客文章资源的GET请求：" class="headerlink" title="7. 在app/api/posts.py中定义分页博客文章资源的GET请求："></a>7. 在<code>app/api/posts.py</code>中定义分页博客文章资源的GET请求：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">from flask import jsonify, request, g, url_for, current_app</div><div class="line">from app import db</div><div class="line">from app.models import Post, Permission</div><div class="line">from app.api import api</div><div class="line">from app.api.decorators import permission_required</div><div class="line">from app.api.errors import forbidden</div><div class="line"></div><div class="line"></div><div class="line"># 获取分页文章集合</div><div class="line">@api.route(&apos;/posts/&apos;)</div><div class="line">def get_posts():</div><div class="line">    page = request.args.get(&apos;page&apos;, 1, type=int)</div><div class="line">    pagination = Post.query.paginate(page,</div><div class="line">                                     per_page=current_app.config[&apos;FLASKY_POSTS_PER_PAGE&apos;],</div><div class="line">                                     error_out=False)</div><div class="line">    posts = pagination.items</div><div class="line">    prev = None</div><div class="line">    if pagination.has_prev:</div><div class="line">        prev = url_for(&apos;api.get_posts&apos;, page=page-1, _external=True)</div><div class="line">    next = None</div><div class="line">    if pagination.has_next:</div><div class="line">        next = url_for(&apos;api.get_posts&apos;, page=page+1, _external=True)</div><div class="line">    return jsonify(&#123;</div><div class="line">        &apos;posts&apos;: [post.to_json() for post in posts],</div><div class="line">        &apos;perv&apos;: prev,</div><div class="line">        &apos;next&apos;: next,</div><div class="line">        &apos;count&apos;: pagination.total</div><div class="line">    &#125;)</div><div class="line"></div><div class="line"></div><div class="line"># 获取某一篇文章</div><div class="line">@api.route(&apos;/posts/&lt;int:id&gt;&apos;)</div><div class="line">def get_post(id):</div><div class="line">    post = Post.query.get_or_404(id)</div><div class="line">    return jsonify(post.to_json())</div></pre></td></tr></table></figure>
+<h3 id="8-在app-api-posts-py中定义博客文章资源的POST请求："><a href="#8-在app-api-posts-py中定义博客文章资源的POST请求：" class="headerlink" title="8. 在app/api/posts.py中定义博客文章资源的POST请求："></a>8. 在<code>app/api/posts.py</code>中定义博客文章资源的POST请求：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">@api.route(&apos;/posts/&apos;, methods=[&apos;POST&apos;])</div><div class="line">@permission_required(Permission.WRITE_ARTICLES)</div><div class="line">def new_post():</div><div class="line">    post = Post.from_json(request.json)</div><div class="line">    post.author = g.current_user</div><div class="line">    db.session.add(post)</div><div class="line">    db.session.commit()</div><div class="line">    return jsonify(post.to_json()), 201, &#123;&apos;Location&apos;: url_for(&apos;api.get_post&apos;, id=post.id)&#125;</div></pre></td></tr></table></figure>
+<h3 id="9-在app-api-posts-py中定义博客文章资源的PUT请求："><a href="#9-在app-api-posts-py中定义博客文章资源的PUT请求：" class="headerlink" title="9. 在app/api/posts.py中定义博客文章资源的PUT请求："></a>9. 在<code>app/api/posts.py</code>中定义博客文章资源的PUT请求：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">@api.route(&apos;/posts/&lt;int:id&gt;&apos;, methods=[&apos;PUT&apos;])</div><div class="line">@permission_required(Permission.WRITE_ARTICLES)</div><div class="line">def edit_post(id):</div><div class="line">    post = Post.query.get_or_404(id)</div><div class="line">    if g.current_user != post.author and \</div><div class="line">            not g.current_user.can(Permission.ADMINISTER):</div><div class="line">        return forbidden(&apos;Insufficient permissions&apos;)</div><div class="line">    post.body = request.json.get(&apos;body&apos;, post.body)</div><div class="line">    db.session.add(post)</div><div class="line">    db.session.commit()</div><div class="line">    return jsonify(post.to_json())</div></pre></td></tr></table></figure>
+<p>从第6-8步中用到了<code>permission_required</code>修饰器，下面看看<code>permission_required</code>修饰器如何定义：</p>
+<h3 id="10-在app-api-decoratiors-py中定义permission-required修饰器："><a href="#10-在app-api-decoratiors-py中定义permission-required修饰器：" class="headerlink" title="10. 在app/api/decoratiors.py中定义permission_required修饰器："></a>10. 在<code>app/api/decoratiors.py</code>中定义permission_required修饰器：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">from functools import wraps</div><div class="line">from flask import g</div><div class="line">from app.api.errors import forbidden</div><div class="line"></div><div class="line"></div><div class="line">def permission_required(permission):</div><div class="line">    def decorator(func):</div><div class="line">        @wraps(func)</div><div class="line">        def decorated_function(*args, **kwargs):</div><div class="line">            if not g.current_user.can(permission):</div><div class="line">                return forbidden(&apos;Insufficient permissions&apos;)</div><div class="line">            return func(*args, **kwargs)</div><div class="line">        return decorated_function</div><div class="line">    return decorator</div></pre></td></tr></table></figure>
+<p>从第6-9步中都用到了<code>app.api.errors.forbidden</code>方法，下面看看<code>app/api/errors.py</code>文件如何定义：</p>
+<h3 id="11-在app-api-errors-py中定义400、401、403状态码的错误处理程序："><a href="#11-在app-api-errors-py中定义400、401、403状态码的错误处理程序：" class="headerlink" title="11. 在app/api/errors.py中定义400、401、403状态码的错误处理程序："></a>11. 在<code>app/api/errors.py</code>中定义400、401、403状态码的错误处理程序：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">from flask import jsonify</div><div class="line">from app.exceptions import ValidationError</div><div class="line">from app.api import api</div><div class="line"></div><div class="line"></div><div class="line"># 无效请求</div><div class="line">def bad_request(message):</div><div class="line">    response = jsonify(&#123;&apos;error&apos;: &apos;bad request&apos;, &apos;message&apos;: message&#125;)</div><div class="line">    response.status_code = 400</div><div class="line">    return response</div><div class="line"></div><div class="line"></div><div class="line"># 未登录</div><div class="line">def unauthorized(message):</div><div class="line">    response = jsonify(&#123;&apos;error&apos;: &apos;unauthorizde&apos;, &apos;message&apos;: message&#125;)</div><div class="line">    response.status_code = 401</div><div class="line">    return response</div><div class="line"></div><div class="line"></div><div class="line"># 禁止访问</div><div class="line">def forbidden(message):</div><div class="line">    response = jsonify(&#123;&apos;error&apos;: &apos;forbidden&apos;, &apos;message&apos;: message&#125;)</div><div class="line">    response.status_code = 403</div><div class="line">    return response</div></pre></td></tr></table></figure>
+<h2 id="14-2-2-错误处理"><a href="#14-2-2-错误处理" class="headerlink" title="14.2.2 错误处理"></a>14.2.2 错误处理</h2><p>为统一错误处理程序的响应格式，需要修改<code>app/main/errors.py</code>，使其<strong>内容协商</strong>。</p>
+<p>为所有客户端生成适当响应的一种方法是，在错误处理程序中，根据客户端请求的格式改写响应，这种技术称为<strong>内容协商</strong>。</p>
+<h3 id="12-在app-main-errors-py中使用HTTP内容协商处理错误："><a href="#12-在app-main-errors-py中使用HTTP内容协商处理错误：" class="headerlink" title="12. 在app/main/errors.py中使用HTTP内容协商处理错误："></a>12. 在<code>app/main/errors.py</code>中使用HTTP内容协商处理错误：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">from flask import render_template, request, jsonify</div><div class="line">from . import main</div><div class="line"></div><div class="line"></div><div class="line">@main.app_errorhandler(403)</div><div class="line">def forbidden(e):</div><div class="line">    # 判断请求的首部Accept字段（Werkzeug将其解码为requset.accept_mimetypes）接受哪种响应格式（json或xml）</div><div class="line">    if request.accept_mimetypes.accept_json and \</div><div class="line">        not request.accept_mimetypes.accept_html:</div><div class="line">        response = jsonify(&#123;&apos;error&apos;: &apos;forbidden&apos;&#125;)</div><div class="line">        response.status_code = 403</div><div class="line">        return response</div><div class="line">    return render_template(&apos;403.html&apos;), 403</div><div class="line"></div><div class="line"></div><div class="line">@main.app_errorhandler(404)</div><div class="line">def page_not_found(e):</div><div class="line">    if request.accept_mimetypes.accept_json and \</div><div class="line">        not request.accept_mimetypes.accept_html:</div><div class="line">        response = jsonify(&#123;&apos;error&apos;: &apos;not found&apos;&#125;)</div><div class="line">        response.status_code = 404</div><div class="line">        return response</div><div class="line">    return render_template(&apos;404.html&apos;), 404</div><div class="line"></div><div class="line"></div><div class="line">@main.app_errorhandler(500)</div><div class="line">def internal_server_error(e):</div><div class="line">    if request.accept_mimetypes.accept_json and \</div><div class="line">        not request.accept_mimetypes.accept_html:</div><div class="line">        response = jsonify(&#123;&apos;error&apos;: &apos;internal server error&apos;&#125;)</div><div class="line">        response.status_code = 500</div><div class="line">        return response</div><div class="line">    return render_template(&apos;500.html&apos;), 500</div></pre></td></tr></table></figure>
+<ul>
+<li>该例的错误处理程序会检查Accept请求首部（Werkzeug将其解码为requset.accept_mimetypes），根据首部的值决定客户端期望接受的响应格式（JSON或XML）。浏览器一般不限制响应的格式，所以只为只接受JSON而不接受HTML格式的客户端生成JSON格式响应。</li>
+</ul>
+<p>表14-2 API返回的常见HTTP状态码</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK（成功）</td>
+<td>请求成功完成</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created（已创建）</td>
+<td>请求成功完成并创建了一个新资源</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad request（坏请求）</td>
+<td>请求不可用或不一致</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized（未授权）</td>
+<td>请求未包含认证信息</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden（禁止）</td>
+<td>请求中发送的认证密令无权访问目标</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Notfound（未找到）</td>
+<td>URL对应的资源不存在</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method not allowed（不允许使用的方法</td>
+<td>指定资源不支持请求使用的方法</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal server error（内部服务器错误）</td>
+<td>处理请求的过程中发生意外错误</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14-2-3-使用Flask-HTTPAuth认证用户-amp-14-2-4-基于令牌的认证"><a href="#14-2-3-使用Flask-HTTPAuth认证用户-amp-14-2-4-基于令牌的认证" class="headerlink" title="14.2.3 使用Flask-HTTPAuth认证用户 &amp; 14.2.4 基于令牌的认证"></a>14.2.3 使用Flask-HTTPAuth认证用户 &amp; 14.2.4 基于令牌的认证</h2><p>和普通Web程序一样，Web服务也需要保护信息，确认未经授权的用户无法访问。为此，RIA必须询问用户的登录密令，并将其传给服务器验证。</p>
+<p>REST Web服务的特征之一就是<strong>无状态</strong>，即服务器在两次请求之间不能“记住”客户端的任何信息，客户端发出的请求必须包含所有信息，因此所有请求都必须包含用户密令。</p>
+<p>默认情况下，Flask会把会话保存在客户端的cookie中，因此服务器没有保存任何用户相关信息，都转交给客户端保存了。这种实现方式看起来遵守REST架构的无状态要求，但在REST Web服务中使用cookie有点不现实，因为Web浏览器之外的客户端很难提供对cookie的支持。</p>
+<p>又因为REST架构基于HTTP协议，所以发送密令的最佳方式是使用HTTP认证，基本认证和摘要认证都可以。在HTTP认证中，用户密令包含在请求的Authorization首部中。</p>
+<p>每次请求时，客户端都要发送认证密令，为了避免总是发送敏感信息（认证密令），我们可以提供一种基于令牌的认证方案：客户端（1）先把登录密令发送给一个特殊的URL，从而生成认证令牌；（2）客户端获得令牌后，就可以用令牌代替密令认证请求。</p>
+<h3 id="13-在app-api-authentication-py中初始化Flask-HTTPAuth，并支持令牌验证回调："><a href="#13-在app-api-authentication-py中初始化Flask-HTTPAuth，并支持令牌验证回调：" class="headerlink" title="13. 在app/api/authentication.py中初始化Flask-HTTPAuth，并支持令牌验证回调："></a>13. 在<code>app/api/authentication.py</code>中初始化Flask-HTTPAuth，并支持令牌验证回调：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">from flask import g, jsonify</div><div class="line">from flask_httpauth import HTTPBasicAuth</div><div class="line">from app.models import User</div><div class="line">from app.api import api</div><div class="line">from app.api.errors import unauthorized, forbidden</div><div class="line"></div><div class="line"></div><div class="line">auth = HTTPBasicAuth()</div><div class="line"></div><div class="line"></div><div class="line">@auth.verify_password</div><div class="line">def verify_password(email_or_token, password):</div><div class="line">    # （1）</div><div class="line">    if email_or_token == &apos;&apos;:</div><div class="line">        return False</div><div class="line">    # （2）</div><div class="line">    if password == &apos;&apos;:</div><div class="line">        g.current_user = User.verify_auth_token(email_or_token)</div><div class="line">        g.token_used = True</div><div class="line">        return g.current_user is not None</div><div class="line">    # （3）</div><div class="line">    user = User.query.filter_by(email=email_or_token).first()</div><div class="line">    if not user:</div><div class="line">        return False</div><div class="line">    g.current_user = user</div><div class="line">    g.token_used = False</div><div class="line">    return user.verify_password(password)  # 调用User模型中的verify_password方法</div></pre></td></tr></table></figure>
+<ul>
+<li>Flask-HTTPAuth提供了一个便利的包（<code>HTTPBasicAuth().verify_password</code>），可以把协议的细节隐藏在修饰器中，类似于Flask-Login提供的<code>login_required</code>修饰器。</li>
+<li>由于这种用户认证方法只在API蓝本中使用，所以Flask-HTTPAuth只在蓝本包中初始化，而不像其他扩展那样在程序包中初始化。</li>
+<li>验证回调函数把通过认证的用户保存在Flask的全局对象<code>g</code>中，如此一来，视图函数就能进行访问。</li>
+<li>该例中，第一个参数是电子邮件或认证令牌。（1）如果这个参数为空，则返回False；（2）如果<code>password</code>参数为空，就假定<code>email_or_token</code>参数是认证令牌，按照令牌的方式进行认证；（3）如果两个参数都不为空，就假定使用了电子邮件和密码进行认证。</li>
+<li>为了让视图函数能区分这两种认证方法（电子邮件+密码、认证令牌），我们添加了<code>g.token_used</code>变量。</li>
+</ul>
+<h3 id="14-在app-api-authentication-py中定义生成认证令牌的路由："><a href="#14-在app-api-authentication-py中定义生成认证令牌的路由：" class="headerlink" title="14. 在app/api/authentication.py中定义生成认证令牌的路由："></a>14. 在<code>app/api/authentication.py</code>中定义生成认证令牌的路由：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line"># 定义用于获取密令的路由</div><div class="line">@api.route(&apos;/tokens/&apos;, methods=[&apos;POST&apos;])</div><div class="line">def get_token():</div><div class="line">    if g.current_user.is_anonymous or g.token_used:</div><div class="line">        return unauthorized(&apos;Invalid credentials&apos;)</div><div class="line">    return jsonify(&#123;&apos;token&apos;: g.current_user.generate_auth_token(expiration=3600),</div><div class="line">                    &apos;expiration&apos;: 3600&#125;)</div></pre></td></tr></table></figure>
+<h3 id="15-在app-api-authentication-py中定义Flask-HTTPAuth错误处理程序："><a href="#15-在app-api-authentication-py中定义Flask-HTTPAuth错误处理程序：" class="headerlink" title="15. 在app/api/authentication.py中定义Flask-HTTPAuth错误处理程序："></a>15. 在<code>app/api/authentication.py</code>中定义Flask-HTTPAuth错误处理程序：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">@auth.error_handler</div><div class="line">def auth_error():</div><div class="line">    return unauthorized(&apos;Invalid credentials&apos;)</div></pre></td></tr></table></figure>
+<h3 id="16-在app-api-authentication-py中使得API蓝本所有路由在每次请求前都进行认证："><a href="#16-在app-api-authentication-py中使得API蓝本所有路由在每次请求前都进行认证：" class="headerlink" title="16. 在app/api/authentication.py中使得API蓝本所有路由在每次请求前都进行认证："></a>16. 在<code>app/api/authentication.py</code>中使得API蓝本所有路由在每次请求前都进行认证：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line">@api.before_request</div><div class="line">@auth.login_required</div><div class="line">def before_request():</div><div class="line">    if not g.current_user.is_anonymous and \</div><div class="line">            not g.current_user.confirmed:   # 判断该用户是否已经确认账户</div><div class="line">        return forbidden(&apos;Unconfirmed account&apos;)</div></pre></td></tr></table></figure>
+<p>在第13步中使用到了<code>User.verify_auth_token</code>方法和第14步中使用到了<code>User.generate_auth_token</code>方法，其定义如下：</p>
+<h3 id="17-在app-models-py中定义基于令牌的认证："><a href="#17-在app-models-py中定义基于令牌的认证：" class="headerlink" title="17. 在app/models.py中定义基于令牌的认证："></a>17. 在<code>app/models.py</code>中定义基于令牌的认证：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class User(UserMixin, db.Model):</div><div class="line">    # ...</div><div class="line">    </div><div class="line">    def generate_auth_token(self, exporation):</div><div class="line">        s = Serializer(current_app.confir[&apos;SECRET_KEY&apos;], expires_in=exporation)</div><div class="line">        return s.dumps(&#123;&apos;id&apos;: self.id&#125;).decode(&apos;utf-8&apos;)</div><div class="line"></div><div class="line">    @staticmethod</div><div class="line">    def verify_auth_token(token):</div><div class="line">        s = Serializer(current_app.config[&apos;SECRET_KEY&apos;])</div><div class="line">        try:</div><div class="line">            data = s.loads(token)</div><div class="line">        except:</div><div class="line">            return None</div><div class="line">        return User.query.get(data[&apos;id&apos;])</div></pre></td></tr></table></figure>
+<h2 id="14-2-8-使用HTTPie测试Web服务"><a href="#14-2-8-使用HTTPie测试Web服务" class="headerlink" title="14.2.8 使用HTTPie测试Web服务"></a>14.2.8 使用HTTPie测试Web服务</h2><h3 id="1-安装HTTPie："><a href="#1-安装HTTPie：" class="headerlink" title="1. 安装HTTPie："></a>1. 安装HTTPie：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(venv) $ pip install httpie</div></pre></td></tr></table></figure>
+<h3 id="2-GET请求可按照如下方式发起："><a href="#2-GET请求可按照如下方式发起：" class="headerlink" title="2. GET请求可按照如下方式发起："></a>2. GET请求可按照如下方式发起：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">(venv) $ http --json --auth &lt;email&gt;:&lt;password&gt; GET http://127.0.0.1:5000/api/v1.0/posts</div><div class="line">HTTP/1.0 200 OK</div><div class="line">Content-Length: 7018</div><div class="line">Content-Type: application/json</div><div class="line">Date: Sun, 22 Dec 2013 08:11:24 GMT</div><div class="line">Server: Werkzeug/0.9.4 python/3.6</div><div class="line"></div><div class="line">&#123;</div><div class="line">    &quot;posts&quot;: [</div><div class="line">        ...</div><div class="line">    ],</div><div class="line">    &quot;prev&quot;: null,</div><div class="line">    &quot;next&quot;: &quot;http://127.0.0.1:5000/api/v1.0/posts/?page=2&quot;,</div><div class="line">    &quot;count&quot;: 150</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果API允许匿名用户访问的话，可以这个发起请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(venv) $ http --json --auth : GET http://127.0.0.1:5000/api/v1.0/posts/</div></pre></td></tr></table></figure></p>
+<h3 id="3-发送POST请求创建一篇新博客文章："><a href="#3-发送POST请求创建一篇新博客文章：" class="headerlink" title="3. 发送POST请求创建一篇新博客文章："></a>3. 发送POST请求创建一篇新博客文章：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(venv) $ http --auth &lt;email&gt;:&lt;password&gt; --json POST http://127.0.0.1:5000/api/v1.0/posts/ &quot;body=I&apos;m adding a post from the *command line*.&quot;</div><div class="line">HTTP/1.0 201 CREATED</div><div class="line">Content-Length :360</div><div class="line"># ...</div></pre></td></tr></table></figure>
+<h3 id="4-要想使用认证令牌，可向-api-v1-0-token发送请求："><a href="#4-要想使用认证令牌，可向-api-v1-0-token发送请求：" class="headerlink" title="4. 要想使用认证令牌，可向/api/v1.0/token发送请求："></a>4. 要想使用认证令牌，可向<code>/api/v1.0/token</code>发送请求：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">(venv) $ http --auth &lt;email&gt;:&lt;password&gt; --json GET http://127.0.0.1:5000/api/v1.0/token</div><div class="line">HTTP/1.0 200 OK</div><div class="line">Content-Lenght: 162</div><div class="line">Content-Type: application/json</div><div class="line">Date: Sat, 04 Jan 2017 08:38:47 GMT</div><div class="line">Server: Werkzeug/0.9.4 Python/3.3.3</div><div class="line"></div><div class="line">&#123;</div><div class="line">    &quot;expiration&quot;: 3600,</div><div class="line">    &quot;token&quot;: &quot;eqJpYXQiOjex..............iSFMy...&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="5-在接下来的1小时内，可以用这个令牌访问API，请求时要和空密码一起发送："><a href="#5-在接下来的1小时内，可以用这个令牌访问API，请求时要和空密码一起发送：" class="headerlink" title="5. 在接下来的1小时内，可以用这个令牌访问API，请求时要和空密码一起发送："></a>5. 在接下来的1小时内，可以用这个令牌访问API，请求时要和<strong>空密码</strong>一起发送：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(venv) $ http --json --auth eyJpYXQi.....ISFMy...: GET http://127.0.0.1:5000/api/v1.0/posts/</div></pre></td></tr></table></figure>
+<p>令牌过期后，请求会返回401错误，表示需要重新获取令牌。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-12-30T15:33:38.000Z" itemprop="dateUpdated">2017-12-30 23:33:38</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/" target="_blank" rel="external">https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/&title=《把《Flask Web开发》读薄系列之第十四章 应用编程接口》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/&title=《把《Flask Web开发》读薄系列之第十四章 应用编程接口》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第十四章 应用编程接口》 — Richard‘s Blog&url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十三章 用户评论/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第十三章 用户评论</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/&title=《把《Flask Web开发》读薄系列之第十四章 应用编程接口》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/&title=《把《Flask Web开发》读薄系列之第十四章 应用编程接口》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第十四章 应用编程接口》 — Richard‘s Blog&url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD40lEQVR42u3aS27bUBAEQN//0skBAivd02TiRWllxBbFVwzQms/XV/z69c3rz9/++a7v/uXzNZfrfPeux144cODAgeN01PwjP3/w50N+PkbCl9xV8i4cOHDgwPEsx+djJFGX/7YN8vaR5KGLAwcOHDh+MkcSlvv1lzIPBw4cOHD8TI6kxGrbf0mgfv7LlhsHDhw4cLzNkbTbkpIsaQUmx352iPVKrxQHDhw4cKRJ9/VU6P6cn1/Z78CBAwcOHPGwpx0C3ZYelhW3PIaL0+HAgQMHjpljXzjI1+ba2FvKrVsjEgcOHDhwPMXRjn/ycc7SgFsC+7EmIA4cOHDgON1DUg7lUdoe4DasqtcU8jYiDhw4cOB4iKMt0trluWUBLg/X2wgNBw4cOHA8xfHUqKmNvRv68lUguj4OHDhw4Jg5brGUR1cSum2PLse6fVHAgQMHDhxvcOy38lQTMCkO88c2rTLgwIEDB46AY1lNuA2T8pu+rdblTx4HDhw4cLzHkV+oHS+1SwZJ2OetwLr5iAMHDhw4HuJIoii59O29ySiopbx9jcCBAwcOHDtHEp9tkda2/NoWZBvqdRmJAwcOHDgGjmSQs0fjUvjdWofHpicOHDhw4Jg5bmOeuul2un5eCrb7GtFjwIEDBw4cJ44kIG8fM41/5rbg7f5x4MCBA8fOkTf+8vWC25HyYvK2AJF/Fg4cOHDg2Dna9tmv4HUrz5Lj3YZe+V3hwIEDB46do3217bn8AMvKwm1wdSzwcODAgQNH+a7bQkAeureCMP+svGise6g4cODAgSNuC+aHbyMzbz7mDcq24Vj8JQ4cOHDgGDjaYc8Srm1jroXLr1n8v8CBAwcOHKd8XEqvWzm3kLWre+36BQ4cOHDgWDjycc5t7LQv2LUQ7RIGDhw4cOD4lxxRSpeDovwxJMVbXoLWFS0OHDhw4Bg42nIrWWLLQzFHX4Ze0ePBgQMHDhxPJt10o3kpdYzA07uWUhMHDhw4cCwc79305ysfFw6WyAw+EQcOHDhwLBx58TaNc15YhsgX7IoYxoEDBw4cD3Hkmdy225aSbG8+tvGPAwcOHDh2jqSEu8Xh2wdIfn6losWBAwcOHKdu2H7Uthi7xe2tgVg/ARw4cODA0SXaNZ+H1bTkSDlcu1qXtxpx4MCBA8eNIw/Fdonh1uZrB1S3h4EDBw4cON7maIPqRnYL9XagdWs+4sCBAweO/8uxhHQbq21p1+JGWx44cODAgeM1jmWlYB9r7WXbX9qaOHDgwIHjIY7b8kFbpN3isF1i+EdjJxw4cODAMS803NYXloFQG+RJPN+uiQMHDhw4Ao7ffAPsb/jWGwAAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

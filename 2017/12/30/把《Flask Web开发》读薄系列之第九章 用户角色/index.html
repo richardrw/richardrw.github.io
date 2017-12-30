@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>把《Flask Web开发》读薄系列之第九章 用户角色 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Flask,读书笔记">
+    <meta name="description" content="简单的程序可能只需要两个角色（普通用户和管理员），对于这种情况，在User模型中添加一个is_administrator布尔值字段就足够了。 复杂的用户角色可以通过赋予用户某些权限的组合是一种很好的方法。 9.1 角色在数据库中的表示1. 在app/models.py中增加用户权限字段：1234567class Role(db.Model):    __tablename__ = &amp;apos;ro">
+<meta name="keywords" content="Flask,读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把《Flask Web开发》读薄系列之第九章 用户角色">
+<meta property="og:url" content="https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="简单的程序可能只需要两个角色（普通用户和管理员），对于这种情况，在User模型中添加一个is_administrator布尔值字段就足够了。 复杂的用户角色可以通过赋予用户某些权限的组合是一种很好的方法。 9.1 角色在数据库中的表示1. 在app/models.py中增加用户权限字段：1234567class Role(db.Model):    __tablename__ = &amp;apos;ro">
+<meta property="og:updated_time" content="2017-12-30T11:05:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把《Flask Web开发》读薄系列之第九章 用户角色">
+<meta name="twitter:description" content="简单的程序可能只需要两个角色（普通用户和管理员），对于这种情况，在User模型中添加一个is_administrator布尔值字段就足够了。 复杂的用户角色可以通过赋予用户某些权限的组合是一种很好的方法。 9.1 角色在数据库中的表示1. 在app/models.py中增加用户权限字段：1234567class Role(db.Model):    __tablename__ = &amp;apos;ro">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">把《Flask Web开发》读薄系列之第九章 用户角色</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">把《Flask Web开发》读薄系列之第九章 用户角色</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-30T11:04:18.000Z" itemprop="datePublished" class="page-time">
+  2017-12-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9-1-角色在数据库中的表示"><span class="post-toc-number">1.</span> <span class="post-toc-text">9.1 角色在数据库中的表示</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-在app-models-py中增加用户权限字段："><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1. 在app/models.py中增加用户权限字段：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-在app-models-py中定义权限常量："><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">2. 在app/models.py中定义权限常量：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-在app-models-py中支持创建角色："><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">3. 在app/models.py中支持创建角色：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-适用shell会话把角色写入数据库："><span class="post-toc-number">1.0.3.1.</span> <span class="post-toc-text">4. 适用shell会话把角色写入数据库：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9-2-赋予角色（在用户注册账户时赋予适当的角色）"><span class="post-toc-number">2.</span> <span class="post-toc-text">9.2 赋予角色（在用户注册账户时赋予适当的角色）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-在app-models-py中定义默认赋予的用户角色："><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">1. 在app/models.py中定义默认赋予的用户角色：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9-3-角色验证（检查是否有指定权限）"><span class="post-toc-number">3.</span> <span class="post-toc-text">9.3 角色验证（检查是否有指定权限）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-在app-models-py中检查用户是否有指定的权限："><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">1. 在app/models.py中检查用户是否有指定的权限：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-在app-decorators-py中定义用于检查用户权限的修饰器："><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">2. 在app/decorators.py中定义用于检查用户权限的修饰器：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-在app-main-init-py中把Permission类加入模板上下文："><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">3. 在app/main/__init__.py中把Permission类加入模板上下文：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-在tests-test-user-model-py中添加角色和权限的单元测试："><span class="post-toc-number">3.0.4.</span> <span class="post-toc-text">4. 在tests/test_user_model.py中添加角色和权限的单元测试：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-把《Flask Web开发》读薄系列之第九章 用户角色"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">把《Flask Web开发》读薄系列之第九章 用户角色</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-30 19:04:18" datetime="2017-12-30T11:04:18.000Z"  itemprop="datePublished">2017-12-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>简单的程序可能只需要两个角色（普通用户和管理员），对于这种情况，在<code>User</code>模型中添加一个<code>is_administrator</code><strong>布尔值</strong>字段就足够了。</p>
+<p>复杂的用户角色可以通过赋予用户某些<strong>权限的组合</strong>是一种很好的方法。</p>
+<h1 id="9-1-角色在数据库中的表示"><a href="#9-1-角色在数据库中的表示" class="headerlink" title="9.1 角色在数据库中的表示"></a>9.1 角色在数据库中的表示</h1><h3 id="1-在app-models-py中增加用户权限字段："><a href="#1-在app-models-py中增加用户权限字段：" class="headerlink" title="1. 在app/models.py中增加用户权限字段："></a>1. 在<code>app/models.py</code>中增加用户权限字段：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class Role(db.Model):</div><div class="line">    __tablename__ = &apos;roles&apos;</div><div class="line">    id = db.Column(db.Integer, primary_key=True)</div><div class="line">    name = db.Column(db.String(64), unique=True)</div><div class="line">    default = db Column(db.Boolean, default=False, index=True)</div><div class="line">    permission = db.Column(db.Integer)</div><div class="line">    users = db.relationship(&apos;User&apos;, backref=&apos;role&apos;, lazy=&apos;dynamic&apos;)</div></pre></td></tr></table></figure>
+<ul>
+<li><code>deafult</code>字段中的<code>default</code>参数如果设置为<code>True</code>，则该角色为默认角色，用户注册时会默认为该角色（具体实现是给<code>defalut</code>赋值<code>True</code>）。</li>
+<li><code>permission</code>字段为用户权限，其值是一个整数。各权限位值表如下：<br>表9-1 程序的权限</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>位值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>关注用户</td>
+<td>0b00000001  (0x01)</td>
+<td>关注其他用户</td>
+</tr>
+<tr>
+<td>在他人的文章中发表评论</td>
+<td>0b00000010（0x02）</td>
+<td>在他人撰写的文章中发布评论</td>
+</tr>
+<tr>
+<td>写文章</td>
+<td>0b00000100（0x04）</td>
+<td>写原创文章</td>
+</tr>
+<tr>
+<td>管理他人发表的评论</td>
+<td>0b00001000（0x08）</td>
+<td>查处他人发表的不当评论</td>
+</tr>
+<tr>
+<td>管理员权限</td>
+<td>0b10000000（0x80）</td>
+<td>管理网站</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-在app-models-py中定义权限常量："><a href="#2-在app-models-py中定义权限常量：" class="headerlink" title="2. 在app/models.py中定义权限常量："></a>2. 在<code>app/models.py</code>中定义权限常量：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">class Permission:</div><div class="line">    FOLLOW = 0x01</div><div class="line">    COMMENT = 0x02</div><div class="line">    WRTIE_ARTICLES = 0x04</div><div class="line">    MODERATE_COMMENTS = 0x08</div><div class="line">    ADMINISTER = 0x80</div></pre></td></tr></table></figure>
+<p>一般网站的用户角色以及对应拥有的权限如表9-2:</p>
+<p>表9-2 用户角色</p>
+<table>
+<thead>
+<tr>
+<th>用户角色</th>
+<th>权限</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>匿名</td>
+<td>0b00000000（0x00）</td>
+<td>未登录的用户，在程序中只有阅读权限</td>
+</tr>
+<tr>
+<td>用户</td>
+<td>0b00000111（0x07）</td>
+<td>具有关注其他用户、发表评论和发布文章的权限。这是新用户的默认角色</td>
+</tr>
+<tr>
+<td>协管员</td>
+<td>0b00001111（0x0f）</td>
+<td>增加审查不当评论的权限</td>
+</tr>
+<tr>
+<td>管理员</td>
+<td>0b11111111（oxff）</td>
+<td>具有所有权限，包括修改其他用户所属角色的权限</td>
+</tr>
+</tbody>
+</table>
+<p>这样就可以根据<strong>权限的组合</strong>来组织角色。</p>
+<h3 id="3-在app-models-py中支持创建角色："><a href="#3-在app-models-py中支持创建角色：" class="headerlink" title="3. 在app/models.py中支持创建角色："></a>3. 在<code>app/models.py</code>中支持创建角色：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">class Role(db.Model):</div><div class="line">    # ...</div><div class="line">    </div><div class="line">    @staticmethod</div><div class="line">    def inset_roles():</div><div class="line">        roles = &#123;</div><div class="line">            &apos;User&apos;: [Permission.FOLLOW, Permission.COMMENT,</div><div class="line">                    Permission.WRITE_ARTICLES],</div><div class="line">            &apos;Moderator&apos;: [Permission.FOLLOW, Permission.COMMENT,</div><div class="line">                    Permission.WRITE_ARTICLES, Permission.MODERATE_COMMENT],</div><div class="line">            &apos;Anministrator&apos;: [Permission.FOLLOW, Permission.COMMENT,</div><div class="line">                    Permission.WRITE_ARTICLES,Permission.MODERATE_COMMENT,</div><div class="line">                    Permission.ADMINISTER]</div><div class="line">        &#125;</div><div class="line">        default_role = &apos;User&apos;</div><div class="line">        for roel in roles:</div><div class="line">            # 查找Role表中是否有name=role这角色</div><div class="line">            role = Role.query.filter_by(name=role).first()</div><div class="line">            # 如果没有则创建</div><div class="line">            if role is None:</div><div class="line">                role = Role(name=role)</div><div class="line">            # 将permissio字段的值设为0</div><div class="line">            role.reset_permission()</div><div class="line">            # 添加权限</div><div class="line">            for perm in roles[role]:</div><div class="line">                role.add_permission(perm)</div><div class="line">            # 判断role.name是否为默认角色&apos;User&apos;，如果是则将role.default赋值为True</div><div class="line">            role.default = (role.name == default_role)</div><div class="line">            # 将数据库变化添加到会话中</div><div class="line">            db.session.add(role)</div><div class="line">        # 提交数据库变化</div><div class="line">        db.session.commit()</div></pre></td></tr></table></figure>
+<p><code>insert_roles()</code>函数并不直接创建新角色对象，而是先通过<code>for</code>循环遍历<code>roles</code>，查询Role表中是否有该角色，当表中没有这个角色色才创建角色。</p>
+<h4 id="4-适用shell会话把角色写入数据库："><a href="#4-适用shell会话把角色写入数据库：" class="headerlink" title="4. 适用shell会话把角色写入数据库："></a>4. 适用<code>shell</code>会话把角色写入数据库：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(venv) $ python flasky.py shell</div><div class="line">&gt;&gt;&gt; Role.insert_roles()</div><div class="line">&gt;&gt;&gt; Role.query.all()</div><div class="line">[&lt;Role u&apos;Administrator&apos;&gt;, &lt;Role u&apos;User&apos;&gt;, &lt;Role u&apos;Moderator&apos;&gt;]</div></pre></td></tr></table></figure>
+<h1 id="9-2-赋予角色（在用户注册账户时赋予适当的角色）"><a href="#9-2-赋予角色（在用户注册账户时赋予适当的角色）" class="headerlink" title="9.2 赋予角色（在用户注册账户时赋予适当的角色）"></a>9.2 赋予角色（在用户注册账户时赋予适当的角色）</h1><h3 id="1-在app-models-py中定义默认赋予的用户角色："><a href="#1-在app-models-py中定义默认赋予的用户角色：" class="headerlink" title="1. 在app/models.py中定义默认赋予的用户角色："></a>1. 在<code>app/models.py</code>中定义默认赋予的用户角色：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">class User(UserMixin, db.Model):</div><div class="line">    # ...</div><div class="line">    </div><div class="line">    def __init__(self, **kwargs):</div><div class="line">        super(User, self).__init__(**kwargs)</div><div class="line">        if self.role is None:</div><div class="line">            # 如果email邮箱是管理员邮箱，则赋予‘管理员’角色，否则赋予‘默认’角色</div><div class="line">            if self.email == current_app.config[&apos;FLASKY_ADMIN&apos;]:</div><div class="line">                self.role = Role.query.filter_by(name=&apos;Administrator&apos;).first()</div><div class="line">            if self.role is None:</div><div class="line">                self.role = Role.query.filter_by(dafault=True).first()</div></pre></td></tr></table></figure>
+<p>User类的构造函数首先调用<strong>基类</strong>的构造函数，如果创建<strong>基类对象</strong>后还没有定义角色（即<code>role</code>为<code>None</code>），则根据电子邮件决定将其设为管理员还是默认角色。</p>
+<h1 id="9-3-角色验证（检查是否有指定权限）"><a href="#9-3-角色验证（检查是否有指定权限）" class="headerlink" title="9.3 角色验证（检查是否有指定权限）"></a>9.3 角色验证（检查是否有指定权限）</h1><h3 id="1-在app-models-py中检查用户是否有指定的权限："><a href="#1-在app-models-py中检查用户是否有指定的权限：" class="headerlink" title="1. 在app/models.py中检查用户是否有指定的权限："></a>1. 在<code>app/models.py</code>中检查用户是否有指定的权限：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">from flask_login import UserMixin, AnonymousUserMixin</div><div class="line"># ...</div><div class="line"></div><div class="line">class User(UserMixin, db.model):</div><div class="line">    # ...</div><div class="line">    </div><div class="line">    def can(self, permissions):</div><div class="line">        return self.role is not None and \</div><div class="line">            # 进行位与运算</div><div class="line">            (self.role.permission &amp; permissions) == permissions</div><div class="line">    </div><div class="line">    def is_administrator(self):</div><div class="line">        return self.can(Permission.ADMINSTER)</div><div class="line">        </div><div class="line"></div><div class="line"># 定义匿名用户类</div><div class="line">class AnonymousUser(AnonymousUserMixin):</div><div class="line">    def can(self, permissions):</div><div class="line">        return False</div><div class="line">        </div><div class="line">    def is_administrator(self):</div><div class="line">        return False</div><div class="line">        </div><div class="line"># 实例化AnonymousUser类（即设置用户未登录时current_user的值，</div><div class="line"># 这样程序就不用先检查用户是否登录，都能调用current_user.can()</div><div class="line"># 和current_user.is_administrator()）</div><div class="line">login_manager.anonymous_user = AnonymousUser</div></pre></td></tr></table></figure>
+<h3 id="2-在app-decorators-py中定义用于检查用户权限的修饰器："><a href="#2-在app-decorators-py中定义用于检查用户权限的修饰器：" class="headerlink" title="2. 在app/decorators.py中定义用于检查用户权限的修饰器："></a>2. 在<code>app/decorators.py</code>中定义用于检查用户权限的修饰器：</h3><p>如果想让视图函数只对具有特定权限的用户开放，可以适用自定义的修饰器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">from functools import wraps</div><div class="line">from flask imoprt abort</div><div class="line">from flask_login import current_user</div><div class="line">from app.models import Permission</div><div class="line"></div><div class="line"></div><div class="line">def permission_required(permission):</div><div class="line">    def decorator(func):</div><div class="line">        @wraps(func)</div><div class="line">        def decorated_function(*args, **kwargs):</div><div class="line">            # 判断用户是否具有某特定权限，如果没有则抛出403错误</div><div class="line">            if not current_user.can(permission):</div><div class="line">                abort(403)</div><div class="line">            return func(*args, **kwargs)</div><div class="line">        return decorated_function</div><div class="line">    return decorator</div><div class="line">    </div><div class="line">    </div><div class="line">def admin_required(func):</div><div class="line">    # 相当于调用decorator(func)</div><div class="line">    return permission_required(Permission.ADMINSTER)(func)</div></pre></td></tr></table></figure>
+<h3 id="3-在app-main-init-py中把Permission类加入模板上下文："><a href="#3-在app-main-init-py中把Permission类加入模板上下文：" class="headerlink" title="3. 在app/main/__init__.py中把Permission类加入模板上下文："></a>3. 在<code>app/main/__init__.py</code>中把Permission类加入模板上下文：</h3><p>在模板中可能也需要检查权限，所以<code>Permission</code>类为所有为定义了常量以便获取。</p>
+<p>为了避免每次调用<code>render_template()</code>时多添加一个模板参数，可以使用<strong>上下文管理器</strong>，使得变量在所有模板中全局可访问。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line">from app.models import Permission</div><div class="line"></div><div class="line">@main.app_context_processor</div><div class="line">def inject_permission():</div><div class="line">    # 实例化Permission类，并将其字典化</div><div class="line">    return dict(Permission=Permission)</div></pre></td></tr></table></figure>
+<h3 id="4-在tests-test-user-model-py中添加角色和权限的单元测试："><a href="#4-在tests-test-user-model-py中添加角色和权限的单元测试：" class="headerlink" title="4. 在tests/test_user_model.py中添加角色和权限的单元测试："></a>4. 在<code>tests/test_user_model.py</code>中添加角色和权限的单元测试：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">class UserModelTestCase(unittest.TestCase):</div><div class="line">    # ...</div><div class="line">    </div><div class="line">    def test_user_role(self):</div><div class="line">        u = User(email=&apos;john@example.com&apos;, password=&apos;cat&apos;)</div><div class="line">        self.assertTrue(u.can(Permission.FOLLOW))</div><div class="line">        self.assertTrue(u.can(Permission.COMMENT))</div><div class="line">        self.assertTrue(u.can(Permission.WRITE))</div><div class="line">        self.assertFalse(u.can(Permission.MODERATE))</div><div class="line">        self.assertFalse(u.can(Permission.ADMIN))</div><div class="line"></div><div class="line">    def test_moderator_role(self):</div><div class="line">        r = Role.query.filter_by(name=&apos;Moderator&apos;).first()</div><div class="line">        u = User(email=&apos;john@example.com&apos;, password=&apos;cat&apos;, role=r)</div><div class="line">        self.assertTrue(u.can(Permission.FOLLOW))</div><div class="line">        self.assertTrue(u.can(Permission.COMMENT))</div><div class="line">        self.assertTrue(u.can(Permission.WRITE))</div><div class="line">        self.assertTrue(u.can(Permission.MODERATE))</div><div class="line">        self.assertFalse(u.can(Permission.ADMIN))</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：还是那句话，修改数据库模型之后，记得先执行<code>python flasky.py db migrate -m &quot;blablabla&quot;</code>生成数据库迁移脚本，再执行<code>python flasky.py db upgrade</code>更新数据库。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-12-30T11:05:42.000Z" itemprop="dateUpdated">2017-12-30 19:05:42</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/" target="_blank" rel="external">https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/&title=《把《Flask Web开发》读薄系列之第九章 用户角色》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/&title=《把《Flask Web开发》读薄系列之第九章 用户角色》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第九章 用户角色》 — Richard‘s Blog&url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十章 用户资料/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第十章 用户资料</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/30/把《Flask Web开发》读薄系列之第八章 用户认证/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第八章 用户认证</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/&title=《把《Flask Web开发》读薄系列之第九章 用户角色》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/&title=《把《Flask Web开发》读薄系列之第九章 用户角色》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第九章 用户角色》 — Richard‘s Blog&url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMElEQVR42u3ay27CQAwF0P7/T9NNF5WA5NoeJDI5WVUlJHPMwvLj5ye+Hk/X//8f33/8nOenHX/r+DyLL2xsbOyLsB+HV8JOgnIcoHf3JM9MzvPi7djY2NjbsVcd6Did9BJPL9AnRmxsbOzbs1eVHL0wYWNjY2OvYvcS1aowYWNjY2NXm0qTds9xKJNA9BLbgl4aNjY29teze22d7/z7I/NtbGxs7C9mP4rXcbLJy4NJI2ly/r8nYGNjY2/EzhNAvpSTFACT8iBvJJ28ERsbG3sLdi89VNNYkq7ytlS1vii8EhsbG/uC7Pl4IC8teuOBPIFVBwzY2NjYe7DzZZqENBno5slscsIXpQg2Njb2xdn5CyYrMnlSrBYhSdDf3omNjY29Ebs6AEhKgt66ZK+ZlSczbGxs7L3Zk+TRGwbMz7MsHNjY2NiXZefrNb1UN0lLvcWgaFSMjY2NfTP2pMxIUtEnWlQnPyE2Njb21uxJqygvEnpDgmXFDzY2Nvam7N4rey2h6ti497STTSVsbGzs7djJ1/JCJUmNeQKbJLloPICNjY19WXYv5VTHvdW2UTUt9e7HxsbG3oPdKxVWxbvXxsqT36iphI2NjX0RdrJek682TlpC+bJOb8Dw4u3Y2NjY27FzcH7/hJoPD/LxBjY2NvZ+7OQReWMo/9Z8cafX/MLGxsbej50XAPOUk7eEqkucvYBiY2Nj78detQqTj3h7b6wOBrCxsbHvw171oCTN9AYAeSotz7qxsbGxL8vO20OrGvTVQXKvmDlJeNjY2NgbsasNmrwFn6ervDnVS1dRKYKNjY19cXbS1q8GotpsWjV4KAw5sLGxsW/AnoN7iXDyaWG1CBsbG/s27KTMmCzr5C2t6rrPSZiwsbGxt2A/ildvMNzblqkOdwuBw8bGxt6I3UsAeZGQN4+ae0bFRZ9yULCxsbEvwq4OaD+XSAqrNsVAY2NjY9+BPUkM1fIm35zJf4DqgAEbGxsbO4dVD1cNcZSusLGxsbEHizX5UVat+ySFCjY2NvZ+7HwFp9q+yT/Ni5NJsLCxsbH3Y/ca973mfhLW6hAiSYqj+TY2Njb297J/ASy4upZ6WBlxAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -116,7 +116,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -148,6 +148,366 @@
 <div class="container body-wrap">
 
     <ul class="post-list">
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第四章 Web表单"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-14 20:54:15" datetime="2017-11-14T12:54:15.000Z"  itemprop="datePublished">2017-11-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/">把《Flask Web开发》读薄系列之第四章 Web表单</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        4.1 跨站请求伪造保护跨站请求伪造(CSRF)：恶意网站吧请求发送到，被攻击者已登录的其他网站。flask-wtf需要程序设置一个密匙。然后利用这个密匙生成加密令牌，再用令牌验证请求中表单数据的真伪，从而实现CSRF保护。
+设置flask-wtf：123# ...app = Flask(__name__)app.config[&apos;SECRET_KEY&apos;] = &apos;...
+    
+
+        <a href="/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第三章 模板"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-14 20:52:00" datetime="2017-11-14T12:52:00.000Z"  itemprop="datePublished">2017-11-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/">把《Flask Web开发》读薄系列之第三章 模板</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置
+
+
+
+配置
+默认值
+说明
+
+
+
+
+MAIL_SERVER
+localhost
+电子邮件服务器的主机名或IP地址
+
+
+MAIL_PORT
+25
+电子邮件服务器的端口
+
+
+MAIL_USE_TLS
+False
+启用传输层安全（TLS）协议
+
+
+MAIL_USE_SSL
+False
+启用安全套接层（SSL...
+    
+
+        <a href="/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第二章 程序的基本概念"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-14 20:45:31" datetime="2017-11-14T12:45:31.000Z"  itemprop="datePublished">2017-11-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之第二章 程序的基本概念/">把《Flask Web开发》读薄系列之第二章 程序的基本概念</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        2.1 初始化123from flask import Flaskapp = Flask(__name__)
+Flask实例化只有一个必须指定的参数，即程序主模块或包的名字（也即__name__）1234# 2.2 路由和视图函数1. **路由**：处理URL和函数之间的关系（URL到Python函数的映射关系）的程序。```可通过Flask实例提供的`app.route()`装饰器把函数注...
+    
+
+        <a href="/2017/11/14/把《Flask Web开发》读薄系列之第二章 程序的基本概念/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第一章 创建虚拟环境"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-14 20:43:30" datetime="2017-11-14T12:43:30.000Z"  itemprop="datePublished">2017-11-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之第一章 创建虚拟环境/">把《Flask Web开发》读薄系列之第一章 创建虚拟环境</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+切换到目标文件夹目录
+执行virtualenv venv命令，其中venv为虚拟环境名称
+执行source venv/bin/activate激活虚拟环境
+
+
+    
+
+        <a href="/2017/11/14/把《Flask Web开发》读薄系列之第一章 创建虚拟环境/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之序言"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-11-14 20:20:58" datetime="2017-11-14T12:20:58.000Z"  itemprop="datePublished">2017-11-14</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之序言/">把《Flask Web开发》读薄系列之序言</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        读者的疑惑《把&lt;Flask Web开发——基于Python的Web应用开发实战&gt;读薄系列》主要是对《Flask Web开发》一书的概括，或许你读起来会吐槽说“卧靠，这不就是书中的内容吗，直接把书中的内容搬过来就可以成一个系列了，真牛逼“。对此，我只能说读书笔记大概就是这样吧。你对其中的内容懂了，就会觉得很容易，觉得很没必要做这样的一种记录，完全是照搬书中内容，没有什么实质东西。但...
+    
+
+        <a href="/2017/11/14/把《Flask Web开发》读薄系列之序言/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-构建爬取大众点评美食数据的多进程爬虫（一）"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-20 22:07:02" datetime="2017-10-20T14:07:02.000Z"  itemprop="datePublished">2017-10-20</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/20/构建爬取大众点评美食数据的多进程爬虫（一）/">构建爬取大众点评美食数据的多线程爬虫（含多进程实现）（一）</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        构建爬取大众点评美食数据的多进程爬虫（一）一、要抓取哪些数据以东莞美食为例大众点评-美食-东莞，可以看到，在美食页面，我们想要爬取的信息有：
+
+商户标题
+星级
+评论数
+人均价格
+各项评分
+菜系
+地址
+
+二、分析页面（一）多观察页面通过点击小吃快餐，我们看到小吃快餐下一共有50个页面。再点击面包甜点，发现也只有50个页面。接下来我们看看面包甜点-东城区，发现最多也只有50个页面。如此类推，我们...
+    
+
+        <a href="/2017/10/20/构建爬取大众点评美食数据的多进程爬虫（一）/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python爬虫/">Python爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多进程/">多进程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大众点评/">大众点评</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-从美食的角度看东莞（数据来源：大众点评）"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-10-20 21:35:45" datetime="2017-10-20T13:35:45.000Z"  itemprop="datePublished">2017-10-20</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/">从美食的角度看东莞（数据来源：大众点评）</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        从美食的角度看东莞（数据来源：大众点评）先从为什么要做这个项目说起，事情的缘由是这样的，小编当时跟领导到别的城市外出出差一个星期，作为一个平时很少外出的人，别说是别的城市了，就连东莞这个地方我都还没走遍过，尤其是那些重要商区、美食店，平时跟朋友出去玩，都很尴尬不知道要吃什么好。现在跟领导外出别的城市，感觉自己是个刚出大山的农村小伙子，对外面的世界所知甚少。作为领导的助手，自然就要安排好这一星...
+    
+
+        <a href="/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/东莞/">东莞</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据分析/">数据分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/美食/">美食</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
     
         <li class="post-list-item fade">
             <article id="post-年轻人是否应该到北上广深发展的博弈论分析"
@@ -183,7 +543,7 @@
     
 
         <a href="/2017/09/25/年轻人是否应该到北上广深发展的博弈论分析/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -232,7 +592,7 @@
     
 
         <a href="/2017/09/24/sublime如何添加python3版本以及中文乱码问题/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -277,47 +637,7 @@
     
 
         <a href="/2017/09/16/test-my-site/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-hello-world"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-09-16 15:08:10" datetime="2017-09-16T07:08:10.000Z"  itemprop="datePublished">2017-09-16</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/09/16/hello-world/">Hello World</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu...
-    
-
-        <a href="/2017/09/16/hello-world/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -330,7 +650,7 @@ Qu...
     
 <nav id="page-nav">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
     </div>
 </nav>
 
@@ -354,7 +674,7 @@ Qu...
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

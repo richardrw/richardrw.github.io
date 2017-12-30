@@ -116,7 +116,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -150,6 +150,329 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第十四章 应用编程接口"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-30 23:32:41" datetime="2017-12-30T15:32:41.000Z"  itemprop="datePublished">2017-12-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/">把《Flask Web开发》读薄系列之第十四章 应用编程接口</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        14.1 REST简介14.1.1 资源就是一切资源是REST架构方式的核心概念。在博客程序中，用户、文章、评论等都是资源。
+每个资源都要使用唯一的URL表示。如某一篇文章URL：/api/posts/1234。
+某一类资源的集合也要有个URL。如文章集合URL：api/posts/。
+API还可以为某一类资源的逻辑子集合定义集合URL。如某一篇文章的所有评论URL：/api/posts/1...
+    
+
+        <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第十三章 用户评论"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-30 23:31:14" datetime="2017-12-30T15:31:14.000Z"  itemprop="datePublished">2017-12-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/30/把《Flask Web开发》读薄系列之第十三章 用户评论/">把《Flask Web开发》读薄系列之第十三章 用户评论</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        13.1 评论在数据库中的表示从psots表到comments表是一对多关系，从users表到comments表也是一对多关系。
+1. 在app/models.py中定义Comment模型：123456789101112131415161718192021# ...class Comment(db.Model):    __tablename__ = &apos;comments&apos;...
+    
+
+        <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十三章 用户评论/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第十二章 关注者"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-30 23:30:03" datetime="2017-12-30T15:30:03.000Z"  itemprop="datePublished">2017-12-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/30/把《Flask Web开发》读薄系列之第十二章 关注者/">把《Flask Web开发》读薄系列之第十二章 关注者</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        12.1 再论数据库关系一对多关系是最常用的关系，要实现这种关系，要在“多”这一侧加一个外键，指向“一”这一侧联接的记录。一对一关系是简化版的一对多关系，限制“多”这一侧最多只能有一个记录。
+12.1.1 多对多关系一对多关系、多对一关系和一对一关系至少都有一侧是单个实体，所以记录之间的联系通过外键实现，让外键指向这个实体。而多对多关系就不能这么多，因为例如你不能在学生表中加入一个指向课程的...
+    
+
+        <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十二章 关注者/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第十一章 博客文章"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-30 19:09:11" datetime="2017-12-30T11:09:11.000Z"  itemprop="datePublished">2017-12-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/">把《Flask Web开发》读薄系列之第十一章 博客文章</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        11.1 提交和显示博客文章1. 在app/models.py中定义文章模型：1234567891011121314# ...class Post(db.Model):    __tablename__ = &apos;posts&apos;    id = db.Column(db.Integer, primary_key=True)    body = db.Column(db.Text...
+    
+
+        <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第十章 用户资料"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-30 19:06:09" datetime="2017-12-30T11:06:09.000Z"  itemprop="datePublished">2017-12-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/30/把《Flask Web开发》读薄系列之第十章 用户资料/">把《Flask Web开发》读薄系列之第十章 用户资料</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        10.1 用户资料信息（个人基本资料）1. 在app/models.py中增加用户信息字段：123456789# ...class User(UserMixin, db.Model):    # ...    name = db.Column(db.String(64))    # 不同于username，可理解为昵称    location = db.Column(db.String(64...
+    
+
+        <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十章 用户资料/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第九章 用户角色"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-30 19:04:18" datetime="2017-12-30T11:04:18.000Z"  itemprop="datePublished">2017-12-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/">把《Flask Web开发》读薄系列之第九章 用户角色</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        简单的程序可能只需要两个角色（普通用户和管理员），对于这种情况，在User模型中添加一个is_administrator布尔值字段就足够了。
+复杂的用户角色可以通过赋予用户某些权限的组合是一种很好的方法。
+9.1 角色在数据库中的表示1. 在app/models.py中增加用户权限字段：1234567class Role(db.Model):    __tablename__ = &apos...
+    
+
+        <a href="/2017/12/30/把《Flask Web开发》读薄系列之第九章 用户角色/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-把《Flask Web开发》读薄系列之第八章 用户认证"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-30 19:00:49" datetime="2017-12-30T11:00:49.000Z"  itemprop="datePublished">2017-12-30</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/30/把《Flask Web开发》读薄系列之第八章 用户认证/">把《Flask Web开发》读薄系列之第八章 用户认证</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        重点说明：根据作者的经验，从第八章开始，若只把书上示例的代码敲上去，是很难重复实现书中效果的，基本上都会出错，原因有（1）书中省略了许多代码（2）由于扩展版本的升级，书中部分代码已不再适用。所以，强烈强烈强烈建议边看书边对照着Git上对应标签的版本阅读源代码，以免遇到巨坑又不知道哪里出错又无法debug。此时也提醒一下自己，要把代码实现一遍后再来做笔记，以免自己坑自己白费功夫。
+8.1 Fl...
+    
+
+        <a href="/2017/12/30/把《Flask Web开发》读薄系列之第八章 用户认证/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-把《Flask Web开发》读薄系列之第七章 大型程序的结构"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -180,7 +503,7 @@
     
 
         <a href="/2017/11/25/把《Flask Web开发》读薄系列之第七章 大型程序的结构/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -253,7 +576,7 @@ False
     
 
         <a href="/2017/11/14/把《Flask Web开发》读薄系列之第六章 电子邮件/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -300,373 +623,13 @@ NoSQL数据库可以减少表...
     
 
         <a href="/2017/11/14/把《Flask Web开发》读薄系列之第五章 数据库/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-把《Flask Web开发》读薄系列之第四章 Web表单"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-14 20:54:15" datetime="2017-11-14T12:54:15.000Z"  itemprop="datePublished">2017-11-14</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/">把《Flask Web开发》读薄系列之第四章 Web表单</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        4.1 跨站请求伪造保护跨站请求伪造(CSRF)：恶意网站吧请求发送到，被攻击者已登录的其他网站。flask-wtf需要程序设置一个密匙。然后利用这个密匙生成加密令牌，再用令牌验证请求中表单数据的真伪，从而实现CSRF保护。
-设置flask-wtf：123# ...app = Flask(__name__)app.config[&apos;SECRET_KEY&apos;] = &apos;...
-    
-
-        <a href="/2017/11/14/把《Flask Web开发》读薄系列之第四章 Web表单/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-把《Flask Web开发》读薄系列之第三章 模板"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-14 20:52:00" datetime="2017-11-14T12:52:00.000Z"  itemprop="datePublished">2017-11-14</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/">把《Flask Web开发》读薄系列之第三章 模板</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        使用Flask-Mail提供电子邮件支持表6-1 Flask-Mail SMTP服务器的配置
-
-
-
-配置
-默认值
-说明
-
-
-
-
-MAIL_SERVER
-localhost
-电子邮件服务器的主机名或IP地址
-
-
-MAIL_PORT
-25
-电子邮件服务器的端口
-
-
-MAIL_USE_TLS
-False
-启用传输层安全（TLS）协议
-
-
-MAIL_USE_SSL
-False
-启用安全套接层（SSL...
-    
-
-        <a href="/2017/11/14/把《Flask Web开发》读薄系列之第三章 模板/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-把《Flask Web开发》读薄系列之第二章 程序的基本概念"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-14 20:45:31" datetime="2017-11-14T12:45:31.000Z"  itemprop="datePublished">2017-11-14</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之第二章 程序的基本概念/">把《Flask Web开发》读薄系列之第二章 程序的基本概念</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        2.1 初始化123from flask import Flaskapp = Flask(__name__)
-Flask实例化只有一个必须指定的参数，即程序主模块或包的名字（也即__name__）1234# 2.2 路由和视图函数1. **路由**：处理URL和函数之间的关系（URL到Python函数的映射关系）的程序。```可通过Flask实例提供的`app.route()`装饰器把函数注...
-    
-
-        <a href="/2017/11/14/把《Flask Web开发》读薄系列之第二章 程序的基本概念/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-把《Flask Web开发》读薄系列之第一章 创建虚拟环境"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-14 20:43:30" datetime="2017-11-14T12:43:30.000Z"  itemprop="datePublished">2017-11-14</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之第一章 创建虚拟环境/">把《Flask Web开发》读薄系列之第一章 创建虚拟环境</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        
-切换到目标文件夹目录
-执行virtualenv venv命令，其中venv为虚拟环境名称
-执行source venv/bin/activate激活虚拟环境
-
-
-    
-
-        <a href="/2017/11/14/把《Flask Web开发》读薄系列之第一章 创建虚拟环境/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-把《Flask Web开发》读薄系列之序言"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-11-14 20:20:58" datetime="2017-11-14T12:20:58.000Z"  itemprop="datePublished">2017-11-14</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/11/14/把《Flask Web开发》读薄系列之序言/">把《Flask Web开发》读薄系列之序言</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        读者的疑惑《把&lt;Flask Web开发——基于Python的Web应用开发实战&gt;读薄系列》主要是对《Flask Web开发》一书的概括，或许你读起来会吐槽说“卧靠，这不就是书中的内容吗，直接把书中的内容搬过来就可以成一个系列了，真牛逼“。对此，我只能说读书笔记大概就是这样吧。你对其中的内容懂了，就会觉得很容易，觉得很没必要做这样的一种记录，完全是照搬书中内容，没有什么实质东西。但...
-    
-
-        <a href="/2017/11/14/把《Flask Web开发》读薄系列之序言/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-构建爬取大众点评美食数据的多进程爬虫（一）"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-10-20 22:07:02" datetime="2017-10-20T14:07:02.000Z"  itemprop="datePublished">2017-10-20</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/10/20/构建爬取大众点评美食数据的多进程爬虫（一）/">构建爬取大众点评美食数据的多线程爬虫（含多进程实现）（一）</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        构建爬取大众点评美食数据的多进程爬虫（一）一、要抓取哪些数据以东莞美食为例大众点评-美食-东莞，可以看到，在美食页面，我们想要爬取的信息有：
-
-商户标题
-星级
-评论数
-人均价格
-各项评分
-菜系
-地址
-
-二、分析页面（一）多观察页面通过点击小吃快餐，我们看到小吃快餐下一共有50个页面。再点击面包甜点，发现也只有50个页面。接下来我们看看面包甜点-东城区，发现最多也只有50个页面。如此类推，我们...
-    
-
-        <a href="/2017/10/20/构建爬取大众点评美食数据的多进程爬虫（一）/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python爬虫/">Python爬虫</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/多进程/">多进程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大众点评/">大众点评</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-从美食的角度看东莞（数据来源：大众点评）"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-10-20 21:35:45" datetime="2017-10-20T13:35:45.000Z"  itemprop="datePublished">2017-10-20</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/">从美食的角度看东莞（数据来源：大众点评）</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        从美食的角度看东莞（数据来源：大众点评）先从为什么要做这个项目说起，事情的缘由是这样的，小编当时跟领导到别的城市外出出差一个星期，作为一个平时很少外出的人，别说是别的城市了，就连东莞这个地方我都还没走遍过，尤其是那些重要商区、美食店，平时跟朋友出去玩，都很尴尬不知道要吃什么好。现在跟领导外出别的城市，感觉自己是个刚出大山的农村小伙子，对外面的世界所知甚少。作为领导的助手，自然就要安排好这一星...
-    
-
-        <a href="/2017/10/20/从美食的角度看东莞（数据来源：大众点评）/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/东莞/">东莞</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据分析/">数据分析</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/美食/">美食</a></li></ul>
 
     </div>
     
@@ -679,7 +642,7 @@ Flask实例化只有一个必须指定的参数，即程序主模块或包的名
     
 <nav id="page-nav">
     <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
     </div>
 </nav>
 
@@ -703,7 +666,7 @@ Flask实例化只有一个必须指定的参数，即程序主模块或包的名
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">

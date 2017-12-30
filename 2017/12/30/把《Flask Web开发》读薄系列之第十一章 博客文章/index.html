@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>把《Flask Web开发》读薄系列之第十一章 博客文章 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Flask,读书笔记">
+    <meta name="description" content="11.1 提交和显示博客文章1. 在app/models.py中定义文章模型：1234567891011121314# ...class Post(db.Model):    __tablename__ = &amp;apos;posts&amp;apos;    id = db.Column(db.Integer, primary_key=True)    body = db.Column(db.Text)">
+<meta name="keywords" content="Flask,读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把《Flask Web开发》读薄系列之第十一章 博客文章">
+<meta property="og:url" content="https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="11.1 提交和显示博客文章1. 在app/models.py中定义文章模型：1234567891011121314# ...class Post(db.Model):    __tablename__ = &amp;apos;posts&amp;apos;    id = db.Column(db.Integer, primary_key=True)    body = db.Column(db.Text)">
+<meta property="og:updated_time" content="2017-12-30T15:29:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="把《Flask Web开发》读薄系列之第十一章 博客文章">
+<meta name="twitter:description" content="11.1 提交和显示博客文章1. 在app/models.py中定义文章模型：1234567891011121314# ...class Post(db.Model):    __tablename__ = &amp;apos;posts&amp;apos;    id = db.Column(db.Integer, primary_key=True)    body = db.Column(db.Text)">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">把《Flask Web开发》读薄系列之第十一章 博客文章</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">把《Flask Web开发》读薄系列之第十一章 博客文章</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-30T11:09:11.000Z" itemprop="datePublished" class="page-time">
+  2017-12-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#11-1-提交和显示博客文章"><span class="post-toc-number">1.</span> <span class="post-toc-text">11.1 提交和显示博客文章</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-在app-models-py中定义文章模型："><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1. 在app/models.py中定义文章模型：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-在app-main-forms-py中定义文章表单："><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">2. 在app/main/forms.py中定义文章表单：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-在app-main-views-py中定义处理博客文章的主页路由："><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">3. 在app/main/views.py中定义处理博客文章的主页路由：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-在app-templates-posts-html中定义用于显示博客文章的局部模板："><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">4. 在app/templates/_posts.html中定义用于显示博客文章的局部模板：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-在app-templates-macros-html中定义分页导航条模板宏（显示上一页、1、2、3…下一页）："><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">5. 在app/templates/_macros.html中定义分页导航条模板宏（显示上一页、1、2、3…下一页）：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-在app-templates-index-html中引用-posts-html和-macros-html："><span class="post-toc-number">1.0.6.</span> <span class="post-toc-text">6. 在app/templates/index.html中引用_posts.html和_macros.html：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-在app-main-views-py中定义在个人资料页面中显示该用户所写文章的路由："><span class="post-toc-number">1.0.7.</span> <span class="post-toc-text">7. 在app/main/views.py中定义在个人资料页面中显示该用户所写文章的路由：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#11-4-使用Markdown和Flask-PageDown支持富文本文章"><span class="post-toc-number">2.</span> <span class="post-toc-text">11.4 使用Markdown和Flask-PageDown支持富文本文章</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-在app-init-py中初始化Flask-PageDown："><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">8. 在app/__init__.py中初始化Flask-PageDown：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-在app-templates-index-html中添加Flask-PageDown模板声明："><span class="post-toc-number">2.0.2.</span> <span class="post-toc-text">9. 在app/templates/index.html中添加Flask-PageDown模板声明：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-在app-models-py中在Post模型中处理Markdown文本："><span class="post-toc-number">2.0.3.</span> <span class="post-toc-text">10. 在app/models.py中在Post模型中处理Markdown文本：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-在app-templates-posts-html中判断是否使用文章的HTNL格式："><span class="post-toc-number">2.0.4.</span> <span class="post-toc-text">11. 在app/templates/_posts.html中判断是否使用文章的HTNL格式：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-在app-main-views-py中定义文章页面路由："><span class="post-toc-number">2.0.5.</span> <span class="post-toc-text">12. 在app/main/views.py中定义文章页面路由：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-在app-templates-posts-html中添加文章链接："><span class="post-toc-number">2.0.6.</span> <span class="post-toc-text">13. 在app/templates/_posts.html中添加文章链接：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#14-在app-templates-post-html中引用-posts-html："><span class="post-toc-number">2.0.7.</span> <span class="post-toc-text">14. 在app/templates/post.html中引用_posts.html：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#11-6-博客文章编辑页面"><span class="post-toc-number">3.</span> <span class="post-toc-text">11.6 博客文章编辑页面</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-在app-main-views-py中定义编辑文章的路由："><span class="post-toc-number">3.0.1.</span> <span class="post-toc-text">15. 在app/main/views.py中定义编辑文章的路由：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#16-在app-templates-edit-post-html中定义编辑博客文章的模板："><span class="post-toc-number">3.0.2.</span> <span class="post-toc-text">16. 在app/templates/edit_post.html中定义编辑博客文章的模板：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#17-在app-templates-posts-html中添加一个在文章下面指向编辑文章页面的链接："><span class="post-toc-number">3.0.3.</span> <span class="post-toc-text">17. 在app/templates/_posts.html中添加一个在文章下面指向编辑文章页面的链接：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-把《Flask Web开发》读薄系列之第十一章 博客文章"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">把《Flask Web开发》读薄系列之第十一章 博客文章</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-30 19:09:11" datetime="2017-12-30T11:09:11.000Z"  itemprop="datePublished">2017-12-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="11-1-提交和显示博客文章"><a href="#11-1-提交和显示博客文章" class="headerlink" title="11.1 提交和显示博客文章"></a>11.1 提交和显示博客文章</h1><h3 id="1-在app-models-py中定义文章模型："><a href="#1-在app-models-py中定义文章模型：" class="headerlink" title="1. 在app/models.py中定义文章模型："></a>1. 在<code>app/models.py</code>中定义文章模型：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">class Post(db.Model):</div><div class="line">    __tablename__ = &apos;posts&apos;</div><div class="line">    id = db.Column(db.Integer, primary_key=True)</div><div class="line">    body = db.Column(db.Text)</div><div class="line">    body_html = db.Column(db.Text)</div><div class="line">    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow())</div><div class="line">    author_id = db.Column(db.Integer, db.ForeignKey(&apos;users.id&apos;))</div><div class="line"></div><div class="line"></div><div class="line">class User(UserMixin, db.Model):</div><div class="line">    # ...</div><div class="line">    posts = db.relationship(&apos;Post&apos;, backref=&apos;author&apos;, lazy=&apos;dynamic&apos;)</div></pre></td></tr></table></figure>
+<p><strong>说明</strong>：</p>
+<ul>
+<li>为了使文章支持Markdown，用<code>body</code>字段存储markdown源文本，用<code>body_html</code>字段存储markdown源文本转换成的HTML文本。（具体如何将markdown转换成HTML，可见第10步.）</li>
+</ul>
+<h3 id="2-在app-main-forms-py中定义文章表单："><a href="#2-在app-main-forms-py中定义文章表单：" class="headerlink" title="2. 在app/main/forms.py中定义文章表单："></a>2. 在<code>app/main/forms.py</code>中定义文章表单：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from flask_pagedown import PageDownField</div><div class="line"># ...</div><div class="line"></div><div class="line">class PostForm(FlaskForm):</div><div class="line">    body = PageDownField(&quot;What&apos;s your mind?&quot;, validators=[DataRequired()])</div><div class="line">    submit = SubmitField(&apos;Submit&apos;)</div></pre></td></tr></table></figure>
+<h3 id="3-在app-main-views-py中定义处理博客文章的主页路由："><a href="#3-在app-main-views-py中定义处理博客文章的主页路由：" class="headerlink" title="3. 在app/main/views.py中定义处理博客文章的主页路由："></a>3. 在<code>app/main/views.py</code>中定义处理博客文章的主页路由：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">from app.models import Post</div><div class="line"># ...</div><div class="line"></div><div class="line">@main.route(&apos;/&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;])</div><div class="line">def index():</div><div class="line">    form = PostForm()</div><div class="line">    if current_user.can(Permission.WRITE_ARTICLES) and form.validate_on_submit():</div><div class="line">        post = Post(body=form.body.data,</div><div class="line">                    author=current_user._get_current_object())    # 赋予当前用户对象</div><div class="line">        db.session.add(post)</div><div class="line">        db.session.commit()    # 当设置了请求结束后自动提交数据库变化时，该行可省略</div><div class="line">        return redirect(url_for(&apos;main.index&apos;))</div><div class="line">    page = request.args.get(&apos;page&apos;, 1, type=int)</div><div class="line">    pagination = Post.query.order_by(Post.timestamp.desc()).paginate(</div><div class="line">        page, per_page=current_app.config[&apos;FLASKY_POSTS_PER_PAGE&apos;],</div><div class="line">        error_out=False)</div><div class="line">    posts = pagination.items    # 获取当前分页对象的所有记录</div><div class="line">    return render_template(&apos;index.html&apos;, form=form, posts=posts, pagination=pagination)</div></pre></td></tr></table></figure>
+<ul>
+<li><code>current_user</code>是Flask-Login提供的，其表现类似用户对象，但实际上是一个轻度包装而由包含真正用户对象的对象。数据库需要获取真正的用户对象，所以需调用<code>_get_current_objet()</code>方法获取。</li>
+<li>客户端通过URL请求的页码数通过<code>requset.args.get()</code>方法获取，<code>request.args.get(&#39;pag&#39;, 1, type=int)</code>通过关键字<code>&#39;page&#39;</code>获取页码，如果没有指定页码，则默认请求第1页，<code>type=int</code>保证参数无法转换成整数时，返回默认值（即第一页）。</li>
+<li><code>paginate()</code>方法返回的是一个<code>Pagination</code>类对象（分页对象）。该方法第一个参数（必需要有）为页码，可选参数<code>per_page</code>用来指定每一页显示的记录数，如果没有指定，默认显示20个记录；另一个可选参数<code>error_out</code>，当其设为<code>True</code>时（默认值），如果请求的页码超出范围，则返回<code>404</code>错误；如果设为<code>False</code>，则返回一个<strong>空列表</strong>。常用的分页对象属性如表11-1。</li>
+</ul>
+<p>表11-1 Flask-SQLAlchemy分页对象的属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明    </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>items</td>
+<td>当前页面中的记录</td>
+</tr>
+<tr>
+<td>query</td>
+<td>分页的源查询</td>
+</tr>
+<tr>
+<td>page</td>
+<td>当前页码</td>
+</tr>
+<tr>
+<td>prev_num</td>
+<td>上一页的页码</td>
+</tr>
+<tr>
+<td>next_num</td>
+<td>下一页的页码</td>
+</tr>
+<tr>
+<td>has_next</td>
+<td>如果有下一页，则返回True</td>
+</tr>
+<tr>
+<td>has_prev</td>
+<td>如果有上一页，则返回True</td>
+</tr>
+<tr>
+<td>pages</td>
+<td>查询得到的总页数</td>
+</tr>
+<tr>
+<td>per_page</td>
+<td>每页显示的记录数量</td>
+</tr>
+<tr>
+<td>total</td>
+<td>查询返回的记录总数</td>
+</tr>
+</tbody>
+</table>
+<p>在分页对象上还可以调用一些方法，如表11-2</p>
+<p>表11-2 在Flask-SQLAlchemy对象上可调用的方法</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明   </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iter_pages(left_edge=2, left_current=2, right_current=5, right_edge=2)</td>
+<td>一个迭代器，返回一个在分页导航中显示的页数列表。这个列表的最左边显示left_edge个页码，当前页的左边显示left_current个页码，当前页的右边显示right_current个页码，最右边显示right_edge个页码。如按当前默认配置，在一个100页的列表中，当前页为第50页，则会返回一下页数：1、2、None、48、49、50、51、52、53、54、55、None、99、100。None表示页数之间的间隔。</td>
+</tr>
+<tr>
+<td>prev()</td>
+<td>上一页的分页对象 </td>
+</tr>
+<tr>
+<td>next()</td>
+<td>下一页的分页对象 </td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>这样，主页中就会显示特定数量的文章，如果想看第2页中的文章，可在URL后加上查询字符串<code>?page=2</code>，那么视图函数就会通过<code>request.args.get()</code>方法获取<code>&#39;page&#39;</code>页码加以处理。</li>
+</ul>
+<h3 id="4-在app-templates-posts-html中定义用于显示博客文章的局部模板："><a href="#4-在app-templates-posts-html中定义用于显示博客文章的局部模板：" class="headerlink" title="4. 在app/templates/_posts.html中定义用于显示博客文章的局部模板："></a>4. 在<code>app/templates/_posts.html</code>中定义用于显示博客文章的局部模板：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">&lt;ul class=&quot;posts&quot;&gt;</div><div class="line">    &#123;% for post in posts %&#125;</div><div class="line">    &lt;li class=&quot;post&quot;&gt;</div><div class="line">        &lt;div class=&quot;post-thumbnail&quot;&gt;</div><div class="line">            &lt;a href=&quot;&#123;&#123; url_for(&apos;main.user&apos;, username=post.author.username) &#125;&#125;&quot;&gt;</div><div class="line">                &lt;img class=&quot;img-rounded profile-thumbnail&quot; src=&quot;&#123;&#123; post.author.gravatar(size=40) &#125;&#125;&quot;&gt;</div><div class="line">            &lt;/a&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div class=&quot;post-content&quot;&gt;</div><div class="line">            &lt;div class=&quot;post-date&quot;&gt;&#123;&#123; moment(post.timestamp).fromNow() &#125;&#125;&lt;/div&gt;</div><div class="line">            &lt;div class=&quot;post-author&quot;&gt;&lt;a href=&quot;&#123;&#123; url_for(&apos;main.user&apos;, username=post.author.username) &#125;&#125;&quot;&gt;&#123;&#123; post.author.username &#125;&#125;&lt;/a&gt;&lt;/div&gt;</div><div class="line">            &lt;div class=&quot;post-body&quot;&gt;</div><div class="line">                &#123;% if post.body_html %&#125;</div><div class="line">                    &#123;&#123; post.body_html | safe &#125;&#125;</div><div class="line">                &#123;% else %&#125;</div><div class="line">                    &#123;&#123; post.body &#125;&#125;</div><div class="line">                &#123;% endif %&#125;</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;div class=&quot;post-footer&quot;&gt;</div><div class="line">                &#123;% if current_user == post.author %&#125;</div><div class="line">                &lt;a href=&quot;&#123;&#123;url_for(&apos;main.edit&apos;, id=post.id) &#125;&#125;&quot;&gt;</div><div class="line">                    &lt;span class=&quot;label label-primary&quot;&gt;Edit&lt;/span&gt;</div><div class="line">                &lt;/a&gt;</div><div class="line">                &#123;% elif current_user.is_administrator() %&#125;</div><div class="line">                &lt;a href=&quot;&#123;&#123; url_for(&apos;main.edit&apos;, id=post.id) &#125;&#125;&quot;&gt;</div><div class="line">                    &lt;span class=&quot;label label-danger&quot;&gt;Edit [Admin]&lt;/span&gt;</div><div class="line">                &lt;/a&gt;</div><div class="line">                &#123;% endif %&#125;</div><div class="line">                &lt;a href=&quot;&#123;&#123; url_for(&apos;main.post&apos;, id=post.id) &#125;&#125;&quot;&gt;</div><div class="line">                    &lt;span class=&quot;label label-default&quot;&gt;Permalink&lt;/span&gt;</div><div class="line">                &lt;/a&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/li&gt;</div><div class="line">    &#123;% endfor %&#125;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>因为在<code>index.html</code>模板中以及第7步的<code>user.html</code>模板中都需要显示博客文章，为了避免代码重写，将用于显示博客文章的模板分离出来，再在需要的时候加以引用（通过<code>include()</code>指令引用，如<code>include &#39;_post.html&#39;</code>）。为了区分独立模板和局部模板，局部模板一般在模板名加下划线<code>_</code>。</li>
+<li><code>if post.body_html</code>解释见第11步。</li>
+</ul>
+<h3 id="5-在app-templates-macros-html中定义分页导航条模板宏（显示上一页、1、2、3…下一页）："><a href="#5-在app-templates-macros-html中定义分页导航条模板宏（显示上一页、1、2、3…下一页）：" class="headerlink" title="5. 在app/templates/_macros.html中定义分页导航条模板宏（显示上一页、1、2、3…下一页）："></a>5. 在<code>app/templates/_macros.html</code>中定义分页导航条模板宏（显示上一页、1、2、3…下一页）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&#123;% macro pagination_widget(pagination, endpoint) %&#125;</div><div class="line">&lt;ul class=&quot;pagination&quot;&gt;</div><div class="line">    &lt;li&#123;% if not pagination.has_prev %&#125; class=&quot;disabled&quot;&#123;% endif %&#125;&gt;</div><div class="line">        &lt;a href=&quot;&#123;% if pagination.has_prev %&#125;&#123;&#123; url_for(endpoint, page=pagination.prev_num, **kwargs) &#125;&#125;&#123;% else %&#125;#&#123;% endif %&#125;&quot;&gt;</div><div class="line">            &amp;laquo;</div><div class="line">        &lt;/a&gt;</div><div class="line">    &lt;/li&gt;</div><div class="line">    &#123;% for p in pagination.iter_pages() %&#125;</div><div class="line">        &#123;% if p %&#125;</div><div class="line">            &#123;% if p == pagination.page %&#125;</div><div class="line">            &lt;li class=&quot;active&quot;&gt;</div><div class="line">                &lt;a href=&quot;&#123;&#123; url_for(endpoint, page=p, **kwargs) &#125;&#125;&quot;&gt;&#123;&#123; p &#125;&#125;&lt;/a&gt;</div><div class="line">            &lt;/li&gt;</div><div class="line">            &#123;% else %&#125;</div><div class="line">            &lt;li&gt;</div><div class="line">                &lt;a href=&quot;&#123;&#123; url_for(endpoint, page=p, **kwargs) &#125;&#125;&quot;&gt;&#123;&#123; p &#125;&#125;&lt;/a&gt;</div><div class="line">            &lt;/li&gt;</div><div class="line">            &#123;% endif %&#125;</div><div class="line">        &#123;% else %&#125;</div><div class="line">        &lt;li class=&quot;disable&quot;&gt;&lt;a href=&quot;#&quot;&gt;&amp;hellip;&lt;/a&gt;&lt;/li&gt;</div><div class="line">        &#123;% endif %&#125;</div><div class="line">    &#123;% endfor %&#125;</div><div class="line">    &lt;li&#123;% if not pagination.has_next %&#125; class=&quot;disabled&quot;&#123;% endif %&#125;&gt;</div><div class="line">        &lt;a href=&quot;&#123;% if pagination.has_next %&#125;&#123;&#123; url_for(endpoint, page=pagination.next_num, **kwargs) &#125;&#125;&#123;% else %&#125;#&#123;% endif %&#125;&quot;&gt;</div><div class="line">            &amp;raquo;</div><div class="line">        &lt;/a&gt;</div><div class="line">    &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&#123;% endmacro %&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>pagination_widget(pagination, endpoint)</code>分别接受<strong>分页对象</strong>和<strong>路由端点名</strong>作为参数。</li>
+<li>宏参数中不用加入<code>**kwargs</code>，分页宏会把接受到的所有关键字参数传给<code>url_for()</code>。这种方式也可以用在路由中，例如包含一个动态部分的资料页。</li>
+<li>分页对象的<code>iter_pages()</code>方法返回一个页数列表。</li>
+<li>分页链接通过<code>url_for()</code>生成。</li>
+</ul>
+<h3 id="6-在app-templates-index-html中引用-posts-html和-macros-html："><a href="#6-在app-templates-index-html中引用-posts-html和-macros-html：" class="headerlink" title="6. 在app/templates/index.html中引用_posts.html和_macros.html："></a>6. 在<code>app/templates/index.html</code>中引用<code>_posts.html</code>和<code>_macros.html</code>：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&#123;% extends &quot;base.html&quot; %&#125;</div><div class="line">&#123;% import &quot;bootstrap/wtf.html&quot; as wtf %&#125;</div><div class="line">&#123;% import &quot;_macros.html&quot; as macros %&#125;</div><div class="line"></div><div class="line">&#123;% block title %&#125;Flasky&#123;% endblock %&#125;</div><div class="line"></div><div class="line">&#123;% block page_content %&#125;</div><div class="line">&lt;div class=&quot;page-header&quot;&gt;</div><div class="line">    &lt;h1&gt;Hello, &#123;% if current_user.is_authenticated %&#125;&#123;&#123; current_user.username &#125;&#125;&#123;% else %&#125;Stranger&#123;% endif %&#125;!&lt;/h1&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div&gt;</div><div class="line">    &#123;% if current_user.can(Permission.WRITE_ARTICLES) %&#125;</div><div class="line">    &#123;&#123; wtf.quick_form(form) &#125;&#125;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div><div class="line">&#123;% include &apos;_posts.html&apos; %&#125;</div><div class="line">&#123;% if pagination %&#125;</div><div class="line">&lt;div class=&quot;pagination&quot;&gt;</div><div class="line">    &#123;&#123; macros.pagination_widget(pagination, &apos;main.index&apos;) &#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line">&#123;% endif %&#125;</div><div class="line">&#123;% endblock %&#125;</div><div class="line"></div><div class="line">&#123;% block scripts %&#125;</div><div class="line">&#123;&#123; super() &#125;&#125;</div><div class="line">&#123;&#123; pagedown.include_pagedown() &#125;&#125;</div><div class="line">&#123;% endblock %&#125;</div></pre></td></tr></table></figure>
+<h3 id="7-在app-main-views-py中定义在个人资料页面中显示该用户所写文章的路由："><a href="#7-在app-main-views-py中定义在个人资料页面中显示该用户所写文章的路由：" class="headerlink" title="7. 在app/main/views.py中定义在个人资料页面中显示该用户所写文章的路由："></a>7. 在<code>app/main/views.py</code>中定义在个人资料页面中显示该用户所写文章的路由：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">@main.route(&apos;/user/&lt;username&gt;&apos;)</div><div class="line">def user(username):</div><div class="line">    user = User.query.filter_by(username=username).first_or_404()</div><div class="line">    page = request.args.get(&apos;page&apos;, 1, type=int)</div><div class="line">    pagination = user.posts.order_by(Post.timestamp.desc()).paginate(</div><div class="line">        page, per_page=current_app.config[&apos;FLASKY_POSTS_PER_PAGE&apos;],</div><div class="line">        error_out=False)</div><div class="line">    posts = pagination.items</div><div class="line">    return render_template(&apos;user.html&apos;, user=user, posts=posts, pagination=pagination)</div></pre></td></tr></table></figure>
+<ul>
+<li>用户发布的文章通过<code>User.posts</code>关系获取。</li>
+</ul>
+<h1 id="11-4-使用Markdown和Flask-PageDown支持富文本文章"><a href="#11-4-使用Markdown和Flask-PageDown支持富文本文章" class="headerlink" title="11.4 使用Markdown和Flask-PageDown支持富文本文章"></a>11.4 使用Markdown和Flask-PageDown支持富文本文章</h1><p>实现这个功能需要用到以下一些包：</p>
+<ul>
+<li>PageDown：使用javaScript实现客户端Markdown到HTML的转换程序。</li>
+<li>Flask-PageDown：为Flask包装的PageDown，把PageDown集成到Flask—WTF表单中。</li>
+<li>Markdown：使用Python实现的服务器端Markdown到HTML的转换程序。</li>
+<li>Bleach：使用Python实现的HTML清理器。</li>
+</ul>
+<h3 id="8-在app-init-py中初始化Flask-PageDown："><a href="#8-在app-init-py中初始化Flask-PageDown：" class="headerlink" title="8. 在app/__init__.py中初始化Flask-PageDown："></a>8. 在<code>app/__init__.py</code>中初始化Flask-PageDown：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">from flask_pagedown import PageDown</div><div class="line"># ...</div><div class="line"></div><div class="line">pagedown = PageDown()</div><div class="line"></div><div class="line">def create_app(config_name):</div><div class="line">    # ...</div><div class="line">    pagedown = pagedown.init_app(app)</div><div class="line">    # ...</div></pre></td></tr></table></figure>
+<h3 id="9-在app-templates-index-html中添加Flask-PageDown模板声明："><a href="#9-在app-templates-index-html中添加Flask-PageDown模板声明：" class="headerlink" title="9. 在app/templates/index.html中添加Flask-PageDown模板声明："></a>9. 在<code>app/templates/index.html</code>中添加Flask-PageDown模板声明：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;% block scripts %&#125;</div><div class="line">&#123;&#123; super() &#125;&#125;</div><div class="line">&#123;&#123; pagedown.include_pagedown() &#125;&#125;</div><div class="line">&#123;% endblock %&#125;</div></pre></td></tr></table></figure>
+<h3 id="10-在app-models-py中在Post模型中处理Markdown文本："><a href="#10-在app-models-py中在Post模型中处理Markdown文本：" class="headerlink" title="10. 在app/models.py中在Post模型中处理Markdown文本："></a>10. 在<code>app/models.py</code>中在Post模型中处理Markdown文本：</h3><p>提交表单后，POST请求<strong>只会发送纯Markdown文本，页面中显示的HTML预览会被丢掉</strong>。<br>安全起见，我们（1）只提交Markdown源文件，（2）然后在服务器上使用Markdown将其转换为HTML文本，（3）得到HTML文本后，在使用Bleach进行清理，确保其中只包含几个允许使用的HTML标签，（4）将清理后得到的HTML文本存储到<code>body_html</code>字段中以提高效率（不用每次请求时都转换）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">from markdown import markdown</div><div class="line">import bleach</div><div class="line"># ...</div><div class="line"></div><div class="line">class Post(db.Model):</div><div class="line">    # ...</div><div class="line">    body_html = db.Column(db.Text)</div><div class="line">    </div><div class="line">    # ...</div><div class="line">    </div><div class="line">    @staticmethod</div><div class="line">    def on_changed_body(target, value, oldvalue, initiator):</div><div class="line">        allowed_tags = [&apos;a&apos;, &apos;abbr&apos;, &apos;acronym&apos;, &apos;b&apos;, &apos;blockquote&apos;, &apos;code&apos;,</div><div class="line">                        &apos;em&apos;, &apos;i&apos;, &apos;li&apos;, &apos;ol&apos;, &apos;pre&apos;, &apos;strong&apos;, &apos;ul&apos;,</div><div class="line">                        &apos;h1&apos;, &apos;h2&apos;, &apos;h3&apos;,&apos;p&apos;]</div><div class="line">        target.body_html = bleach.linkify(bleach.clean(</div><div class="line">            markdown(value, output_format=&apos;html&apos;),</div><div class="line">            tags=allowed_tags, strip=True))</div><div class="line">            </div><div class="line">db.event.listen(Post.body, &apos;set&apos;, Post.on_changed_body)</div></pre></td></tr></table></figure>
+<ul>
+<li><code>on_changed_body</code>函数注册在<code>body</code>字段上，是SQLAlchemy<code>&#39;set&#39;</code>事件的监听程序，这意味着只要这个类实例的body字段设了新值，该函数就会被调用。</li>
+<li>真正的Markdown转换成HTMl分三步完成：（1）<code>markdown()</code>函数把Markdown文本转换成HTML文本。（2）将得到的HTMl文本和允许使用的HTML标签列表传给<code>clean()</code>函数，删除所有不再白名单中的HTML标签。（3）将上一步得到的HTML文本传给<code>linkify()</code>函数，把纯文本中的URL链接转换成适当的<code>&lt;a&gt;</code>链接（这一步是很必要的，因为Markdown规范没有为自动生成链接提供官方支持）。</li>
+</ul>
+<h3 id="11-在app-templates-posts-html中判断是否使用文章的HTNL格式："><a href="#11-在app-templates-posts-html中判断是否使用文章的HTNL格式：" class="headerlink" title="11. 在app/templates/_posts.html中判断是否使用文章的HTNL格式："></a>11. 在<code>app/templates/_posts.html</code>中判断是否使用文章的HTNL格式：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line">&lt;div class=&quot;post-body&quot;&gt;</div><div class="line">    &#123;% if post.body_html %&#125;</div><div class="line">        &#123;&#123; post.body_html | sage &#125;&#125;</div><div class="line">    &#123;% else %&#125;</div><div class="line">        &#123;&#123; post.body &#125;&#125;</div><div class="line">    &#123;% endif %&#125;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>渲染HTNL格式时使用<code>| safe</code>后缀，作用时告诉Jinja2不要转移HTML元素（默认情况下，出于安全考虑，Jinja2会转移所有模板变量）。</li>
+</ul>
+<h3 id="12-在app-main-views-py中定义文章页面路由："><a href="#12-在app-main-views-py中定义文章页面路由：" class="headerlink" title="12. 在app/main/views.py中定义文章页面路由："></a>12. 在<code>app/main/views.py</code>中定义文章页面路由：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">@main.route(&apos;/post/&lt;int:id&gt;&apos;)</div><div class="line">def post(id):</div><div class="line">    post = Post.query.get_or_404(id)</div><div class="line">    return render_template(&apos;post.html&apos;, post=[post])</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：<code>post.html</code>模板中也通过引用<code>_psots.html</code>显示博客文章，所以传参时要传一个列表（可迭代对象），因为<code>_psots.html</code>中通过<code>for</code>循环获取每一篇文章。</p>
+<h3 id="13-在app-templates-posts-html中添加文章链接："><a href="#13-在app-templates-posts-html中添加文章链接：" class="headerlink" title="13. 在app/templates/_posts.html中添加文章链接："></a>13. 在<code>app/templates/_posts.html</code>中添加文章链接：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;ul class=&apos;posts&quot;&gt;</div><div class="line">    &#123;% for post in posts %&#125;</div><div class="line">    &lt;li class=&quot;psot&quot;&gt;</div><div class="line">        ...</div><div class="line">        &lt;div class=&quot;post-content&quot;&gt;</div><div class="line">            ....</div><div class="line">            &lt;div class=&quot;post-footer&quot;&gt;</div><div class="line">                &lt;a href=&quot;&#123;&#123; url_for(&apos;main.post&apos;, id=post.id) &#125;&#125;&quot;&gt;</div><div class="line">                    &lt;span class=&quot;label label-default&quot;&gt;Permalink&lt;/span&gt;</div><div class="line">                &lt;/a&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/li&gt;</div><div class="line">    &#123;% endfor %&#125;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+<h3 id="14-在app-templates-post-html中引用-posts-html："><a href="#14-在app-templates-post-html中引用-posts-html：" class="headerlink" title="14. 在app/templates/post.html中引用_posts.html："></a>14. 在<code>app/templates/post.html</code>中引用<code>_posts.html</code>：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;% extends &quot;base.html&quot; %&#125;</div><div class="line">&#123;% import &quot;_macros.html&quot; as macros %&#125;</div><div class="line"></div><div class="line">&#123;% block title %&#125;Flasky - Post&#123;% endblock %&#125;</div><div class="line"></div><div class="line">&#123;% block page_content %&#125;</div><div class="line">&#123;% include &quot;_posts.html&quot; %&#125;</div><div class="line">&#123;% endblock %&#125;</div></pre></td></tr></table></figure>
+<h1 id="11-6-博客文章编辑页面"><a href="#11-6-博客文章编辑页面" class="headerlink" title="11.6 博客文章编辑页面"></a>11.6 博客文章编辑页面</h1><h3 id="15-在app-main-views-py中定义编辑文章的路由："><a href="#15-在app-main-views-py中定义编辑文章的路由：" class="headerlink" title="15. 在app/main/views.py中定义编辑文章的路由："></a>15. 在<code>app/main/views.py</code>中定义编辑文章的路由：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># ...</div><div class="line"></div><div class="line">@main.route(&apos;/edit/&lt;int:id&gt;&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;])</div><div class="line">@login_required</div><div class="line">def edit(id):</div><div class="line">    post = Post.query.get_or_404(id)</div><div class="line">    if current_user != post.author and \</div><div class="line">        not current_user.can(Permission.ADMINISTER):</div><div class="line">        abort(403)</div><div class="line">    form = PostForm()</div><div class="line">    if form.validate_on_submit():</div><div class="line">        post.body = form.body.data</div><div class="line">        db.session.add(post)</div><div class="line">        flash(&apos;The post has been updated.&apos;)</div><div class="line">        return redirect(url_for(&apos;main.post&apos;, id=post.id))</div><div class="line">    form.body.data = post.body</div><div class="line">    return render_template(&apos;edit_post.html&apos;, form=form)</div></pre></td></tr></table></figure>
+<p><strong>注意</strong>：这个视图函数的作用是<strong>只允许博客文章作者编辑（管理员除外，管理员能编辑所有用户文章）</strong>。如果用户试图编辑其他用户的文章，视图函数则会返回403错误。这里使用的PostForm表单类和主页中使用的是同一个。</p>
+<h3 id="16-在app-templates-edit-post-html中定义编辑博客文章的模板："><a href="#16-在app-templates-edit-post-html中定义编辑博客文章的模板：" class="headerlink" title="16. 在app/templates/edit_post.html中定义编辑博客文章的模板："></a>16. 在<code>app/templates/edit_post.html</code>中定义编辑博客文章的模板：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;% extends &quot;base.html&quot; %&#125;</div><div class="line">&#123;% import &quot;bootstrap/wtf.html&quot; as wtf %&#125;</div><div class="line"></div><div class="line">&#123;% block title %&#125;Flasky - Edit Post&#123;% endblock %&#125;</div><div class="line"></div><div class="line">&#123;% block page_content %&#125;</div><div class="line">&lt;div class=&quot;page-header&quot;&gt;</div><div class="line">    &lt;h1&gt;Edit Post&lt;/h1&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div&gt;</div><div class="line">    &#123;&#123; wtf.quick_form(form) &#125;&#125;</div><div class="line">&lt;/div&gt;</div><div class="line">&#123;% endblock %&#125;</div><div class="line"></div><div class="line">&#123;% block scripts %&#125;</div><div class="line">&#123;&#123; super() &#125;&#125;</div><div class="line">&#123;&#123; pagedown.include_pagedown() &#125;&#125;</div><div class="line">&#123;% endblock %&#125;</div></pre></td></tr></table></figure>
+<h3 id="17-在app-templates-posts-html中添加一个在文章下面指向编辑文章页面的链接："><a href="#17-在app-templates-posts-html中添加一个在文章下面指向编辑文章页面的链接：" class="headerlink" title="17. 在app/templates/_posts.html中添加一个在文章下面指向编辑文章页面的链接："></a>17. 在<code>app/templates/_posts.html</code>中添加一个在文章下面指向编辑文章页面的链接：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&lt;ul class=&apos;posts&quot;&gt;</div><div class="line">    &#123;% for post in posts %&#125;</div><div class="line">    &lt;li class=&quot;psot&quot;&gt;</div><div class="line">        ...</div><div class="line">        &lt;div class=&quot;post-content&quot;&gt;</div><div class="line">            ....</div><div class="line">            &lt;div class=&quot;post-footer&quot;&gt;</div><div class="line">                &#123;% if current_user == post.author %&#125;</div><div class="line">                &lt;a href=&quot;&#123;&#123;url_for(&apos;main.edit&apos;, id=post.id) &#125;&#125;&quot;&gt;</div><div class="line">                    &lt;span class=&quot;label label-primary&quot;&gt;Edit&lt;/span&gt;</div><div class="line">                &lt;/a&gt;</div><div class="line">                &#123;% elif current_user.is_administrator() %&#125;</div><div class="line">                &lt;a href=&quot;&#123;&#123; url_for(&apos;main.edit&apos;, id=post.id) &#125;&#125;&quot;&gt;</div><div class="line">                    &lt;span class=&quot;label label-danger&quot;&gt;Edit [Admin]&lt;/span&gt;</div><div class="line">                &lt;/a&gt;</div><div class="line">                &#123;% endif %&#125;</div><div class="line">                &lt;a href=&quot;&#123;&#123; url_for(&apos;main.post&apos;, id=post.id) &#125;&#125;&quot;&gt;</div><div class="line">                    &lt;span class=&quot;label label-default&quot;&gt;Permalink&lt;/span&gt;</div><div class="line">                &lt;/a&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/li&gt;</div><div class="line">    &#123;% endfor %&#125;</div><div class="line">&lt;/ul&gt;</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-12-30T15:29:29.000Z" itemprop="dateUpdated">2017-12-30 23:29:29</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/" target="_blank" rel="external">https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flask/">Flask</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/&title=《把《Flask Web开发》读薄系列之第十一章 博客文章》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/&title=《把《Flask Web开发》读薄系列之第十一章 博客文章》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第十一章 博客文章》 — Richard‘s Blog&url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十二章 关注者/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第十二章 关注者</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十章 用户资料/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第十章 用户资料</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/&title=《把《Flask Web开发》读薄系列之第十一章 博客文章》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/&title=《把《Flask Web开发》读薄系列之第十一章 博客文章》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《把《Flask Web开发》读薄系列之第十一章 博客文章》 — Richard‘s Blog&url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/12/30/把《Flask Web开发》读薄系列之第十一章 博客文章/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMUlEQVR42u3aQW4jMQwEQP//09nrArt2uskx4JFLpyATSyoNEJqkHo94/Pw18t88m+ffn589fTbb63kuG9jY2Ng3Yf+8HJtl8nmegfORW7CxsbFPZSdB4jWjPcr84GZH+YsRGxsb+4vZ+9QlCTntU2xsbGzsvHDz7AiKJUcBclNgwsbGxv4GdhsqckB+TJsS0htradjY2Ngfz26LO5/881v629jY2NgfzL6qpfq6nPQ62WgvAP2sBzY2NvZJ7M01mqviZ94qztlR8wAbGxv7CHZSdpk1CTYBLwcnx/fITxQbGxv7huzZlcfXSyZP28ZDjk8U2NjY2Oex2/SjTSrylCPKnEZNYmxsbOxT2XlJKF94c3GnDW/JMWFjY2OfzZ41UNviUfu0PY682by6voONjY19E3b+dX9z4SYvJ7VpTD0PNjY29s3Z7wgebbOhbSHPGhKPdiJsbGzsW7Hzre83OruOk+8k2hs2Njb2Qex9MMtn2BenZsG1uJ2EjY2NfUN2fq9n1rLNr+zsjyBfBRsbG/skdtv6bQtGs8s6+xCVHwc2Njb22exZaSn/zl9frwleSbtDbGxs7JPY7ygJ7be4T4dWtTRsbGzsm7Dbcv/sL/N+RZuQDGMyNjY29hHsNuTk5aT9nLPrO9GLxMbGxj6O3X5sViraN3HbFOXpKtjY2NgHsdstztoJm/DWNpLrohI2Njb2zdmzNkByNLOQdm0o/SVuY2NjYx/Knv2Hb0v2+9J/3uL9zzzY2NjYx7HzBsCsSdAWidrGbfIysLGxsb+BPUtCkiShLQbNQmPCrvMYbGxs7I9n5x+YHUc+W3v5sj1obGxs7FPZs6LS5irkTznylKMoMGFjY2MfxN4EsPY65qZJsC85XRa3sbGxsT+MfVU4mbWBN1cq81TkMVsMGxsb+ybsfFyVirQhMz+yojGAjY2NfRy7bfdeW+7Jy0CzvT09OGxsbOzj2JstbopHl9XG2nWxsbGxv5Ldhqjk6TvCWJGKYGNjY38Ze1bQn7UTNq/ksYmE2NjY2Ldl50WlZPk8tORN4vaV/PKCsbGxsQ9i70s5M/z+7/MkZ9XfxsbGxv5c9h/zlBxfBkQzNwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
