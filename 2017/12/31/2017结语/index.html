@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>2017结语 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="2017,总结">
+    <meta name="description" content="《Flask Web开发——基于Python的Web应用开发实战》已经赶在今年结束之前看完了，笔记也做到了第十四章，后面的章节就不做了，因为最后一部分与开发的关系不大。根据当时的笔记记录，我是从2017年11月13日开始看《Flask Web开发》的，到今天已经是一个半月了。当初在读的时候发现进度有点慢，因为同一章的内容我至少要过三遍。一遍是第一次阅读，一遍是敲代码实现书中案例，一遍是做笔记。三遍">
+<meta name="keywords" content="2017,总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017结语">
+<meta property="og:url" content="https://richardrw.github.io/2017/12/31/2017结语/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="《Flask Web开发——基于Python的Web应用开发实战》已经赶在今年结束之前看完了，笔记也做到了第十四章，后面的章节就不做了，因为最后一部分与开发的关系不大。根据当时的笔记记录，我是从2017年11月13日开始看《Flask Web开发》的，到今天已经是一个半月了。当初在读的时候发现进度有点慢，因为同一章的内容我至少要过三遍。一遍是第一次阅读，一遍是敲代码实现书中案例，一遍是做笔记。三遍">
+<meta property="og:updated_time" content="2017-12-31T04:06:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2017结语">
+<meta name="twitter:description" content="《Flask Web开发——基于Python的Web应用开发实战》已经赶在今年结束之前看完了，笔记也做到了第十四章，后面的章节就不做了，因为最后一部分与开发的关系不大。根据当时的笔记记录，我是从2017年11月13日开始看《Flask Web开发》的，到今天已经是一个半月了。当初在读的时候发现进度有点慢，因为同一章的内容我至少要过三遍。一遍是第一次阅读，一遍是敲代码实现书中案例，一遍是做笔记。三遍">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">2017结语</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">2017结语</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-31T04:05:16.000Z" itemprop="datePublished" class="page-time">
+  2017-12-31
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#看代码要先有“大局观”"><span class="post-toc-number">1.</span> <span class="post-toc-text">看代码要先有“大局观”</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#学会异常查找和处理"><span class="post-toc-number">2.</span> <span class="post-toc-text">学会异常查找和处理</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#阅读要有耐心"><span class="post-toc-number">3.</span> <span class="post-toc-text">阅读要有耐心</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一蹴而就是不大现实的，成功是一步步得来的"><span class="post-toc-number">4.</span> <span class="post-toc-text">一蹴而就是不大现实的，成功是一步步得来的</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#失败是占多数的，成功是少数的"><span class="post-toc-number">5.</span> <span class="post-toc-text">失败是占多数的，成功是少数的</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-2017结语"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">2017结语</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-31 12:05:16" datetime="2017-12-31T04:05:16.000Z"  itemprop="datePublished">2017-12-31</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>《Flask Web开发——基于Python的Web应用开发实战》已经赶在今年结束之前看完了，笔记也做到了第十四章，后面的章节就不做了，因为最后一部分与开发的关系不大。根据当时的笔记记录，我是从2017年11月13日开始看《Flask Web开发》的，到今天已经是一个半月了。当初在读的时候发现进度有点慢，因为同一章的内容我至少要过三遍。一遍是第一次阅读，一遍是敲代码实现书中案例，一遍是做笔记。三遍下来平均每章要三天才能过完（因为平时只有晚上才有时间），当时也想过不写笔记了，但是想起自己当初想要弄一个《把Flask Web开发读薄系列》，于是就坚持了下来。通过这一个半月以来的学习，对阅读书籍、阅读代码的方式还是有些收获的。</p>
+<h1 id="看代码要先有“大局观”"><a href="#看代码要先有“大局观”" class="headerlink" title="看代码要先有“大局观”"></a>看代码要先有“大局观”</h1><p>看代码时尽量把自己的头抬起来，使自己的眼睛焦点不在一个个单词上。要先有大局观，把整段代码映入眼帘中，浏览个大概，初步判断该段代码要想实现一个什么样的功能，然后再把视野缩小到一个或多个函数段或特定的几行，看看大概的实现逻辑时怎么样的，最后把视野放到几行或一行上，看看调用了什么方法。中间把视野放到函数段这一步可以根据代码量的多少来决定是否循环这一步，直到视野一步一步地缩小到一定小的范围。切记，看一段代码，绝不能像阅读文章那样一行一行地从左往右一个词一个词地去看，因为这样会使你纠结于方法的作用（如果中途碰到了你不懂的方法，你很容易纠结在此，这样也就很难读下去了），总之阅读代码一定要先有“大局观”。</p>
+<h1 id="学会异常查找和处理"><a href="#学会异常查找和处理" class="headerlink" title="学会异常查找和处理"></a>学会异常查找和处理</h1><p>运行代码，总避免不了出现异常。要处理异常，要先学会看异常信息，根据抛出来的异常信息可以先看看最后的信息是什么，是什么错误；然后从最初的地方开始寻找，找出哪个文件先出错了，错误的信息是什么；接着再往下找，找到一下个出错的文件，如果没有，就看看往下的异常信息说了什么，结合最后抛出的异常信息文本，一步一步找到问题所在。</p>
+<h1 id="阅读要有耐心"><a href="#阅读要有耐心" class="headerlink" title="阅读要有耐心"></a>阅读要有耐心</h1><p>不知大家是否有这个现象：一本书，大概前1/4和后1/4会读的很顺很快，中间的1/2往往是最耗时间最耗精力的。很多时候如果没有足够的耐心，当阅读往1/4多一点的时候就会发现进度比之前慢了，已看完的页数的增加速度比之前慢了一大截，由此很容易出现急躁的心情，进而就很难再看下去了。对于这种情况，我的做法很简单：在开始阅读之前告诉自己，这本书我将采用“二八法则”，用20%的时间去阅读前后部分，用80%的时间取阅读中间部分。这样一来就等同于做了阅读时间安排计划以及给了自己心理暗示，到中间阅读进度变缓时前后的“进度差”不会就给心理造成太大的伤害，因为我之前已经初步预估了时间做了安排，这一部分我将花费更多的时间，完全符合预期和计划，可以接受，这样我就可以耐心的继续往下阅读，避免了急躁的心情了。</p>
+<p>最后我想分享一些关于人生的想法。这些想法是前天迎春长跑后取朋友的店里完娃娃机得出来的。</p>
+<h1 id="一蹴而就是不大现实的，成功是一步步得来的"><a href="#一蹴而就是不大现实的，成功是一步步得来的" class="headerlink" title="一蹴而就是不大现实的，成功是一步步得来的"></a>一蹴而就是不大现实的，成功是一步步得来的</h1><p>为什么这么说？先来说说故事吧。那天我玩娃娃机的时候，我发现，要想一次就能把娃娃夹出来是不大现实的，你要一步一步地把你想要的那只娃娃一次一次地靠近洞口，当娃娃离洞口比较近时，你的容错率也就变大了，因为你除了一步把娃娃夹到洞口外，还可以即使夹不住也能依靠掉下来的惯性滚到洞口，这样你成功夹到娃娃的概率就大很多。相反，同行的一些朋友，在一台娃娃机夹了4-5次还是失败，就认为这台机器不行，于是换了台机器重新开始，再遇到4-5次夹不到，又换。如此一来，我想成功的概率是最低的，每一台机器你都要重新适应它的“力度”，重新校准自己的操作，这很浪费自我资源（游戏币）。你要懂得一步一步来，就好像打桌球，很多情况下一杆进洞是不大可能的，此时你就要学会“做局”，每一杆打出去，都要达到即使不进洞，也比上次更靠近洞口，那么下一次你成功的机会就更大了。</p>
+<p>同理，我想现实世界也是一样的情况，很多时候我们都不能一蹴而就，一步登天，一次就成功，在这种情况下要学会坚持目标，认定“那只你想要的娃娃”，把自己比作娃娃机里的娃娃，让自己一步一步地往“洞口”靠近，如此操作，你成功的概率也就会越来越大。</p>
+<h1 id="失败是占多数的，成功是少数的"><a href="#失败是占多数的，成功是少数的" class="headerlink" title="失败是占多数的，成功是少数的"></a>失败是占多数的，成功是少数的</h1><p>就如娃娃机那样，在你成功夹起娃娃前的那些操作，都是失败的。通过这个例子，我们要看到两点：一是生活中我们大多数情况下都是失败的，不用对自己太苛刻，要学会接纳不成功的自己，放过自己。二是要让失败有点价值。虽然说在夹起娃娃之前的那些操作都是失败的，但它们都失败的有价值，因为从是否能夹到娃娃角度看，这些失败是肯定的，因为它们都夹不出娃娃来；但从是否能“做局”让下次成功概率更大，这些失败很多都是否定的，因为大多数情况下它们都能让你“做局”成功，让你更靠近洞口。所以，尽管人生大多数都是失败的，我们是否应该由着它失败呢？不是的，我们要让失败们都有一些价值，只要能让我们更靠近”洞口“的失败，都不算太失败。</p>
+<p>2017年过完今天就结束了，在这一年里，我阅读了哪些书籍？</p>
+<ul>
+<li>《当我谈跑步时 我谈些什么》</li>
+<li>《你只是看起来很努力》</li>
+<li>《写作这回事——创作生涯回忆录》</li>
+<li>《我们仨》</li>
+<li>《穷查理宝典》</li>
+<li>《Head First Python》</li>
+<li>《Python网络数据采集》</li>
+<li>《Flask Web开发》</li>
+<li>《数据之美》</li>
+<li>《HTML、CSS菜鸟教程（网络）》</li>
+</ul>
+<p>2017年过去了，我学到了什么？</p>
+<ul>
+<li style="list-style: none"><input type="checkbox" checked> Git</li>
+<li style="list-style: none"><input type="checkbox" checked> HTML、CSS基本概念</li>
+<li style="list-style: none"><input type="checkbox" checked> Python爬虫</li>
+<li style="list-style: none"><input type="checkbox" checked> Flask Web开发</li>
+</ul>
+<p>咋一看，2017年收获还是挺充实的。2018年里，要保持阅读习惯，多阅读多学习，对周围事物抱有好奇心和新鲜感，树立终身学习态度。</p>
+<p>—— 窗台上的听风者  Richrad<br>      2017年12月31日</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-12-31T04:06:13.000Z" itemprop="dateUpdated">2017-12-31 12:06:13</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2017/12/31/2017结语/" target="_blank" rel="external">https://richardrw.github.io/2017/12/31/2017结语/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2017/">2017</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/总结/">总结</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/12/31/2017结语/&title=《2017结语》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/12/31/2017结语/&title=《2017结语》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/12/31/2017结语/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《2017结语》 — Richard‘s Blog&url=https://richardrw.github.io/2017/12/31/2017结语/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/12/31/2017结语/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/30/把《Flask Web开发》读薄系列之第十四章 应用编程接口/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">把《Flask Web开发》读薄系列之第十四章 应用编程接口</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2017/12/31/2017结语/&title=《2017结语》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2017/12/31/2017结语/&title=《2017结语》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2017/12/31/2017结语/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《2017结语》 — Richard‘s Blog&url=https://richardrw.github.io/2017/12/31/2017结语/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2017/12/31/2017结语/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3azY7CMAxFYd7/pTvSrJCYhuPrgqbOyQrR34/FJY7zeOBx/I7nz8/j9fvXq87O4UcvGDJkyLgt41iO7BXJ+fyq9TkyZMjYh8FDlr9WFtD8KTJkyJBB4nU9pSPfVJ8rQ4YMGRfcDpejFz9XhgwZGzCyEjQLzbOjX6rFZciQcUNG57U+/fnj/Q0ZMmT8e8ZRHNWm5vpZ/G5v3kqGDBmjGWTh/qrikx/l6Yp+JxkyZNyckQVrdeLIQ5OHOPrfkCFDxiBGFnN8OwXfSPHmdc+eJUOGjNEMvrhGmpF8+wWfjLZaAjJkyBjBqAYuh/GQ5c+97H9DhgwZN2QUykXAIOevA5eXuzJkyNiNkcUfb1Jm8Y3KYBkyZGzA4EtdWRug/wMVZrgyZMgYyqiWmqiwbAdrYdOGDBkyNmPw2K1Gc7UAJsEtQ4aMHRg8FrMwzRoD4XYxGTJkDGVUl+Cz9gAvhvkWjXJOy5Ah47aMrJjsB2jnFdGZMmTIGMrg4Rsu3xdL32pky5AhYyqDT/iyuMx+lNaqoQwZMjZgZBNBPqXrz15P1wtlyJAxlEHajaTQrS6cfQ4pQ4aMeYyjOKrgarOTtCL+uI8MGTJGM/jIQnZ9Dr+q1c6UIUPGCEZ/y0UWgv3tHTJkyNiNkW28IGUwD9Bq9KMDMmTI2IzRObPfLkVTQxkyZMjA4UjCutM8kCFDxp4MXsSur8riNbuzDBky9mFkjYHqdg3OyCaUMmTIGMr4AVGBRrzHY/yjAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
