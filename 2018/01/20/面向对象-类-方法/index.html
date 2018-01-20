@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>面向对象-类-方法 | Richard‘s Blog | 记录敲码过程中遇到的细节和问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Python 类 面向对象">
+    <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435class Mori(object):    name = &amp;quot;我是类的公有属性&amp;quot;        # 公有方法，可以在类的内部调用，也可以在类的外部通过实例对象调用    def fun1(self):        print(self.name)">
+<meta name="keywords" content="Python 类 面向对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象-类-方法">
+<meta property="og:url" content="https://richardrw.github.io/2018/01/20/面向对象-类-方法/index.html">
+<meta property="og:site_name" content="Richard‘s Blog">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435class Mori(object):    name = &amp;quot;我是类的公有属性&amp;quot;        # 公有方法，可以在类的内部调用，也可以在类的外部通过实例对象调用    def fun1(self):        print(self.name)">
+<meta property="og:updated_time" content="2018-01-20T07:07:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象-类-方法">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435class Mori(object):    name = &amp;quot;我是类的公有属性&amp;quot;        # 公有方法，可以在类的内部调用，也可以在类的外部通过实例对象调用    def fun1(self):        print(self.name)">
+    
+        <link rel="alternate" type="application/atom+xml" title="Richard‘s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/author.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Richard</h5>
+          <a href="mailto:weichang321@gmail.com" title="weichang321@gmail.com" class="mail">weichang321@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/richardrw" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/6378627091" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">面向对象-类-方法</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">面向对象-类-方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-20T07:06:31.000Z" itemprop="datePublished" class="page-time">
+  2018-01-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结："><span class="post-toc-number">1.</span> <span class="post-toc-text">总结：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-面向对象-类-方法"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">面向对象-类-方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-20 15:06:31" datetime="2018-01-20T07:06:31.000Z"  itemprop="datePublished">2018-01-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">class Mori(object):</div><div class="line">    name = &quot;我是类的公有属性&quot;</div><div class="line">    </div><div class="line">    # 公有方法，可以在类的内部调用，也可以在类的外部通过实例对象调用</div><div class="line">    def fun1(self):</div><div class="line">        print(self.name)</div><div class="line">        print(&quot;我是公有方法&quot;)</div><div class="line">        self.__fun2()    # 在类的内部调用私有方法</div><div class="line">    </div><div class="line">    # 私有方法， 只能在类的内部调用</div><div class="line">    def fun2(self):</div><div class="line">        print(&quot;我是私有方法“)</div><div class="line">    </div><div class="line">    # 类方法，可以在类的内部和外部调用，也可以通过类名直接调用</div><div class="line">    @classmethod</div><div class="line">    def classFun(self):</div><div class="line">        print(&quot;我是类方法&quot;)</div><div class="line">    </div><div class="line">    # 静态方法，可以在类的内部和外部调用，也可以通过类名直接调用</div><div class="line">    @staticmethod</div><div class="line">    def staticFun():</div><div class="line">        &apos;&apos;&apos;注意，这里因为静态方法定义时不需要形参self，因此如果访问类的成员属性，必须通过类名调用(className.varName或className.__varName)</div><div class="line">        &apos;&apos;&apos;</div><div class="line">        print(Mori.name)</div><div class="line">        print(&quot;我是静态方法&quot;)</div><div class="line"></div><div class="line">if __name__ == &apos;__main&apos;__:</div><div class="line">    myClass = Mori()</div><div class="line">    myClass.fun1()    # 在类的外部通过实例对象调用公有方法</div><div class="line">    myClass.__fun2()  # 不能执行，因为私有方法不能在类的外部调用</div><div class="line">    Mori,fun1()      # 不能执行，因为公有方法不能被类名直接调用</div><div class="line">    myClass.classFun() # 类方法可以通过实例对象被调用</div><div class="line">    Mori.classFun()    # 类方法也可以通过类名被直接调用</div><div class="line">    myClass.staticFun()   # 静态方法可以通过实例对象被调用</div><div class="line">    Mori.staticFun()      # 静态方法也可以通过类名被直接调用</div></pre></td></tr></table></figure>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ol>
+<li><p>类由<strong>成员变量（属性）</strong>和<strong>成员函数（方法）</strong>组成。<br>1.1  <strong>成员变量</strong>有：<strong>公有属性（也叫类属性）</strong>和<strong>私有属性</strong>。<br>1.2 <strong>公有属性（类属性）</strong>：既可以在类的内部被访问（通过<code>self.varName</code>)，也可以在类的外部被访问（通过<code>instance.varName</code>)，也可以通过类名被直接访问（通过<code>className.varName</code>)。<br>1.3 <strong>私有属性</strong>： 只能在类的内部被访问（在类中通过<code>self.__varName</code>访问），在类的外部均不能访问（<code>instance.__varName</code>和<code>className.__varName</code>都不能访问）。<br>1.4 获取或更改私有属性，一般通过在类的内部定义方法来达到获取和更改私有属性的作用。<br>1.5 在函数中定义的一般变量是局部变量。</p>
+</li>
+<li><p><strong>成员函数</strong>有：；<strong>公有方法</strong>、<strong>私有方法</strong>、<strong>类方法</strong>和<strong>静态方法</strong>。<br>2.1 <strong>公有方法</strong>：可以在类的内部被调用，也可以在类的外部<strong>通过实例对象调用</strong>，但<strong>不能通过类名直接调用</strong>。<br>2.2 <strong>私有方法</strong>：只能在类的内部被调用，在类的外部通过实例对象或类名<strong>均不能调用</strong>。<br>2.3 <strong>类方法</strong>：与公有方法类似，但是<strong>可以通过类名被直接调用</strong>。<br>2.4 <strong>静态方法</strong>：与类方法类似，<strong>也可以通过类名被直接调用</strong>。</p>
+</li>
+<li><p><strong>类方法</strong>与<strong>静态方法</strong>的区别：<br>3.1 定义方法时形参不同。定义类方法时需要<code>self</code>作为形参；但是定义静态方法时<strong>不需要<code>self</code>作为形参</strong>。（在这环境下，因为静态方法不需要传类实例作为参数，因此在调用成员变量和成员函数时不能通过如<code>self.varName</code>、<code>self.funName</code>这种形式调用，而需要通过类名调用）<br>3.2 加载资源的方式不同。类方法是动态加载资源，需要调用某个资源时才加载；而静态方法是运行时一次性加载所有资源（这也是为什么定义静态方法时不需要<code>self</code>作为形参的原因）。（拓展：因此类方法占用内存小而且速度慢，而静态方法占用内存大而且速度快）<br>3.3 调用成员属性、成员函数的方式不同。类方法通过<code>self.varName</code>的方式调用成员属性；而静态函数则通过<code>className.varName</code>的形式调用成员属性。</p>
+</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-01-20T07:07:22.000Z" itemprop="dateUpdated">2018-01-20 15:07:22</time>
+</span><br>
+
+
+        
+        文章链接<a href="/2018/01/20/面向对象-类-方法/" target="_blank" rel="external">https://richardrw.github.io/2018/01/20/面向对象-类-方法/</a>
+        
+    </div>
+    <footer>
+        <a href="https://richardrw.github.io">
+            <img src="/img/author.jpg" alt="Richard">
+            Richard
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python-类-面向对象/">Python 类 面向对象</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2018/01/20/面向对象-类-方法/&title=《面向对象-类-方法》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2018/01/20/面向对象-类-方法/&title=《面向对象-类-方法》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2018/01/20/面向对象-类-方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《面向对象-类-方法》 — Richard‘s Blog&url=https://richardrw.github.io/2018/01/20/面向对象-类-方法/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2018/01/20/面向对象-类-方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/20/面向对象-类-属性/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">面向对象-类-属性</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        支持作者写出更好的文章
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/zhifubao.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Richard &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://richardrw.github.io/2018/01/20/面向对象-类-方法/&title=《面向对象-类-方法》 — Richard‘s Blog&pic=https://richardrw.github.io/img/author.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://richardrw.github.io/2018/01/20/面向对象-类-方法/&title=《面向对象-类-方法》 — Richard‘s Blog&source=the day with Python 爱生活，爱体验，工作认真，生活随意" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://richardrw.github.io/2018/01/20/面向对象-类-方法/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《面向对象-类-方法》 — Richard‘s Blog&url=https://richardrw.github.io/2018/01/20/面向对象-类-方法/&via=https://richardrw.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://richardrw.github.io/2018/01/20/面向对象-类-方法/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsklEQVR42u3ay27jMBAEQP//T2evAeJH94yoZIHSSbAlWcUDSffM4xEfX9+O75/8PH917+b8569ffODh4eEtXv3V45LPE9L7wXr/i8m3T4YADw8P7xgvn9Bn83C75MyWIjw8PLy/zEs2wclA5MOHh4eH97/z2mtmEcMvr3t4eHh4b3nJn/98G72PcWdRBR4eHt49vDxi+DvnR+p7eHh4eOuqej7db4pk+4D45dvi4eHhHZsI8wj1/QtttrnXXoOHh4d3jteGsLON79fimMUleHh4eHfy8m1x8gNJHLwPiD/k03h4eHjHeMlUvil6tZvy/Dkvhw8PDw/vAC/KKtaYNtQ4WNnDw8PDu4iXT77JtJ4Ut9qpP2+9wsPDwzvNaxsF2s/bxoJ2OD48Hw8PD+923mxqzmPZJIZon/kka8HDw8O7lLeZ3NvGgk2prH0aHh4e3jneDLCJX4tRLwfiydPw8PDwbuS1U3PePpW3cLV3vVzx8PDw8A7wNgHubCrfFM+Kt8LDw8O7kZdQ2xdK4tfZIL5k4+Hh4R3g1ZeOGqra8Hfz7WM1Enh4eHgpL48SZgFuex697qyBAA8PD+8A76rSV9vUtS+qRQsDHh4e3kW8ZArehALFxndU6FptpvHw8PAWvLYdKrl3tjy0TQYfAmU8PDy823l5E0Bb0JrFDW1TAh4eHt453qzIlJfB8uJZuzB82Ojj4eHhHeZdFRPkC0MbDefxMR4eHt4J3qZANSuGzcLf4bd4eHh4B3htEJBsiNs4Iw+RzzVs4eHh4bW8vBCVx6l53JA/Z7gw4OHh4R3jtRP9LHSYxRZtYazuF8PDw8P7JV67Xd6EFxcUwPDw8PBu5OUb7jyYyIPj9i48PDy8c7zNxnfWYrUZuHxw8fDw8E7w2j/8La9t4dq8z/DAw8PDS6/8B4Zuu2Bvw5dSAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '前往理查德生活记录';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '理查德生活记录';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
