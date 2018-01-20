@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://richardrw.github.io/"/>
-  <updated>2018-01-20T07:07:22.000Z</updated>
+  <updated>2018-01-20T07:10:29.000Z</updated>
   <id>https://richardrw.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://richardrw.github.io/2018/01/20/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%B1%BB-%E6%96%B9%E6%B3%95/"/>
     <id>https://richardrw.github.io/2018/01/20/面向对象-类-方法/</id>
     <published>2018-01-20T07:06:31.000Z</published>
-    <updated>2018-01-20T07:07:22.000Z</updated>
+    <updated>2018-01-20T07:10:29.000Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">class Mori(object):</div><div class="line">    name = &quot;我是类的公有属性&quot;</div><div class="line">    </div><div class="line">    # 公有方法，可以在类的内部调用，也可以在类的外部通过实例对象调用</div><div class="line">    def fun1(self):</div><div class="line">        print(self.name)</div><div class="line">        print(&quot;我是公有方法&quot;)</div><div class="line">        self.__fun2()    # 在类的内部调用私有方法</div><div class="line">    </div><div class="line">    # 私有方法， 只能在类的内部调用</div><div class="line">    def fun2(self):</div><div class="line">        print(&quot;我是私有方法“)</div><div class="line">    </div><div class="line">    # 类方法，可以在类的内部和外部调用，也可以通过类名直接调用</div><div class="line">    @classmethod</div><div class="line">    def classFun(self):</div><div class="line">        print(&quot;我是类方法&quot;)</div><div class="line">    </div><div class="line">    # 静态方法，可以在类的内部和外部调用，也可以通过类名直接调用</div><div class="line">    @staticmethod</div><div class="line">    def staticFun():</div><div class="line">        &apos;&apos;&apos;注意，这里因为静态方法定义时不需要形参self，因此如果访问类的成员属性，必须通过类名调用(className.varName或className.__varName)</div><div class="line">        &apos;&apos;&apos;</div><div class="line">        print(Mori.name)</div><div class="line">        print(&quot;我是静态方法&quot;)</div><div class="line"></div><div class="line">if __name__ == &apos;__main&apos;__:</div><div class="line">    myClass = Mori()</div><div class="line">    myClass.fun1()    # 在类的外部通过实例对象调用公有方法</div><div class="line">    myClass.__fun2()  # 不能执行，因为私有方法不能在类的外部调用</div><div class="line">    Mori,fun1()      # 不能执行，因为公有方法不能被类名直接调用</div><div class="line">    myClass.classFun() # 类方法可以通过实例对象被调用</div><div class="line">    Mori.classFun()    # 类方法也可以通过类名被直接调用</div><div class="line">    myClass.staticFun()   # 静态方法可以通过实例对象被调用</div><div class="line">    Mori.staticFun()      # 静态方法也可以通过类名被直接调用</div></pre></td></tr></table></figure><h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ol><li><p>类由<strong>成员变量（属性）</strong>和<strong>成员函数（方法）</strong>组成。<br>1.1  <strong>成员变量</strong>有：<strong>公有属性（也叫类属性）</strong>和<strong>私有属性</strong>。<br>1.2 <strong>公有属性（类属性）</strong>：既可以在类的内部被访问（通过<code>self.varName</code>)，也可以在类的外部被访问（通过<code>instance.varName</code>)，也可以通过类名被直接访问（通过<code>className.varName</code>)。<br>1.3 <strong>私有属性</strong>： 只能在类的内部被访问（在类中通过<code>self.__varName</code>访问），在类的外部均不能访问（<code>instance.__varName</code>和<code>className.__varName</code>都不能访问）。<br>1.4 获取或更改私有属性，一般通过在类的内部定义方法来达到获取和更改私有属性的作用。<br>1.5 在函数中定义的一般变量是局部变量。</p></li><li><p><strong>成员函数</strong>有：；<strong>公有方法</strong>、<strong>私有方法</strong>、<strong>类方法</strong>和<strong>静态方法</strong>。<br>2.1 <strong>公有方法</strong>：可以在类的内部被调用，也可以在类的外部<strong>通过实例对象调用</strong>，但<strong>不能通过类名直接调用</strong>。<br>2.2 <strong>私有方法</strong>：只能在类的内部被调用，在类的外部通过实例对象或类名<strong>均不能调用</strong>。<br>2.3 <strong>类方法</strong>：与公有方法类似，但是<strong>可以通过类名被直接调用</strong>。<br>2.4 <strong>静态方法</strong>：与类方法类似，<strong>也可以通过类名被直接调用</strong>。</p></li><li><p><strong>类方法</strong>与<strong>静态方法</strong>的区别：<br>3.1 定义方法时形参不同。定义类方法时需要<code>self</code>作为形参；但是定义静态方法时<strong>不需要<code>self</code>作为形参</strong>。（在这环境下，因为静态方法不需要传类实例作为参数，因此在调用成员变量和成员函数时不能通过如<code>self.varName</code>、<code>self.funName</code>这种形式调用，而需要通过类名调用）<br>3.2 加载资源的方式不同。类方法是动态加载资源，需要调用某个资源时才加载；而静态方法是运行时一次性加载所有资源（这也是为什么定义静态方法时不需要<code>self</code>作为形参的原因）。（拓展：因此类方法占用内存小而且速度慢，而静态方法占用内存大而且速度快）<br>3.3 调用成员属性、成员函数的方式不同。类方法通过<code>self.varName</code>的方式调用成员属性；而静态函数则通过<code>className.varName</code>的形式调用成员属性。</p></li></ol>]]></content>
     
@@ -35,7 +35,11 @@
     </summary>
     
     
-      <category term="Python 类 面向对象" scheme="https://richardrw.github.io/tags/Python-%E7%B1%BB-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+      <category term="Python" scheme="https://richardrw.github.io/tags/Python/"/>
+    
+      <category term="类" scheme="https://richardrw.github.io/tags/%E7%B1%BB/"/>
+    
+      <category term="面向对象" scheme="https://richardrw.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
   </entry>
   
@@ -44,7 +48,7 @@
     <link href="https://richardrw.github.io/2018/01/20/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%B1%BB-%E5%B1%9E%E6%80%A7/"/>
     <id>https://richardrw.github.io/2018/01/20/面向对象-类-属性/</id>
     <published>2018-01-20T07:05:04.000Z</published>
-    <updated>2018-01-20T07:05:57.000Z</updated>
+    <updated>2018-01-20T07:10:13.000Z</updated>
     
     <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">var = ‘global’   # 全局变量 </div><div class="line"></div><div class="line">class Ren(object):</div><div class="line">    name = &quot;人&quot;         # 公有属性／类属性</div><div class="line">    high = &quot;一人高&quot;     # 公有属性／类属性</div><div class="line">    wight = &quot;一人重&quot;    # 公有属性／类属性</div><div class="line">    __money = &quot;我有十块钱&quot;    # 私有属性</div><div class="line">    var1 = &quot;我是类属性、公有属性var1&quot;</div><div class="line">    __var2 = &quot;我是类的私有属性__var2&quot;</div><div class="line">    </div><div class="line">    # 公有方法</div><div class="line">    def run(self):</div><div class="line">        print(self.name)  # 在类的内部可以调用公有属性</div><div class="line">        print(&quot;跑步&quot;)</div><div class="line">    </div><div class="line">    def say(self):</div><div class="line">        lie = &quot;我很欣赏你&quot;    # 局部变量</div><div class="line">        print(self.__money)   # 在类的内部可以调用私有属性</div><div class="line">        print(lie)    # 调用局部变量</div><div class="line">    </div><div class="line">    def fun(self):</div><div class="line">       ‘’‘对象的公有属性、私有属性只有在类实例化成对象时才有</div><div class="line">       ’‘’</div><div class="line">        self.var2 = “我是对象的公有属性var2”     # 只能通过对象访问，不能通过类名直接访问</div><div class="line">        self.__var3 = &quot;我是对象的私有属性var3&quot;   # 只能通过类内部访问，不能通过类外部访问</div><div class="line">        var4 = &quot;我是fun函数的局部变量var4&quot;</div><div class="line">    </div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    zhangsan = Ren()</div><div class="line">    print(zhangsan.name)    # 在类的外部可以调用公有属性</div><div class="line">    print(Ren.name)       # 公有属性也可以通过类名直接被调用（所以公有属性也叫类属性）</div><div class="line">    print(zhangsan.__money)  # 不能执行，因为私有属性不能被类的外部访问</div><div class="line">    print(Ren.__money)       # 也不能执行，因为私有属性不能被类的外部访问，只有通过特殊的方法在调试时可以调用</div><div class="line">    zhangsan.say()  # 可以执行，通过say()函数在类的内部调用__money，私有属性只能被类的内部访问</div></pre></td></tr></table></figure><h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><ol><li>类由<strong>成员变量（属性）</strong>和<strong>成员函数（方法）</strong>组成。<br>1.1  <strong>成员变量</strong>有：共有<strong>公有属性（也叫类属性）</strong>和<strong>私有属性</strong>。<br>1.2 <strong>公有属性（类属性）</strong>：既可以在类的内部被访问（通过<code>self.varName</code>)，也可以在类的外部被访问（通过<code>instance.varName</code>)，也可以通过类名被直接访问（通过<code>className.varName</code>)。<br>1.3 <strong>私有属性</strong>： 只能在类的内部被访问（在类中通过<code>self.__varName</code>访问），在类的外部均不能访问（<code>instance.__varName</code>和<code>className.__varName</code>都不能访问）。<br>1.4 获取或更改私有属性，一般通过在类的内部定义方法来达到获取和更改私有属性的作用。<br>1.5 在函数中定义的一般变量是局部变量。</li></ol>]]></content>
     
@@ -58,7 +62,11 @@
     </summary>
     
     
-      <category term="Python 类 面向对象" scheme="https://richardrw.github.io/tags/Python-%E7%B1%BB-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
+      <category term="Python" scheme="https://richardrw.github.io/tags/Python/"/>
+    
+      <category term="类" scheme="https://richardrw.github.io/tags/%E7%B1%BB/"/>
+    
+      <category term="面向对象" scheme="https://richardrw.github.io/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"/>
     
   </entry>
   
